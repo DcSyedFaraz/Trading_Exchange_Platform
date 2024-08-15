@@ -39,7 +39,7 @@
                                             <div class="p-0">
                                                 <div class="text-center">
                                                     <div class="mb-4">
-                                                        <a class='auth-logo' href='index.html'>
+                                                        <a class='auth-logo' href='{{ route('home') }}'>
                                                             <img src="/assets/images/logo-dark.png" alt="logo-dark" class="mx-auto" height="28" />
                                                         </a>
                                                     </div>

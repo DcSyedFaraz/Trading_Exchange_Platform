@@ -46,7 +46,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard.index')->withSuccess('You have successfully logged in.');
+            return redirect()->intended('admin.dashboard')->withSuccess('You have successfully logged in.');
         }
 
         return redirect("login")->withSuccess('Oops! Invalid credentials.');
@@ -80,7 +80,7 @@ class AuthController extends Controller
     public function dashboard()
     {
         if(Auth::check()){
-            return view('dashboard.index');
+            return view('admin.dashboard');
         }
 
         return redirect("login")->withSuccess('Opps! You do not have access');

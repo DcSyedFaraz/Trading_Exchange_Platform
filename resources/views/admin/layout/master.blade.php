@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>LMS</title>
+    <title>Marketplace</title>
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -233,7 +233,7 @@
                             <div class="dropdown-divider"></div>
 
                             <!-- item-->
-                            <a class='dropdown-item notify-item' href='auth-logout.html'>
+                            <a class='dropdown-item notify-item' href='{{ route('logout') }}'>
                                 <i class="mdi mdi-location-exit fs-16 align-middle"></i>
                                 <span>Logout</span>
                             </a>
@@ -285,10 +285,10 @@
     <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
 
     <!-- Apexcharts JS -->
-    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script> --}}
 
     <!-- Boxplot Charts Init Js -->
-    <script src="{{ asset('assets/js/pages/apexcharts-pie.init.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/pages/apexcharts-pie.init.js') }}"></script> --}}
 
     <!-- App js-->
     <script src="{{ asset('assets/js/app.js') }}"></script>
@@ -310,6 +310,10 @@
             @endforeach
         @endif
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @yield('scripts')
 </body>
 
 </html>

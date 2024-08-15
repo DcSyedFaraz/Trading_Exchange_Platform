@@ -32,9 +32,9 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::guard()->user()->getRoleNames();
 
 
-        // return redirect()->route('dashboard.index');
+        // return redirect()->route('admin.dashboard');
         return match ($user[0]) {
-            'admin' => redirect()->route('dashboard.index'),
+            'admin' => redirect()->route('admin.dashboard'),
             'user' => redirect()->route('user.dashboard'),
             default => redirect()->route('home'),
         };

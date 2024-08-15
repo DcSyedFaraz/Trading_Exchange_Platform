@@ -6,20 +6,20 @@
          <div id="sidebar-menu">
 
              <div class="logo-box">
-                 <a class='logo logo-light' href='index.html'>
+                 <a class='logo logo-light' href='{{ route('home') }}'>
                      <span class="logo-sm">
-                         <img src="/assets/images/logo-sm.png" alt="" height="22">
+                         <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                      </span>
                      <span class="logo-lg">
-                         <img src="/assets/images/logo-light.png" alt="" height="24">
+                         <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="24">
                      </span>
                  </a>
-                 <a class='logo logo-dark' href='index.html'>
+                 <a class='logo logo-dark' href='{{ route('home') }}'>
                      <span class="logo-sm">
-                         <img src="/assets/images/logo-sm.png" alt="" height="22">
+                         <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                      </span>
                      <span class="logo-lg">
-                         <img src="/assets/images/logo-dark.png" alt="" height="24">
+                         <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="24">
                      </span>
                  </a>
              </div>
@@ -29,7 +29,7 @@
                  <li class="menu-title">Menu</li>
 
                  <li>
-                     <a href='{{ route('dashboard.index') }}'>
+                     <a href='{{ route('admin.dashboard') }}'>
                          <i data-feather="home"></i>
                          {{-- <span class="badge bg-success rounded-pill float-end">9+</span> --}}
                          <span> Dashboard </span>
@@ -61,13 +61,13 @@
                              </ul>
                          </div>
                      </li>
-                     @endif
-                     <li>
-                         <a href='{{ route('library.index') }}' class="">
-                             <i data-feather="book-open"></i>
-                             <span> Library </span>
-                         </a>
-                     </li>
+                 @endif
+                 <li class="{{ request()->routeIs('products.*') ? 'menuitem-active' : '' }}">
+                     <a href='{{ route('products.index') }}'>
+                         <i data-feather="book-open"></i>
+                         <span> Products </span>
+                     </a>
+                 </li>
                  <li>
                      <a href='{{ route('logout') }}' class="text-danger ">
                          <i data-feather="log-out"></i>

@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LibraryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TeacherDashboardController;
 use App\Http\Controllers\Admin\StudentDashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,26 +27,37 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth/login');
 });
 
 require __DIR__ . '/auth.php';
 
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('/about-us', 'about_us')->name('about_us');
+    Route::get('/contact-us', 'contact_us')->name('contact_us');
+    Route::get('/faqs', 'faqs')->name('faqs');
+    Route::get('/marketplace', 'marketplace')->name('marketplace');
+    Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
+});
+
 // Dashboard and Logout routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-    Route::get('/home', [AuthenticatedSessionController::class, 'home'])->name('home');
+    // Route::get('/home', [AuthenticatedSessionController::class, 'home'])->name('home');
 });
-
-
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 
-    Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
+
+    // Products
+    Route::resource('products', ProductController::class);
+    Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
 });
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'role:user']], function () {
 
