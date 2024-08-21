@@ -133,7 +133,7 @@
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
 
-                        @forelse ($products as $product)
+                        {{-- @forelse ($products as $product)
                             <div class="main-imgbox">
                                 <div class="imgbox">
                                     @if (isset($product->images()->first()->path))
@@ -154,8 +154,82 @@
                                     <p>It looks like we don't have any products to show you right now. Try searching for
                                         something else or check back later!</p>
                                 </div>
-                        @endforelse
+                        @endforelse --}}
 
+                        <div class="main-imgbox">
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f1.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f2.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f3.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f4.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f5.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f6.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f7.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                            <div class="imgbox">
+                                <img src="{{ asset('assets/images/market/f8.png') }}" class="imbox-img" />
+                                <h4 class="imgbox-a">Vivid FHD LED</h4>
+                                <a href="#" class="imgbox-b">
+                                    <h4>Model J11</h4>
+                                </a>
+                                <p class="imgbox-c">$1,215.00</p>
+                                <a href="#" class="eye-icon"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="menu1" class="container tab-pane fade"><br>
