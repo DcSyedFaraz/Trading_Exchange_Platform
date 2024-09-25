@@ -2,42 +2,26 @@
     <div class="header-inner">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="inner-1">
-                        <div>
-                            <a href="#">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <h4 class="inner1-a">Store Location</h4>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <i class="fa-solid fa-box"></i>
-                                <h4 class="inner1-a">Track Your Order</h4>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="inner-2">
                         <div>
                             <a href="#" class="app-txt">
-                                <p class="apptext">Buyer Protection</p>
+                                <p class="apptext">Setting</p>|
                             </a>
                         </div>
                         <div>
                             <a href="#" class="app-txt">
-                                <p class="apptext">Help</p>
+                                <p class="apptext">Help</p>|
                             </a>
                         </div>
                         <div>
                             <a href="#" class="app-txt">
-                                <i class="fa-solid fa-mobile"></i>
-                                <p class="apptext">Save big on our app!</p>
+                                <i class="fa-solid fa-globe"></i>
+                                <p class="apptext">English</p>|
                             </a>
                         </div>
                         <div class="dropdown inner-drop">
-                            <button onclick="myFunction()" class="dropbtn">USD </button>
+                            <button onclick="myFunction()" class="dropbtn">USD</button>
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="">USD</a>
                             </div>
@@ -51,12 +35,32 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-3">
-                    <img src="{{ asset('assets/images/BP-Logo.png') }}" class="logo-market" />
+                    <a href="{{route('marketplace')}}">
+
+                        <img src="{{ asset('assets/images/BP-Logo.png') }}" class="logo-market" />
+                    </a>
                 </div>
                 <div class="col-md-6">
                     <div class="input-group">
                         <input type="hidden" name="search_param" value="shirt" id="search_param">
                         <input type="text" class="form-control" name="x" placeholder="i’m shoping for...">
+                        <select id="searchType" name="searchType">
+                            <option class="option" value="1">All Categories</option>
+                            <option class="option" value="2">AUTOMOBILES</option>
+                            <option class="option" value="3">BOATS</option>
+                            <option class="option" value="4">BUSINESS AND INDUSTRIAL</option>
+                            <option class="option" value="5">COLLECTIBLES</option>
+                            <option class="option" value="6">EPHEMERRA</option>
+                            <option class="option" value="7">FIREARMS</option>
+                            <option class="option" value="8">JEWELLRY and WATCHES</option>
+                            <option class="option" value="9">GOODS & SERVICES</option>
+                            <option class="option" value="10">MILITARIA</option>
+                            <option class="option" value="11">NUMISMATICS</option>
+                            <option class="option" value="12">PHILITATELICS</option>
+                            <option class="option" value="13">REAL ESTATE</option>
+                            <option class="option" value="13">UNIQUE/ ODD/ INVALUBLES</option>
+                            <option class="option" value="13">SPORTING COLLECTIBLES</option>
+                        </select>
                         <span class="input-group-btn">
                             <button class="btn btn-default1" type="button"><i
                                     class="fa fa-magnifying-glass"></i></button>
@@ -65,31 +69,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="icons-div">
-                        @if (Auth::check())
-                            @if (Auth::user()->hasRole('admin'))
-                                <a href="{{ route('admin.dashboard') }}">
-                                    <!-- User is logged in and has admin role -->
-                                    <i class="fa-solid fa-user-shield"></i> <!-- Admin icon -->
-                                </a>
-                            @else
-                                <a href="{{ route('user.dashboard') }}">
-                                    <!-- User is either not logged in or does not have admin role -->
-                                    <i class="fa-regular fa-user"></i> <!-- Regular user icon -->
-                                </a>
-                            @endif
-                        @else
-                            <a href="{{ route('login') }}">
-                                <!-- User is either not logged in or does not have admin role -->
-                                <i class="fa-regular fa-user"></i> <!-- Regular user icon -->
-                            </a>
-
-                        @endif
-
+                        <a href="{{ route('login') }}"><i class="fa-regular fa-user"></i></a>
                         <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="notice_box">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="bubble_count">10</span>
-                        </div>
+                        <a href="#" class="aucbtn">Auction</a>
                     </div>
                 </div>
             </div>

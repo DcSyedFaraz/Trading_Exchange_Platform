@@ -27,19 +27,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'sku' => 'required|unique:products,sku',
             'name' => 'required',
             'description' => 'nullable',
-            'price' => 'required|numeric',
             'auction' => 'boolean',
             'images' => 'required|array|min:1',
             'images.*' => 'required|image|max:2048',
         ]);
 
-        $validatedData['user_id'] = Auth::id();
 
         try {
-            $product = Product::create($validatedData);
+            $product = Product::create([
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
+                'auction' => $validatedData['auction'],
+                'user_id' => Auth::id(),
+                'is_active' => true,
+            ]);
 
             // Handle file uploads
             if ($request->has('images')) {
@@ -54,6 +57,7 @@ class ProductController extends Controller
                 }
             }
         } catch (\Exception $e) {
+            // throw $e;
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
@@ -76,10 +80,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validatedData = $request->validate([
-            'sku' => "required|unique:products,sku,{$product->id}",
             'name' => 'required',
             'description' => 'nullable',
-            'price' => 'required|numeric',
             'is_active' => 'boolean',
             'auction' => 'boolean',
         ]);

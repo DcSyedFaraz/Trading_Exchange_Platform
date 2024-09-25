@@ -81,7 +81,7 @@
                     <p class="barf-copy">Copyright © 2024 Michael Durham, All Rights Reserved.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('assets/images/market/multi-img') }}.png" class="multi-img" />
+                    <img src="{{ asset('assets/images/market/multi-img.png') }}" class="multi-img" />
                 </div>
             </div>
         </div>

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\User;
 use Hash;
 use Illuminate\Database\Seeder;
@@ -48,13 +50,8 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole('user');
 
-        // $student = User::create([
-        //     'name' => 'Student',
-        //     'email' => 'student@gmail.com',
-        //     'password' => Hash::make('12345678'),
-        //     'email_verified_at' => date('Y-m-d h:i:s'),
-        // ]);
+        Product::factory()->count(5)->create();
+        ProductImage::factory()->count(10)->create();
 
-        // $student->assignRole('student');
     }
 }

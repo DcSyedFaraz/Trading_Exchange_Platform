@@ -7,10 +7,8 @@
             @csrf
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label for="sku" class="form-label">SKU:</label>
-                        <input type="text" name="sku" id="sku" class="form-control" required>
-                    </div>
+
+
                     <div class="form-group mb-3">
                         <label for="name" class="form-label">Name:</label>
                         <input type="text" name="name" id="name" class="form-control" required>
@@ -21,10 +19,8 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label for="price" class="form-label">Price:</label>
-                        <input type="number" step="0.01" name="price" id="price" class="form-control" required>
-                    </div>
+
+
                     <div class="form-group mb-3">
                         <label for="auction" class="form-label">Auction:</label>
                         <div class="form-check form-switch">

@@ -31,7 +31,12 @@ class FrontendController extends Controller
 
     public function details($id)
     {
-        $product = Product::active()->findOrFail($id);
-        return view('frontend.marketplace.productdetails', ['product' => $product]);
+        $data['product'] = Product::active()->findOrFail($id);
+        $data['relatedProducts'] = Product::where('id', '!=', $id)
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+
+        return view('frontend.marketplace.productdetails', $data);
     }
 }

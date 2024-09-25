@@ -62,12 +62,12 @@
                          </div>
                      </li>
                  @endif
-                 {{-- <li class="{{ request()->routeIs('products.*') ? 'menuitem-active' : '' }}">
+                 <li class="{{ request()->routeIs('products.*') ? 'menuitem-active' : '' }}">
                      <a href='{{ route('products.index') }}'>
                          <i data-feather="book-open"></i>
                          <span> Products </span>
                      </a>
-                 </li> --}}
+                 </li>
                  <li>
                      <a href='{{ route('logout') }}' class="text-danger ">
                          <i data-feather="log-out"></i>

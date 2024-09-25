@@ -1,17 +1,19 @@
 @extends('frontend.marketplace.layout.app')
+
 @section('content')
-    <section class="product-detail">
+    <section class="single-main">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
+                <!-- Product Images Carousel -->
                 <div class="col-md-6">
                     <div class="product-image">
-                        <div class="owl-carousel product-carousel owl-theme">
+                        <div class="owl-carousel product-images-carousel owl-theme">
                             @foreach ($product->images as $image)
                                 <div class="item">
-                                    <a href="{{ asset('storage/' . $image->path) }}"  data-thumb-src="{{ asset('storage/' . $image->path) }}"
-                                        data-fancybox="gallery" data-fancybox="product-images"
-                                        data-caption="{{ $image->caption }}">
-                                        <img src="{{ asset('storage/' . $image->path) }}" class="product-img img-fluid"
+                                    <a href="{{ asset('storage/' . $image->path) }}"
+                                        data-thumb-src="{{ asset('storage/' . $image->path) }}" data-fancybox="gallery"
+                                        data-fancybox="product-images" data-caption="{{ $image->caption }}">
+                                        <img src="{{ asset('storage/' . $image->path) }}" class="product-img "
                                             alt="Product Image">
                                     </a>
                                 </div>
@@ -19,63 +21,83 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Product Details -->
                 <div class="col-md-6">
-                    <div class="product-info">
-                        <h2 class="product-name">{{ $product->name }}</h2>
-                        <p class="product-desc">{{ $product->description }}</p>
-                        <div class="product-price">
-                            <p class="price">Price: {{ $product->price }}</p>
-                        </div>
-                        @if ($product->auction)
-                            <div class="product-auction">
-                                <h4>Bid Now!</h4>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="bid-amount">Enter your bid amount:</label>
-                                        <input type="number" id="bid-amount" class="form-control" required>
-                                    </div>
-                                    <button class="btn btn-primary my-2">Place Bid</button>
-                                </form>
-                            </div>
-                        @endif
-                        <div class="product-actions my-2">
-                            <button class="btn btn-secondary">Add to Cart</button>
-                            @if (!$product->auction)
-                                <button class="btn btn-primary">Buy Now</button>
-                            @endif
-                        </div>
-                    </div>
+                    <h3 class="product-title">{{ $product->name }}</h3>
+                    <p class="product-desc">{{ $product->description }}</p>
+                    <a href="#" class="chat-btn">Chat Now</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Related Products Section -->
     <section class="related-products">
         <div class="container">
             <h2 class="related-products-title">Related Products</h2>
-            <div class="owl-carousel product-carousel owl-theme">
-                <div class="item">
-                    <img src="{{ asset('assets/images/market/p2.png') }}" class="related-product-img" />
-                    <h4 class="related-product-name">Product 2</h4>
-                    <p class="related-product-price">$59.00</p>
+
+            @if ($relatedProducts->count() > 0)
+                <div class="owl-carousel related-products-carousel owl-theme">
+                    @foreach ($relatedProducts as $relatedProduct)
+                        <div class="item">
+                            <a href="{{ route('marketplace.details', $relatedProduct->id) }}">
+                                <img src="{{ asset('storage/' . ($relatedProduct->images->first()->path ?? 'assets/images/no_product.svg')) }}"
+                                    class="product-img" alt="{{ $relatedProduct->name }}" />
+                            </a>
+                            <div class="mx-4 my-2">
+
+                                <h4 class="related-product-name">{{ $relatedProduct->name }}</h4>
+                                <p class="related-product-price">{{ $relatedProduct->description }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="item">
-                    <img src="{{ asset('assets/images/market/p3.png') }}" class="related-product-img" />
-                    <h4 class="related-product-name">Product 3</h4>
-                    <p class="related-product-price">$69.00</p>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('assets/images/market/p1.png') }}" class="related-product-img" />
-                    <h4 class="related-product-name">Product 4</h4>
-                    <p class="related-product-price">$79.00</p>
-                </div>
-            </div>
+            @else
+                <p>No related products found.</p>
+            @endif
         </div>
     </section>
 @endsection
+
 @section('scripts')
     <script>
         $(document).ready(function() {
+            // Initialize Product Images Carousel with 1 item
+            $('.product-images-carousel').owlCarousel({
+                items: 1,
+                loop: true,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+            });
+
+            // Initialize Related Products Carousel with responsive settings
+            $('.related-products-carousel').owlCarousel({
+                items: 4, // Default number of items
+                loop: true,
+                nav: true,
+                dots: true,
+                margin: 20,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    900: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
+            });
+
+            // Initialize Fancybox for Product Images
             $('[data-fancybox="product-images"]').fancybox({
                 loop: true,
                 thumbs: {

@@ -7,9 +7,7 @@
             <div class="col-md-6">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <p class="card-text">SKU: {{ $product->sku }}</p>
                         <p class="card-text">Description: {{ $product->description }}</p>
-                        <p class="card-text">Price: ${{ $product->price }}</p>
                         <p class="card-text">Status: {{ $product->is_active ? 'Active' : 'Inactive' }}</p>
                         <p class="card-text">Auction: {{ $product->auction ? 'Yes' : 'No' }}</p>
                     </div>
