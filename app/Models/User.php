@@ -44,10 +44,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function scopeWithRole($query, $roleName)
+    public function chatsAsUserOne()
     {
-        return $query->whereHas('roles', function ($query) use ($roleName) {
-            $query->where('name', $roleName);
-        });
+        return $this->hasMany(Chat::class, 'user_one_id');
+    }
+
+    public function chatsAsUserTwo()
+    {
+        return $this->hasMany(Chat::class, 'user_two_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
     }
 }

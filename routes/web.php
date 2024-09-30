@@ -9,12 +9,14 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Auth\AuthController;
+use Tighten\Ziggy\Ziggy;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,10 @@ Route::get('/login', function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/ziggy', function () {
+    return new Ziggy();
+});
+
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/about-us', 'about_us')->name('about_us');
@@ -40,6 +46,14 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/marketplace', 'marketplace')->name('marketplace');
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
+});
+Route::controller(ChatController::class)->group(function () {
+    Route::get('/chat', 'chat')->name('chat.index');
+    Route::get('/chats/{id}', 'show')->name('chats.show');
+    Route::post('/chats/{chat}/messages', 'storeMessage')->name('chats.messages.store');
+
+    // Route to initiate chat from product page
+    Route::get('/products/{product}/chat', 'initiateChat')->name('products.chat');
 });
 
 // Dashboard and Logout routes

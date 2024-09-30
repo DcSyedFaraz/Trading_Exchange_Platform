@@ -7,14 +7,18 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
+        "inertiajs/inertia-laravel": "^1.3",
         "intervention/image": "^3.7",
         "intervention/image-laravel": "^1.3",
         "laravel/framework": "^10.10",
+        "laravel/reverb": "^1.3",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.5",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^6.9",
-        "spatie/pdf-to-image": "^1.2"
+        "spatie/pdf-to-image": "^1.2",
+        "tightenco/ziggy": "^2.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

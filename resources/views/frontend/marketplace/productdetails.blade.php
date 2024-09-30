@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                     <h3 class="product-title">{{ $product->name }}</h3>
                     <p class="product-desc">{{ $product->description }}</p>
-                    <a href="#" class="chat-btn">Chat Now</a>
+                    <a href="{{ route('products.chat', $product->id) }}" class="chat-btn">Chat Now</a>
                 </div>
             </div>
         </div>
