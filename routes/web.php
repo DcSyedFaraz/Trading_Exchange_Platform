@@ -47,17 +47,17 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/marketplace', 'marketplace')->name('marketplace');
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
 });
-Route::controller(ChatController::class)->group(function () {
-    Route::get('/chat', 'chat')->name('chat.index');
-    Route::get('/chats/{id}', 'show')->name('chats.show');
-    Route::post('/chats/{chat}/messages', 'storeMessage')->name('chats.messages.store');
-
-    // Route to initiate chat from product page
-    Route::get('/products/{product}/chat', 'initiateChat')->name('products.chat');
-});
 
 // Dashboard and Logout routes
 Route::middleware(['auth'])->group(function () {
+    Route::controller(ChatController::class)->group(function () {
+        Route::get('/chat', 'chat')->name('chat.index');
+        Route::get('/chats/{id}', 'show')->name('chats.show');
+        Route::post('/chats/{chat}/messages', 'storeMessage')->name('chats.messages.store');
+
+        // Route to initiate chat from product page
+        Route::get('/products/{product}/chat', 'initiateChat')->name('products.chat');
+    });
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     // Route::get('/home', [AuthenticatedSessionController::class, 'home'])->name('home');
 });

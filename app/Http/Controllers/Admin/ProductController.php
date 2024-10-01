@@ -29,7 +29,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'auction' => 'boolean',
+            'auction' => 'nullable|boolean',
             'images' => 'required|array|min:1',
             'images.*' => 'required|image|max:2048',
         ]);
@@ -39,7 +39,7 @@ class ProductController extends Controller
             $product = Product::create([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
-                'auction' => $validatedData['auction'],
+                'auction' => $validatedData['auction'] ?? 0,
                 'user_id' => Auth::id(),
                 'is_active' => true,
             ]);
@@ -83,7 +83,7 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'nullable',
             'is_active' => 'boolean',
-            'auction' => 'boolean',
+            'auction' => 'nullable|boolean',
         ]);
 
         try {

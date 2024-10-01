@@ -6,17 +6,17 @@
                 <div class="col-md-3">
                     <a href="#" class="market-c">Marketplace</a>
                     <!-- <div class="market-div">
-                                                                        <a href="#" class="market-a">New Arrivals</a>
-                                                                        <a href="#" class="market-a">Top 100 Best Seller <span class="maspan">Hot</span></a>
-                                                                        <a href="#">Led</a>
-                                                                        <a href="#">Electronic</a>
-                                                                        <a href="#">vehicle</a>
-                                                                        <a href="#">E Bike</a>
-                                                                        <a href="#">Sport</a>
-                                                                        <a href="#">Bed</a>
-                                                                        <a href="#">E Car</a>
-                                                                        <a href="#" class="market-a">All categlories</a>
-                                                                    </div> -->
+                                                                            <a href="#" class="market-a">New Arrivals</a>
+                                                                            <a href="#" class="market-a">Top 100 Best Seller <span class="maspan">Hot</span></a>
+                                                                            <a href="#">Led</a>
+                                                                            <a href="#">Electronic</a>
+                                                                            <a href="#">vehicle</a>
+                                                                            <a href="#">E Bike</a>
+                                                                            <a href="#">Sport</a>
+                                                                            <a href="#">Bed</a>
+                                                                            <a href="#">E Car</a>
+                                                                            <a href="#" class="market-a">All categlories</a>
+                                                                        </div> -->
                     <div class="market-div">
                         <ul class="mdn-accordion indigo-accordion-theme">
                             <li class="sub-level">
@@ -556,7 +556,8 @@
                                         <img src="{{ asset('storage/' . $product->images->first()->path) }}"
                                             class="imbox-img product-img" />
                                     @else
-                                        <img src="{{ asset('assets/images/no_product.svg') }}" class="imbox-img product-img" />
+                                        <img src="{{ asset('assets/images/no_product.svg') }}"
+                                            class="imbox-img product-img" />
                                     @endif
                                     <a href="#" class="imgbox-b">
                                         <h4>{{ $product->name }}</h4>
@@ -565,7 +566,7 @@
                                     <div class="Btndiv">
                                         <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
                                             Details</a>
-                                        <a href="#" class="Secbtn">Chat Now</a>
+                                        <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
                                     </div>
                                 </div>
 

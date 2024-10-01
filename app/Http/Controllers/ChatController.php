@@ -8,6 +8,7 @@ use App\Models\Product;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Log;
 
 class ChatController extends Controller
 {
@@ -128,6 +129,7 @@ class ChatController extends Controller
     public function storeMessage(Request $request, Chat $chat)
     {
         $user = Auth::user();
+        Log::info('storeMessage called', ['chat_id' => $chat->id, 'user_id' => Auth::id()]);
 
         // Ensure the authenticated user is part of the chat
         if ($chat->user_one_id !== $user->id && $chat->user_two_id !== $user->id) {

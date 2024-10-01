@@ -50,7 +50,7 @@
                         <a href="#">Forgot Password?</a>
                     </div>
 
-                    <button type="submit" class="signup-btn">Sign Up</button>
+                    <button type="submit" class="signup-btn">Sign In</button>
                     <div class="text">
                         <p>Don't Have Account? <a href="./signup.html"> Create Account </a></p>
                     </div>
