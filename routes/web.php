@@ -51,7 +51,7 @@ Route::controller(FrontendController::class)->group(function () {
 // Dashboard and Logout routes
 Route::middleware(['auth'])->group(function () {
     Route::controller(ChatController::class)->group(function () {
-        Route::get('/chat', 'chat')->name('chat.index');
+        Route::get('/chat', 'index')->name('chat.index');
         Route::get('/chats/{id}', 'show')->name('chats.show');
         Route::post('/chats/{chat}/messages', 'storeMessage')->name('chats.messages.store');
 

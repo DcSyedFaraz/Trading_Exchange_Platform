@@ -1,28 +1,14 @@
 <!-- resources/js/Pages/Chats/Show.vue -->
 
 <template>
-    <!-- <div class="chat-show-page">
-        <ChatSidebar :chats="chats" />
-    </div> -->
     <div class="card-1">
         <div class="row g-0">
             <div class="col-12 col-lg-5 col-xl-4 border-right side">
-                <Link :href="route('chats.show', chat.id)" class="user-div" v-for="chat in chats" :key="chat.id">
-                <div class="d-flex align-items-center">
-                    <!-- <img src="./assets/images/chat-screen/user1.png" class="rounded-circle mr-1"
-                                        alt="Vanessa Tucker"> -->
-                    <div class="content-inner">
-                        <h3>{{ chat.with_user.name }}</h3>
-                        <p v-if="chat.last_message">{{ chat.last_message.message }}</p>
-                    </div>
-                </div>
-                </Link>
-
-                <hr class="d-block d-lg-none mt-1 mb-0">
+                <ChatSidebar :chats="chats" />
             </div>
             <div class="col-12 col-lg-7 col-xl-8">
-
-                <ChatWindow :chat="chat" :current-user="authUser" />
+                <ChatWindow :chat="chat" :current-user="authUser" @message-sent="handleMessageSent"
+                    @message-received="handleMessageReceived" @chat-viewed="handleChatViewed" />
             </div>
         </div>
     </div>
@@ -56,12 +42,46 @@ export default {
             return this.auth.user;
         },
     },
+    methods: {
+        handleMessageSent(message) {
+            this.updateLastMessage(this.chat.id, message);
+        },
+        handleMessageReceived(message) {
+            this.updateLastMessage(this.chat.id, message);
+        },
+        handleChatViewed(chatId) {
+            if (chatId === this.chat.id) {
+                const chatIndex = this.chats.findIndex(c => c.id === chatId);
+                if (chatIndex !== -1) {
+                    // Directly modify the chats array in Vue 3
+                    this.chats[chatIndex] = {
+                        ...this.chats[chatIndex],
+                        unread_count: 0,
+                    };
+                }
+            }
+        },
+        updateLastMessage(chatId, message) {
+            if (!message || typeof message.message !== 'string' || !message.created_at) {
+                console.error('Invalid message object:', message);
+                return;
+            }
+            const chatIndex = this.chats.findIndex(c => c.id === chatId);
+            if (chatIndex !== -1) {
+                // Directly modify the chats array in Vue 3
+                this.chats[chatIndex] = {
+                    ...this.chats[chatIndex],
+                    last_message: {
+                        message: message.message,
+                        created_at: message.created_at,
+                    },
+                    unread_count: this.chats[chatIndex].unread_count + 1,
+                };
+            }
+        }
+
+    },
 };
 </script>
 
-<style scoped>
-.chat-show-page {
-    display: flex;
-    height: 100vh;
-}
-</style>
+<style scoped></style>

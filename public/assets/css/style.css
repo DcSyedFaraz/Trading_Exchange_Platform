@@ -2408,7 +2408,7 @@ select#searchType {
     font-family: 'Montserrat';
 }
 
-.message-box input {
+.message-box-input {
     border-radius: 0;
     color: #3670EE;
     padding-left: 30px;
@@ -2416,7 +2416,7 @@ select#searchType {
     font-weight: 300;
 }
 
-.message-box input::placeholder {
+.message-box-input::placeholder {
     color: #3670EE;
 }
 

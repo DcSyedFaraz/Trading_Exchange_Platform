@@ -13,8 +13,7 @@
                 </div>
                 <div class="all-btns">
                     <button class="inte-btn" id="interested">Interested</button>
-                    <a href="#" class="inte-btn1"><i class="fa-light fa-video"></i></a>
-                    <a href="#" class="inte-btn1"><i class="fa-light fa-phone"></i></a>
+
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,16 +29,18 @@
         </div>
 
         <div class="position-relative">
-            <div class="chat-messages p-4">
-
+            <div class="chat-messages p-4" ref="chatMessages">
                 <div v-for="message in messages" :key="message.id" :class="{
                     chat_message_left: message.sender.id !== currentUser.id,
                     chat_message_right: message.sender.id === currentUser.id,
-                }" class=" pb-4">
+                    'message-sending': message.status === 'sending',  // Apply dim styling when sending
+                    'message-sent': message.status === 'sent' // Apply normal styling when sent
+                }" class="pb-4">
+
                     <div v-if="message.sender.id !== currentUser.id">
                         {{ message.sender.name }}
-                        <!-- <img src="assets/images/chat-screen/chat-1.png" class="rounded-circle mr-1" alt="P D P"> -->
                     </div>
+
                     <div :class="{
                         chat_opp: message.sender.id !== currentUser.id,
                         chat_opp1: message.sender.id === currentUser.id,
@@ -47,37 +48,22 @@
                         {{ message.message }}
                     </div>
                 </div>
-
-
-
             </div>
         </div>
+
 
         <div class="message-box">
-            <div class="input-group">
-                <input type="text" v-model="newMessage" class="form-control" placeholder="Type your message">
-                <button class="send-btn" @click="sendMessage"><i class="fa-regular fa-location-arrow-up"></i></button>
-            </div>
+            <form @submit.prevent="sendMessage">
+                <div class="input-group">
+
+                    <input type="text message-box-input" v-model="newMessage" class="form-control"
+                        placeholder="Type your message">
+                    <button class="send-btn"><i class="fa-regular fa-location-arrow-up"></i></button>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- <div class="chat-window">
-        <div class="messages">
-            <div v-for="message in messages" :key="message.id" :class="{
-                sent: message.sender.id === currentUser.id,
-                received: message.sender.id !== currentUser.id,
-            }">
-                <strong v-if="message.sender.id !== currentUser.id">
-                    {{ message.sender.name }}
-                </strong>
-                <p>{{ message.message }}</p>
-                <span>{{ message.created_at }}</span>
-            </div>
-        </div>
-        <form @submit.prevent="sendMessage">
-            <input v-model="newMessage" type="text" placeholder="Type your message..." required />
-            <button type="submit">Send</button>
-        </form>
-    </div> -->
+
 </template>
 
 <script>
@@ -102,24 +88,43 @@ export default {
         return {
             newMessage: '',
             messages: [...this.chat.messages],
+            sendingMessages: [],
         };
     },
     methods: {
+        scrollToBottom() {
+            const container = this.$refs.chatMessages;
+            container.scrollTop = container.scrollHeight;
+        },
         sendMessage() {
             if (this.newMessage.trim() === '') return;
 
-            axios.post(route('chats.messages.store', { chat: this.chat.id }), {
+            const tempMessage = {
+                id: Date.now(), // Temporary ID
                 message: this.newMessage,
+                sender: this.currentUser, // Set the sender as the current user
+                status: 'sending', // Mark message as sending
+            };
+
+            // Push message into the array
+            this.messages.push(tempMessage);
+            const messageText = this.newMessage;
+            this.newMessage = '';
+            this.$nextTick(() => this.scrollToBottom());
+
+            axios.post(route('chats.messages.store', { chat: this.chat.id }), {
+                message: messageText,
             })
                 .then(response => {
-                    // Append the new message to the messages array
-                    // this.messages.push(response.data.message);
-                    // Clear the input field
-                    this.newMessage = '';
+                    const sentMessage = this.messages.find(msg => msg.id === tempMessage.id);
+                    if (sentMessage) {
+                        sentMessage.status = 'sent'; // Update status on successful send
+                    }
+                    this.$nextTick(() => this.scrollToBottom());
+                    this.$emit('message-sent', response.data.message);
                 })
                 .catch(error => {
                     console.error('Error sending message:', error);
-                    // Optionally, display an error message to the user
                 });
         },
         reloadChatData() {
@@ -129,7 +134,12 @@ export default {
             });
         },
         addMessage(message) {
+            if (message.sender.id === this.currentUser.id) {
+                return;
+            }
             this.messages.push(message);
+            this.$nextTick(() => this.scrollToBottom());
+            this.$emit('message-received', message);
         },
         setupEcho() {
             window.Echo = new Echo({
@@ -171,6 +181,8 @@ export default {
     },
     mounted() {
         this.setupEcho();
+        this.$nextTick(() => this.scrollToBottom());
+        this.$emit('chat-viewed', this.chat.id);
     },
     beforeUnmount() {
         this.leaveEcho();
@@ -179,57 +191,13 @@ export default {
 </script>
 
 <style scoped>
-.chat-window {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+.message-sending {
+    opacity: 0.5;
+    color: gray;
 }
 
-.messages {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-}
-
-.messages .sent {
-    text-align: right;
-}
-
-.messages .received {
-    text-align: left;
-}
-
-.messages p {
-    display: inline-block;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background-color: #f1f1f1;
-    margin: 0.5rem 0;
-}
-
-.messages .sent p {
-    background-color: #d1e7dd;
-}
-
-form {
-    display: flex;
-}
-
-form input {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 0.5rem;
-}
-
-form button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #4caf50;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
+.message-sent {
+    opacity: 1;
+    color: black;
 }
 </style>

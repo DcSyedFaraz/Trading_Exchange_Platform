@@ -1,9 +1,12 @@
 <?php
+// app/Http/Controllers/ChatController.php
 
 namespace App\Http\Controllers;
 
+use App\Events\ChatInitiated;
 use App\Events\MessageSent;
 use App\Models\Chat;
+use App\Models\Message;
 use App\Models\Product;
 use Auth;
 use Illuminate\Http\Request;
@@ -25,6 +28,7 @@ class ChatController extends Controller
             ->with([
                 'userOne',
                 'userTwo',
+                'product',
                 'messages' => function ($query) {
                     $query->latest()->limit(1); // Get latest message for preview
                 }
@@ -32,6 +36,11 @@ class ChatController extends Controller
             ->get()
             ->map(function ($chat) use ($user) {
                 $otherUser = $chat->user_one_id === $user->id ? $chat->userTwo : $chat->userOne;
+                $unreadCount = $chat->messages()
+                    ->where('sender_id', '!=', $user->id)
+                    ->whereNull('read_at')
+                    ->count();
+
                 return [
                     'id' => $chat->id,
                     'with_user' => [
@@ -39,15 +48,27 @@ class ChatController extends Controller
                         'name' => $otherUser->name,
                         // Add other user fields as needed
                     ],
+                    'product' => [
+                        'id' => $chat->product->id,
+                        'name' => $chat->product->name,
+                        // Add other product fields as needed
+                    ],
                     'last_message' => $chat->messages->first() ? [
                         'message' => $chat->messages->first()->message,
                         'created_at' => $chat->messages->first()->created_at,
                     ] : null,
+                    'unread_count' => $unreadCount,
                 ];
             });
 
         return Inertia::render('Chats/Index', [
             'chats' => $chats,
+            'auth' => [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                ],
+            ],
         ]);
     }
 
@@ -56,7 +77,7 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $chat = Chat::find($id);
+        $chat = Chat::with('product')->findOrFail($id);
         $user = Auth::user();
 
         // Ensure the authenticated user is part of the chat
@@ -66,12 +87,19 @@ class ChatController extends Controller
 
         $messages = $chat->messages()->with('sender')->orderBy('created_at')->get();
 
+        // Mark all unread messages as read
+        $chat->messages()
+            ->where('sender_id', '!=', $user->id)
+            ->whereNull('read_at')
+            ->update(['read_at' => now()]);
+
         // Get all chats for the sidebar
         $chats = Chat::where('user_one_id', $user->id)
             ->orWhere('user_two_id', $user->id)
             ->with([
                 'userOne',
                 'userTwo',
+                'product',
                 'messages' => function ($query) {
                     $query->latest()->limit(1);
                 }
@@ -79,6 +107,11 @@ class ChatController extends Controller
             ->get()
             ->map(function ($chat) use ($user) {
                 $otherUser = $chat->user_one_id === $user->id ? $chat->userTwo : $chat->userOne;
+                $unreadCount = $chat->messages()
+                    ->where('sender_id', '!=', $user->id)
+                    ->whereNull('read_at')
+                    ->count();
+
                 return [
                     'id' => $chat->id,
                     'with_user' => [
@@ -86,16 +119,27 @@ class ChatController extends Controller
                         'name' => $otherUser->name,
                         // Add other user fields as needed
                     ],
+                    'product' => [
+                        'id' => $chat->product->id,
+                        'name' => $chat->product->name,
+                        // Add other product fields as needed
+                    ],
                     'last_message' => $chat->messages->first() ? [
                         'message' => $chat->messages->first()->message,
                         'created_at' => $chat->messages->first()->created_at,
                     ] : null,
+                    'unread_count' => $unreadCount,
                 ];
             });
 
         return Inertia::render('Chats/Show', [
             'chat' => [
                 'id' => $chat->id,
+                'product' => [
+                    'id' => $chat->product->id,
+                    'name' => $chat->product->name,
+                    // Add other product details if necessary
+                ],
                 'participants' => [
                     'user_one' => $chat->userOne,
                     'user_two' => $chat->userTwo,
@@ -122,7 +166,6 @@ class ChatController extends Controller
         ]);
     }
 
-
     /**
      * Store a new message in the specified chat.
      */
@@ -147,7 +190,6 @@ class ChatController extends Controller
 
         broadcast(new MessageSent($message))->toOthers();
 
-        // return redirect()->route('chats.show', $chat->id);
         return response()->json([
             'message' => [
                 'id' => $message->id,
@@ -167,7 +209,6 @@ class ChatController extends Controller
     public function initiateChat(Request $request, Product $product)
     {
         $user = Auth::user();
-        // dd($product->user,$user);
         $seller = $product->user;
 
         // Prevent users from chatting with themselves
@@ -175,13 +216,15 @@ class ChatController extends Controller
             return back()->with('error', 'You cannot chat with yourself.');
         }
 
-        // Check if a chat already exists between the two users
-        $chat = Chat::where(function ($query) use ($user, $seller) {
+        // Check if a chat already exists between the two users for this specific product
+        $chat = Chat::where(function ($query) use ($user, $seller, $product) {
             $query->where('user_one_id', $user->id)
-                ->where('user_two_id', $seller->id);
-        })->orWhere(function ($query) use ($user, $seller) {
+                ->where('user_two_id', $seller->id)
+                ->where('product_id', $product->id);
+        })->orWhere(function ($query) use ($user, $seller, $product) {
             $query->where('user_one_id', $seller->id)
-                ->where('user_two_id', $user->id);
+                ->where('user_two_id', $user->id)
+                ->where('product_id', $product->id);
         })->first();
 
         if (!$chat) {
@@ -189,7 +232,11 @@ class ChatController extends Controller
             $chat = Chat::create([
                 'user_one_id' => $user->id,
                 'user_two_id' => $seller->id,
+                'product_id' => $product->id,
             ]);
+
+            // Broadcast the ChatInitiated event
+            broadcast(new ChatInitiated($chat))->toOthers();
         }
 
         // Redirect to the chat page

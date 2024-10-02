@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chat extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_one_id', 'user_two_id'];
+    protected $fillable = ['user_one_id', 'user_two_id', 'product_id',];
 
     public function userOne()
     {
@@ -18,6 +18,10 @@ class Chat extends Model
     public function userTwo()
     {
         return $this->belongsTo(User::class, 'user_two_id');
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
     public function messages()
