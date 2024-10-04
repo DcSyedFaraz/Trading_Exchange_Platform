@@ -40,7 +40,6 @@ class ChatController extends Controller
                     ->where('sender_id', '!=', $user->id)
                     ->whereNull('read_at')
                     ->count();
-
                 return [
                     'id' => $chat->id,
                     'with_user' => [
@@ -100,9 +99,8 @@ class ChatController extends Controller
                 'userOne',
                 'userTwo',
                 'product',
-                'messages' => function ($query) {
-                    $query->latest()->limit(1);
-                }
+                'messages'
+
             ])
             ->get()
             ->map(function ($chat) use ($user) {
@@ -111,6 +109,7 @@ class ChatController extends Controller
                     ->where('sender_id', '!=', $user->id)
                     ->whereNull('read_at')
                     ->count();
+                    // dd($chat);
 
                 return [
                     'id' => $chat->id,
@@ -122,15 +121,18 @@ class ChatController extends Controller
                     'product' => [
                         'id' => $chat->product->id,
                         'name' => $chat->product->name,
+                        'description' => $chat->product->description,
+                        'image' => $chat->product->images->first(),
                         // Add other product fields as needed
                     ],
-                    'last_message' => $chat->messages->first() ? [
-                        'message' => $chat->messages->first()->message,
-                        'created_at' => $chat->messages->first()->created_at,
+                    'last_message' => $chat->messages->last() ? [
+                        'message' => $chat->messages->last()->message,
+                        'created_at' => $chat->messages->last()->created_at,
                     ] : null,
                     'unread_count' => $unreadCount,
                 ];
             });
+            // dd($chats);
 
         return Inertia::render('Chats/Show', [
             'chat' => [
@@ -138,7 +140,8 @@ class ChatController extends Controller
                 'product' => [
                     'id' => $chat->product->id,
                     'name' => $chat->product->name,
-                    // Add other product details if necessary
+                    'description' => $chat->product->description,
+                    'image' => $chat->product->images->first(),
                 ],
                 'participants' => [
                     'user_one' => $chat->userOne,
@@ -240,6 +243,6 @@ class ChatController extends Controller
         }
 
         // Redirect to the chat page
-        return redirect()->route('chats.show', $chat);
+        return redirect()->route('chats.show', $chat->id);
     }
 }

@@ -5,11 +5,16 @@
         <div class="py-2 border-bottom d-none d-lg-block chat-header">
             <div class="d-flex align-items-center py-1">
                 <div class="position-relative">
-                    <img src="./assets/images/chat-screen/chat-1.png" class="rounded-circle mr-1" alt="P D P">
+                    <img v-if="chat.product.image?.path"
+                    :src="'/storage/' + chat.product.image.path"
+                    class="rounded-circle mr-1"
+                    alt="Product image for {{ chat.product.name }}"
+                />
+
                 </div>
-                <div class="flex-grow-1 username-main pl-3">
-                    <h4>P D P</h4>
-                    <p>lorem ipsum dolor sit amet elit.</p>
+                <div class="flex-grow-1 username-main pl-3 mt-2">
+                    <h4>{{ chat.product.name }}</h4>
+                    <p>{{ chat.product.description }}</p>
                 </div>
                 <div class="all-btns">
                     <button class="inte-btn" id="interested">Interested</button>
@@ -127,18 +132,15 @@ export default {
                     console.error('Error sending message:', error);
                 });
         },
-        reloadChatData() {
-            // Use Inertia to reload the chat data
-            this.$inertia.reload({
-                preserveScroll: true, // Keeps the scroll position
-            });
-        },
+
         addMessage(message) {
             if (message.sender.id === this.currentUser.id) {
                 return;
             }
             this.messages.push(message);
             this.$nextTick(() => this.scrollToBottom());
+            console.log(message);
+
             this.$emit('message-received', message);
         },
         setupEcho() {
