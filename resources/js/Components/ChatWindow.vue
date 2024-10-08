@@ -144,24 +144,24 @@ export default {
             this.$emit('message-received', message);
         },
         setupEcho() {
-            window.Echo = new Echo({
-                broadcaster: 'pusher',
-                key: import.meta.env.VITE_PUSHER_APP_KEY,
-                cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-                wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-                wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-                wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-                forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-                enabledTransports: ['ws', 'wss'],
-                encrypted: true,
-                authEndpoint: '/broadcasting/auth',
-                auth: {
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        // Include any additional headers if necessary
-                    },
-                },
-            });
+            // window.Echo = new Echo({
+            //     broadcaster: 'pusher',
+            //     key: import.meta.env.VITE_PUSHER_APP_KEY,
+            //     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
+            //     wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+            //     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+            //     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+            //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
+            //     enabledTransports: ['ws', 'wss'],
+            //     encrypted: true,
+            //     authEndpoint: '/broadcasting/auth',
+            //     auth: {
+            //         headers: {
+            //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            //             // Include any additional headers if necessary
+            //         },
+            //     },
+            // });
             if (window.Echo) {
                 window.Echo.private(`chat.${this.chat.id}`)
                     .listen('.MessageSent', (e) => {
