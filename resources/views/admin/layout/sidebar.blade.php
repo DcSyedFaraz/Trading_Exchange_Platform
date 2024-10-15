@@ -69,10 +69,16 @@
                      </a>
                  </li>
                  <li>
-                     <a href='{{ route('logout') }}' class="text-danger ">
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                         @csrf
+                     </form>
+
+                     <a href="#" class="text-danger"
+                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                          <i data-feather="log-out"></i>
                          <span> Logout </span>
                      </a>
+
                  </li>
              </ul>
 

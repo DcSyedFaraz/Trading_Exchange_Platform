@@ -39,4 +39,14 @@ class FrontendController extends Controller
 
         return view('frontend.marketplace.productdetails', $data);
     }
+    // ProductController.php
+    public function showCategoryProducts($slug)
+    {
+        // Category slug ke basis pr products ko fetch karo
+        $products = Product::where('category', $slug)->get();
+
+        // Return karo view ko jo products ko display karega
+        return view('frontend.marketplace.products', compact('products', 'slug'));
+    }
+
 }

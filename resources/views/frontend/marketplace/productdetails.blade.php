@@ -8,7 +8,8 @@
                 <div class="col-md-6">
                     <div class="product-image">
                         <div class="owl-carousel product-images-carousel owl-theme">
-                            @foreach ($product->images as $image)
+
+                            @forelse ($product->images as $image)
                                 <div class="item">
                                     <a href="{{ asset('storage/' . $image->path) }}"
                                         data-thumb-src="{{ asset('storage/' . $image->path) }}" data-fancybox="gallery"
@@ -17,7 +18,14 @@
                                             alt="Product Image">
                                     </a>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="item">
+
+                                    <img src="{{ asset('assets/images/no_product.svg') }}" class="product-img "
+                                        alt="Product Image">
+                                    </a>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -42,8 +50,19 @@
                     @foreach ($relatedProducts as $relatedProduct)
                         <div class="item">
                             <a href="{{ route('marketplace.details', $relatedProduct->id) }}">
-                                <img src="{{ asset('storage/' . ($relatedProduct->images->first()->path ?? 'assets/images/no_product.svg')) }}"
-                                    class="product-img" alt="{{ $relatedProduct->name }}" />
+                                @php
+                                    $image = $relatedProduct->images->first();
+
+                                    $imageUrl = $image
+                                        ? Storage::url($image->path)
+                                        : asset('assets/images/no_product.svg');
+
+                                    $altText = $relatedProduct->name ?? 'Product Image';
+                                @endphp
+
+                                <img src="{{ $imageUrl }}" class="product-img" alt="{{ $altText }}"
+                                    loading="lazy" />
+
                             </a>
                             <div class="mx-4 my-2">
 

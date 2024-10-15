@@ -4,11 +4,27 @@
     <div class="card-1">
         <div class="row g-0">
             <div class="col-12 col-lg-5 col-xl-4 border-right side">
-                <ChatSidebar :chats="localChats" :current-chat-id="chat.id" />
+                <ChatSidebar :chats="localChats" :current-chat-id="chat?.id" />
             </div>
             <div class="col-12 col-lg-7 col-xl-8">
-                <ChatWindow :chat="chat" :current-user="authUser" @message-sent="handleMessageSent"
-                    @message-received="handleMessageReceived" @chat-viewed="handleChatViewed" />
+                <template v-if="chat">
+                    <!-- Display the selected chat -->
+                    <ChatWindow :chat="chat" :current-user="authUser" @message-sent="handleMessageSent"
+                        @message-received="handleMessageReceived" @chat-viewed="handleChatViewed" />
+                </template>
+                <template v-else>
+                    <!-- Display default content when no chat is selected -->
+                    <div class="default-message text-center">
+                        <div class="icon-container">
+                            <i class="fas fa-comments chat-icon"></i>
+                        </div>
+                        <h2>Welcome to Your Chats</h2>
+                        <p>Select a chat from the sidebar to start messaging.</p>
+                        <!-- <button class="btn btn-primary start-chat-btn">Start a New Chat</button> -->
+                    </div>
+
+                </template>
+
             </div>
         </div>
     </div>
@@ -30,7 +46,6 @@ export default {
     props: {
         chat: {
             type: Object,
-            required: true,
         },
         chats: {
             type: Array,
@@ -63,7 +78,7 @@ export default {
     },
     methods: {
         handleMessageSent(message) {
-            console.log(message,this.chat.id,'ss');
+            console.log(message, this.chat.id, 'ss');
             this.updateLastMessage(this.chat.id, message);
         },
         handleMessageReceived(message) {
@@ -81,7 +96,7 @@ export default {
             }
         },
         updateLastMessage(chatId, message) {
-            console.log(message,chatId);
+            console.log(message, chatId);
 
             if (!message) {
                 console.error('Invalid message object:', message);
@@ -103,27 +118,7 @@ export default {
         },
 
         setupEchoListeners() {
-            if (!window.Echo) {
-                window.Echo = new Echo({
-                    broadcaster: 'pusher',
-                    key: import.meta.env.VITE_PUSHER_APP_KEY,
-                    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-                    wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-                    wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-                    wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-                    forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-                    enabledTransports: ['ws', 'wss'],
-                    encrypted: true,
-                    authEndpoint: '/broadcasting/auth',
-                    auth: {
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        },
-                    },
-                });
-            }
-
-            // Leave existing channels to prevent duplicate listeners
+           // Leave existing channels to prevent duplicate listeners
             if (this.chatChannels.length > 0) {
                 this.chatChannels.forEach(channel => {
                     window.Echo.leaveChannel(channel.name);
@@ -155,4 +150,47 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.default-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f7f9fc;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.icon-container {
+    background-color: #007bff;
+    border-radius: 50%;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.chat-icon {
+    font-size: 3rem;
+    color: white;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+.start-chat-btn {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+}
+</style>

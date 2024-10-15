@@ -21,7 +21,14 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $user = Auth::guard($guard)->user();
+
+                // Check if the user has the admin role
+                if ($user->hasRole('admin')) {
+                    return redirect(RouteServiceProvider::HOME);
+                } else {
+                    return redirect()->route('marketplace'); // Change '/marketplace' to the appropriate route if needed
+                }
             }
         }
 

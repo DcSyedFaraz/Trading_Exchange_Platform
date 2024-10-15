@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
         // return redirect()->route('admin.dashboard');
         return match ($user[0]) {
             'admin' => redirect()->route('admin.dashboard'),
-            'user' => redirect()->route('user.dashboard'),
+            'user' => redirect()->route('marketplace'),
             default => redirect()->route('home'),
         };
 

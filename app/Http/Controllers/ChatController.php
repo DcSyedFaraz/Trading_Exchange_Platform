@@ -50,6 +50,7 @@ class ChatController extends Controller
                     'product' => [
                         'id' => $chat->product->id,
                         'name' => $chat->product->name,
+                        'image' => $chat->product->images->first(),
                         // Add other product fields as needed
                     ],
                     'last_message' => $chat->messages->first() ? [
@@ -60,7 +61,8 @@ class ChatController extends Controller
                 ];
             });
 
-        return Inertia::render('Chats/Index', [
+        return Inertia::render('Chats/Show', [
+            'chat' => null, // No specific chat selected
             'chats' => $chats,
             'auth' => [
                 'user' => [
@@ -70,6 +72,7 @@ class ChatController extends Controller
             ],
         ]);
     }
+
 
     /**
      * Display the specified chat with messages.
@@ -109,7 +112,7 @@ class ChatController extends Controller
                     ->where('sender_id', '!=', $user->id)
                     ->whereNull('read_at')
                     ->count();
-                    // dd($chat);
+                // dd($chat);
 
                 return [
                     'id' => $chat->id,
@@ -132,7 +135,7 @@ class ChatController extends Controller
                     'unread_count' => $unreadCount,
                 ];
             });
-            // dd($chats);
+        // dd($chats);
 
         return Inertia::render('Chats/Show', [
             'chat' => [

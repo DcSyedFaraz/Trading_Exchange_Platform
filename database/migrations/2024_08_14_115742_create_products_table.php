@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->index();
             $table->text('description')->nullable();
+            $table->text('category')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->boolean('is_active')->default(true);
             $table->boolean('auction')->default(false);

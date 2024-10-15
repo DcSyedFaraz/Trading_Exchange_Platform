@@ -1489,6 +1489,19 @@ select#searchType {
     margin-bottom: 10px;
     position: relative;
 }
+.market-d {
+    background: #36ee83;
+    color: black;
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    padding-left: 24px;
+    border-radius: 34px;
+    margin-bottom: 10px;
+    position: relative;
+}
 
 .logo-market {
     width: 40%;

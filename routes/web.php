@@ -46,10 +46,13 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/marketplace', 'marketplace')->name('marketplace');
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
+    Route::get('/marketplace/category/{slug}', 'showCategoryProducts')->name('category.products');
 });
+// web.php
+
 
 // Dashboard and Logout routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->prefix('marketplace')->group(function () {
     Route::controller(ChatController::class)->group(function () {
         Route::get('/chat', 'index')->name('chat.index');
         Route::get('/chats/{id}', 'show')->name('chats.show');
@@ -75,7 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 });
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'role:user']], function () {
 
-    Route::get('user/dashboard', [UserController::class, 'user'])->name('user.dashboard');
+    Route::get('dashboard', [UserController::class, 'user'])->name('user.dashboard');
 
 });
 

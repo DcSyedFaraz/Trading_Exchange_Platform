@@ -1,6 +1,11 @@
 <!-- resources/js/Components/ChatSidebar.vue -->
 <template>
     <div>
+        <a :href="route('marketplace')" class="market-d">
+            <i class="fas fa-shopping-cart mr-2"></i> <!-- Use the appropriate icon name here -->
+            Marketplace
+        </a>
+
         <div v-for="chat in chats" :key="chat.id" :class="['chat-item', { 'current-chat': chat.id === currentChatId }]">
             <Link :href="route('chats.show', chat.id)" class="user-div">
             <div class="d-flex align-items-center">
@@ -35,7 +40,6 @@ export default {
         },
         currentChatId: {
             type: [Number, String], // Depending on how your IDs are defined
-            required: true,
         },
     },
 };

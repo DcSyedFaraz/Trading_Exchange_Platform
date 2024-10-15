@@ -4,141 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="market-c">Marketplace</a>
-                    <!-- <div class="market-div">
-                                                                            <a href="#" class="market-a">New Arrivals</a>
-                                                                            <a href="#" class="market-a">Top 100 Best Seller <span class="maspan">Hot</span></a>
-                                                                            <a href="#">Led</a>
-                                                                            <a href="#">Electronic</a>
-                                                                            <a href="#">vehicle</a>
-                                                                            <a href="#">E Bike</a>
-                                                                            <a href="#">Sport</a>
-                                                                            <a href="#">Bed</a>
-                                                                            <a href="#">E Car</a>
-                                                                            <a href="#" class="market-a">All categlories</a>
-                                                                        </div> -->
-                    <div class="market-div">
-                        <ul class="mdn-accordion indigo-accordion-theme">
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-1" id="group-1">
-                                <label class="accordion-title" for="group-1"> AUTOMOBILES </label>
-                                <ul>
-                                    <li><a href="#">Cars</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">RVs</a></li>
-                                    <li><a href="#">ATVs and MCs</a></li>
-                                </ul>
-                            </li><!-- end accordion panel -->
-
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-2" id="group-2">
-                                <label class="accordion-title" for="group-2"> BOATS </label>
-                                <ul>
-                                    <li><a href="#"> Sailboats</a></li>
-                                    <li><a href="#"> Speedboats</a></li>
-                                    <li><a href="#"> Yachts Other Watercrafts</a></li>
-                                </ul>
-                            </li><!-- end accordion panel -->
-
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-3" id="group-3">
-                                <label class="accordion-title" for="group-3"> BUSINESS AND INDUSTRIAL </label>
-                                <ul>
-                                    <li><a href="#"> Machinery</a></li>
-                                    <li><a href="#"> Manufacturing</a></li>
-                                    <li><a href="#"> R&D</a></li>
-                                    <li><a href="#"> Medical</a></li>
-                                </ul>
-                            </li><!-- end accordion panel -->
-
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-4" id="group-4">
-                                <label class="accordion-title" for="group-4"> COLLECTIBLES </label>
-                                <ul>
-                                    <li><a href="#"> Art</a></li>
-                                    <li><a href="#"> Baseball Cards</a></li>
-                                    <li><a href="#"> Coins</a></li>
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-5" id="group-5">
-                                <label class="accordion-title" for="group-5"> EPHEMERRA </label>
-                                <ul>
-                                    <li><a href="#"> Historical Documents</a></li>
-                                    <li><a href="#"> Autographs</a></li>
-                                    <li><a href="#"> Maps</a></li>
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-6" id="group-6">
-                                <label class="accordion-title" for="group-6"> FIREARMS </label>
-                                <ul>
-                                    <li><a href="#"> Antique / Relic</a></li>
-                                    <li><a href="#"> Sporting</a></li>
-
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <a class="linked" href="#" name="group-7" id="group-7">JEWELLRY and WATCHES</a>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <a class="linked" href="#" name="group-8" id="group-8">GOODS & SERVICES</a>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <a class="linked" href="#" name="group-9" id="group-9">MILITARIA</a>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-10" id="group-10">
-                                <label class="accordion-title" for="group-10"> NUMISMATICS </label>
-                                <ul>
-                                    <li><a href="#"> Rare Coins</a></li>
-                                    <li><a href="#"> Bullion</a></li>
-                                    <li><a href="#"> Paper Currency</a></li>
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-11" id="group-11">
-                                <label class="accordion-title" for="group-11"> PHILITATELICS </label>
-                                <ul>
-                                    <li><a href="#"> Rare Stamps</a></li>
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-12" id="group-12">
-                                <label class="accordion-title" for="group-12"> REAL ESTATE </label>
-                                <ul>
-                                    <li><a href="#"> Land</a></li>
-                                    <li><a href="#"> SFH</a></li>
-                                    <li><a href="#"> Condos</a></li>
-                                    <li><a href="#"> Vacation Homes</a></li>
-                                    <li><a href="#"> Commercial</a></li>
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <input class="accordion-toggle" type="checkbox" name="group-13" id="group-13">
-                                <label class="accordion-title" for="group-13"> UNIQUE/ ODD/ INVALUBLES </label>
-                                <ul>
-                                    <li><a href="#"> Anything Under the Sun. Priceless</a></li>
-                                </ul>
-                            </li>
-                            <!-- end accordion panel -->
-                            <li class="sub-level">
-                                <a class="linked" href="#" name="group-14" id="group-14">SPORTING
-                                    COLLECTIBLES</a>
-                            </li>
-
-                        </ul>
-                        <!-- mdn-accordion -->
-                    </div>
+                    @include('frontend.layout.categories')
 
                 </div>
                 <div class="col-md-6">
@@ -192,8 +58,7 @@
                     <a class="nav-link" data-bs-toggle="tab" href="#Trending">Trending Styles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#Gift">Gift Cards<span
-                            class="sale">Sale</span></a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#Gift">Gift Cards<span class="sale">Sale</span></a>
                 </li>
             </ul>
             <div class="tab-content">

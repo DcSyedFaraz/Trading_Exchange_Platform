@@ -20,7 +20,7 @@ class ProductController extends Controller
     // Show the form for creating a new product.
     public function create()
     {
-        return view('products.create');
+        return view('products.edit');
     }
 
     // Store a newly created product in storage.
@@ -28,6 +28,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
+            'category' => 'required',
             'description' => 'nullable',
             'auction' => 'nullable|boolean',
             'images' => 'required|array|min:1',
@@ -38,6 +39,7 @@ class ProductController extends Controller
         try {
             $product = Product::create([
                 'name' => $validatedData['name'],
+                'category' => $validatedData['category'],
                 'description' => $validatedData['description'],
                 'auction' => $validatedData['auction'] ?? 0,
                 'user_id' => Auth::id(),
@@ -81,9 +83,12 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
+            'category' => 'required',
             'description' => 'nullable',
             'is_active' => 'boolean',
             'auction' => 'nullable|boolean',
+            'images' => 'nullable|array',
+            'images.*' => 'nullable|image|max:2048',
         ]);
 
         try {

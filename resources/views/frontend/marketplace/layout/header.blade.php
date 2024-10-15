@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-3">
-                    <a href="{{route('marketplace')}}">
+                    <a href="{{ route('marketplace') }}">
 
                         <img src="{{ asset('assets/images/BP-Logo.png') }}" class="logo-market" />
                     </a>
@@ -71,17 +71,21 @@
                     <div class="icons-div">
                         <a href="{{ route('login') }}"><i class="fa-regular fa-user"></i></a>
                         <a href="#"><i class="fa-regular fa-heart"></i></a>
+                        <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
                         <a href="#" class="aucbtn">Auction</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="header-inner2">
-        <h4 class="inner2-a">Most searched :</h4>
-        <a href="" class="inner2-b">Electronics</a>
-        <a href="" class="inner2-b">Smart Led</a>
-        <a href="" class="inner2-b">Mobile</a>
-        <a href="" class="inner2-b">Car</a>
-    </div>
+    @if (Route::currentRouteName() == 'marketplace')
+        <div class="header-inner2">
+            <h4 class="inner2-a">Most searched :</h4>
+            <a href="" class="inner2-b">Electronics</a>
+            <a href="" class="inner2-b">Smart Led</a>
+            <a href="" class="inner2-b">Mobile</a>
+            <a href="" class="inner2-b">Car</a>
+        </div>
+    @endif
+
 </header>

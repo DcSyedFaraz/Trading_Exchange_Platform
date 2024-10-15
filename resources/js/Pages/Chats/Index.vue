@@ -13,7 +13,7 @@
                             <p v-if="chat.last_message">{{ chat.last_message.message }}</p>
                         </div>
                         <div class="chat-meta">
-                            <span>{{ formatDate(chat.last_message.created_at) }}</span>
+                            <span>{{ formatDate(chat.last_message?.created_at) }}</span>
                             <span v-if="chat.unread_count > 0" class="badge">{{ chat.unread_count }}</span>
                         </div>
                     </div>
@@ -29,8 +29,7 @@
 
 <script>
 import { ref, onMounted, watch } from 'vue';
-import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
+
 
 export default {
 
@@ -59,28 +58,7 @@ export default {
 
         // Initialize Laravel Echo for real-time updates
         onMounted(() => {
-            // Initialize Pusher and Echo
-            // window.Pusher = Pusher;
 
-            // window.Echo = new Echo({
-            //     broadcaster: 'pusher',
-            //     key: import.meta.env.VITE_PUSHER_APP_KEY,
-            //     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-            //     wsHost: import.meta.env.VITE_PUSHER_HOST
-            //         ? import.meta.env.VITE_PUSHER_HOST
-            //         : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-            //     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-            //     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-            //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-            //     enabledTransports: ['ws', 'wss'],
-            //     encrypted: true,
-            //     authEndpoint: '/broadcasting/auth',
-            //     auth: {
-            //         headers: {
-            //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            //         },
-            //     },
-            // });
 
             // Subscribe to each chat's private channel
             props.chats.forEach(chat => {
