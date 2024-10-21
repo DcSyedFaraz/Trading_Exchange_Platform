@@ -61,6 +61,10 @@ Route::middleware(['auth'])->prefix('marketplace')->group(function () {
         // Route to initiate chat from product page
         Route::get('/products/{product}/chat', 'initiateChat')->name('products.chat');
     });
+    // routes/web.php
+
+    Route::post('/chats/{chat}/interest', [ChatController::class, 'expressInterest'])->name('chats.interest.store');
+
     // Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     // Route::get('/home', [AuthenticatedSessionController::class, 'home'])->name('home');
 });

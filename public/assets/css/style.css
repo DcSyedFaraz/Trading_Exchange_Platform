@@ -1489,6 +1489,7 @@ select#searchType {
     margin-bottom: 10px;
     position: relative;
 }
+
 .market-d {
     background: #36ee83;
     color: black;
@@ -2320,6 +2321,18 @@ select#searchType {
     font-size: 14px;
     font-weight: 300;
     border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.inte-btn:disabled {
+    background: rgb(49, 228, 49);
+    /* Lighten the background color */
+    /* Change text color to gray */
+    cursor: not-allowed;
+    /* Change cursor to indicate disabled state */
+    opacity: 0.7;
+    /* Optional: make the button semi-transparent */
 }
 
 .all-btns {

@@ -1,5 +1,3 @@
-<!-- resources/js/Components/ChatWindow.vue -->
-
 <template>
     <div class="message-main">
         <div class="py-2 border-bottom d-none d-lg-block chat-header">
@@ -7,16 +5,21 @@
                 <div class="position-relative">
                     <img v-if="chat.product.image?.path" :src="'/storage/' + chat.product.image.path"
                         class="rounded-circle mr-1" alt="Product image for {{ chat.product.name }}" />
-
                 </div>
                 <div class="flex-grow-1 username-main pl-3 mt-2">
-                    <h4>{{ chat.product.name }}</h4>
-                    <p>{{ chat.product.description }}</p>
+                    <h4 v-if="bothInterested">{{ chat.product.name }}</h4>
+                    <p v-if="bothInterested">{{ chat.product.description }}</p>
+                    <div v-else class="blurred">
+                        <h4>Product Information Hidden</h4>
+                        <p>Express mutual interest to view product details.</p>
+                    </div>
                 </div>
                 <div class="all-btns">
-                    <button class="inte-btn" id="interested">Interested</button>
+                    <button class="inte-btn" id="interested" @click="interested" :disabled="isInterested">
+                        {{ isInterested ? 'Interested' : 'Interested?' }}
+                    </button>
 
-                    <div class="dropdown">
+                    <!-- <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -25,7 +28,7 @@
                             <li><a class="dropdown-item" href="#">Block</a></li>
                             <li><a class="dropdown-item" href="#">Report</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -35,8 +38,8 @@
                 <div v-for="message in messages" :key="message.id" :class="{
                     chat_message_left: message.sender.id !== currentUser.id,
                     chat_message_right: message.sender.id === currentUser.id,
-                    'message-sending': message.status === 'sending',  // Apply dim styling when sending
-                    'message-sent': message.status === 'sent' // Apply normal styling when sent
+                    'message-sending': message.status === 'sending',
+                    'message-sent': message.status === 'sent'
                 }" class="pb-4">
 
                     <div v-if="message.sender.id !== currentUser.id">
@@ -53,27 +56,22 @@
             </div>
         </div>
 
-
         <div class="message-box">
             <form @submit.prevent="sendMessage">
                 <div class="input-group">
 
-                    <input type="text message-box-input" v-model="newMessage" class="form-control"
-                        placeholder="Type your message">
-                    <button class="send-btn"><i class="fa-regular fa-location-arrow-up"></i></button>
+                    <input type="text" v-model="newMessage" class="form-control" placeholder="Type your message">
+                    <button class="send-btn" type="submit"><i class="fa-regular fa-location-arrow-up"></i></button>
                 </div>
             </form>
         </div>
     </div>
-
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from 'axios';
-import Echo from 'laravel-echo';
-
-import Pusher from 'pusher-js';
-window.Pusher = Pusher;
 
 export default {
     props: {
@@ -91,12 +89,59 @@ export default {
             newMessage: '',
             messages: [...this.chat.messages],
             sendingMessages: [],
+            isInterested: false, // Tracks if the current user has expressed interest
+            otherUserInterested: false, // Tracks if the other user has expressed interest
         };
+    },
+    computed: {
+        bothInterested() {
+            return this.isInterested && this.otherUserInterested;
+        }
     },
     methods: {
         scrollToBottom() {
             const container = this.$refs.chatMessages;
             container.scrollTop = container.scrollHeight;
+        },
+        async interested() {
+            if (this.isInterested) {
+                Swal.fire('Already interested!', 'You have already expressed interest.', 'info');
+                return;
+            }
+
+            const result = await Swal.fire({
+                title: 'Are you interested?',
+                text: 'Do you want to express interest in this product?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, interested',
+                cancelButtonText: 'Cancel'
+            });
+
+            if (result.isConfirmed) {
+                try {
+                    // Send interest to the server
+                    await axios.post(route('chats.interest.store', { chat: this.chat.id }));
+
+                    this.isInterested = true;
+
+                    // Notify the other user via Echo
+                    window.Echo.private(`chat.${this.chat.id}`)
+                        .whisper('InterestExpressed', { userId: this.currentUser.id });
+
+                    Swal.fire('Interested!', 'You have expressed interest.', 'success');
+                } catch (error) {
+                    if (error.response.data.bothInterested) {
+
+                        Swal.fire('Already interested!', 'You have already expressed interest.', 'info');
+                    }
+                    else {
+
+                        console.error('Error expressing interest:', error);
+                        Swal.fire('Error', 'There was a problem expressing your interest.', 'error');
+                    }
+                }
+            }
         },
         sendMessage() {
             if (this.newMessage.trim() === '') return;
@@ -141,17 +186,22 @@ export default {
             this.$emit('message-received', message);
         },
         setupEcho() {
-
-
             if (window.Echo) {
+                // Listen for new messages
                 window.Echo.private(`chat.${this.chat.id}`)
                     .listen('.MessageSent', (e) => {
                         console.log('MessageSent event received:', e);
-                        this.addMessage(e);
+                        this.addMessage(e.message);
+                    })
+                    // Listen for interest expressed by the other user
+                    .listenForWhisper('InterestExpressed', (e) => {
+                        if (e.userId !== this.currentUser.id) {
+                            this.otherUserInterested = true;
+                            Swal.fire('Interest Received!', 'The other user has expressed interest.', 'success');
+                        }
                     });
             } else {
                 console.error('Laravel Echo is not initialized.');
-
             }
             console.log(window.Echo.private(`chat.${this.chat.id}`));
             // Check if Echo is instantiated correctly
@@ -161,8 +211,14 @@ export default {
                 window.Echo.leave(`private-chat.${this.chat.id}`);
             }
         },
+        checkInitialInterest() {
+            // Check initial interest statuses, assuming chat object has this information
+            this.isInterested = this.chat.interestedUsers?.includes(this.currentUser.id);
+            this.otherUserInterested = this.chat.interestedUsers?.some(user => user != this.currentUser.id);
+        }
     },
     mounted() {
+        this.checkInitialInterest();
         this.setupEcho();
         this.$nextTick(() => this.scrollToBottom());
         this.$emit('chat-viewed', this.chat.id);
@@ -182,5 +238,10 @@ export default {
 .message-sent {
     opacity: 1;
     color: black;
+}
+
+.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
 }
 </style>

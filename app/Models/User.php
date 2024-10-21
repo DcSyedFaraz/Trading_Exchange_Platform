@@ -58,4 +58,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'sender_id');
     }
+    public function interestedChats()
+    {
+        return $this->belongsToMany(Chat::class, 'chat_interests')->withTimestamps();
+    }
 }

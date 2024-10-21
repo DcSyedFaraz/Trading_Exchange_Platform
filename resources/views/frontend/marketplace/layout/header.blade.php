@@ -70,8 +70,10 @@
                 <div class="col-md-3">
                     <div class="icons-div">
                         <a href="{{ route('login') }}"><i class="fa-regular fa-user"></i></a>
-                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
+                        @auth
+                            <a href="#"><i class="fa-regular fa-heart"></i></a>
+                            <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
+                        @endauth
                         <a href="#" class="aucbtn">Auction</a>
                     </div>
                 </div>

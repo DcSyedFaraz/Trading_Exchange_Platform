@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChatInitiated;
+use App\Events\InterestExpressed;
 use App\Events\MessageSent;
 use App\Models\Chat;
 use App\Models\Message;
@@ -73,6 +74,30 @@ class ChatController extends Controller
         ]);
     }
 
+    public function expressInterest(Chat $chat)
+    {
+        $user = Auth::user();
+
+        // Prevent duplicate interests
+        if ($chat->interestedUsers()->where('user_id', $user->id)->exists()) {
+            return response()->json(['message' => 'You have already expressed interest.', 'bothInterested' => true], 400);
+        }
+
+        // Attach the user to the chat's interested users
+        $chat->interestedUsers()->attach($user->id);
+
+        // Check if both users have expressed interest
+        $interestedCount = $chat->interestedUsers()->count();
+        $bothInterested = $interestedCount >= 2;
+
+        // Broadcast the interest event
+        broadcast(new InterestExpressed($chat, $user))->toOthers();
+
+        return response()->json([
+            'message' => 'Interest expressed successfully.',
+            'bothInterested' => $bothInterested,
+        ], 200);
+    }
 
     /**
      * Display the specified chat with messages.
@@ -140,6 +165,7 @@ class ChatController extends Controller
         return Inertia::render('Chats/Show', [
             'chat' => [
                 'id' => $chat->id,
+                'interestedUsers' => $chat->interestedUsers()?->pluck('chat_interests.user_id')->toArray(),
                 'product' => [
                     'id' => $chat->product->id,
                     'name' => $chat->product->name,

@@ -64,330 +64,142 @@
             <div class="tab-content">
                 <div id="Flash" class="container tab-pane active"><br>
                     <div class="owl-carousel product-carousel owl-theme">
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                        @forelse ($products as $product)
+                            <div class="item">
+                                <!-- Product Image -->
+                                @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="p1-img"
+                                        alt="{{ $product->name }}" />
+                                @else
+                                    <img src="{{ asset('assets/images/no_product.svg') }}" class="p1-img"
+                                        alt="No Product Image" />
+                                @endif
+
+                                <!-- Product Name -->
+                                <h4 class="h4ofcarousel">
+                                    <a href="{{ route('marketplace.details', $product->id) }}">{{ $product->name }}</a>
+                                </h4>
+
+                                <!-- Product Description -->
+                                <p>{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
+
+                                <!-- Action Buttons -->
                                 <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                                    <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
+                                        Details</a>
+                                    <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        @empty
+                            <div class="item">
+                                <p class="text-center">No products available</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div id="Tech" class="container tab-pane"><br>
                     <div class="owl-carousel product-carousel owl-theme">
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                        @forelse ($products as $product)
+                            <div class="item">
+                                <!-- Product Image -->
+                                @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="p1-img"
+                                        alt="{{ $product->name }}" />
+                                @else
+                                    <img src="{{ asset('assets/images/no_product.svg') }}" class="p1-img"
+                                        alt="No Product Image" />
+                                @endif
+
+                                <!-- Product Name -->
+                                <h4 class="h4ofcarousel">
+                                    <a href="{{ route('marketplace.details', $product->id) }}">{{ $product->name }}</a>
+                                </h4>
+
+                                <!-- Product Description -->
+                                <p>{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
+
+                                <!-- Action Buttons -->
                                 <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                                    <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
+                                        Details</a>
+                                    <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        @empty
+                            <div class="item">
+                                <p class="text-center">No products available</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div id="Trending" class="container tab-pane"><br>
                     <div class="owl-carousel product-carousel owl-theme">
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                        @forelse ($products as $product)
+                            <div class="item">
+                                <!-- Product Image -->
+                                @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="p1-img"
+                                        alt="{{ $product->name }}" />
+                                @else
+                                    <img src="{{ asset('assets/images/no_product.svg') }}" class="p1-img"
+                                        alt="No Product Image" />
+                                @endif
+
+                                <!-- Product Name -->
+                                <h4 class="h4ofcarousel">
+                                    <a href="{{ route('marketplace.details', $product->id) }}">{{ $product->name }}</a>
+                                </h4>
+
+                                <!-- Product Description -->
+                                <p>{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
+
+                                <!-- Action Buttons -->
                                 <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                                    <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
+                                        Details</a>
+                                    <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        @empty
+                            <div class="item">
+                                <p class="text-center">No products available</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div id="Gift" class="container tab-pane"><br>
                     <div class="owl-carousel product-carousel owl-theme">
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                        @forelse ($products as $product)
+                            <div class="item">
+                                <!-- Product Image -->
+                                @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="p1-img"
+                                        alt="{{ $product->name }}" />
+                                @else
+                                    <img src="{{ asset('assets/images/no_product.svg') }}" class="p1-img"
+                                        alt="No Product Image" />
+                                @endif
+
+                                <!-- Product Name -->
+                                <h4 class="h4ofcarousel">
+                                    <a href="{{ route('marketplace.details', $product->id) }}">{{ $product->name }}</a>
+                                </h4>
+
+                                <!-- Product Description -->
+                                <p>{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
+
+                                <!-- Action Buttons -->
                                 <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                                    <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
+                                        Details</a>
+                                    <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p1.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p2.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/market/p3.png') }}" class="p1-img" />
-                                <a href="#" class="h4ofcarousel">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        @empty
+                            <div class="item">
+                                <p class="text-center">No products available</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -444,200 +256,60 @@
                     </div>
                     <div id="menu1" class="container tab-pane"><br>
                         <div class="main-imgbox">
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f1.png') }}" class="imbox-img" />
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                            @forelse ($products as $product)
+                                <div class="imgbox">
+                                    @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                                        <img src="{{ asset('storage/' . $product->images->first()->path) }}"
+                                            class="imbox-img product-img" />
+                                    @else
+                                        <img src="{{ asset('assets/images/no_product.svg') }}"
+                                            class="imbox-img product-img" />
+                                    @endif
+                                    <a href="#" class="imgbox-b">
+                                        <h4>{{ $product->name }}</h4>
+                                    </a>
+                                    <p>{{ $product->description }}</p>
+                                    <div class="Btndiv">
+                                        <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
+                                            Details</a>
+                                        <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f2.png') }}" class="imbox-img" />
 
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f3.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f4.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f5.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f6.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f7.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f8.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
+                            @empty
+                                <p class="text-center">
+                                    no products available
+                                </p>
+                            @endforelse
                         </div>
                     </div>
                     <div id="menu2" class="container tab-pane"><br>
                         <div class="main-imgbox">
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f1.png') }}" class="imbox-img" />
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                            @forelse ($products as $product)
+                                <div class="imgbox">
+                                    @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                                        <img src="{{ asset('storage/' . $product->images->first()->path) }}"
+                                            class="imbox-img product-img" />
+                                    @else
+                                        <img src="{{ asset('assets/images/no_product.svg') }}"
+                                            class="imbox-img product-img" />
+                                    @endif
+                                    <a href="#" class="imgbox-b">
+                                        <h4>{{ $product->name }}</h4>
+                                    </a>
+                                    <p>{{ $product->description }}</p>
+                                    <div class="Btndiv">
+                                        <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
+                                            Details</a>
+                                        <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f2.png') }}" class="imbox-img" />
 
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f3.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f4.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f5.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f6.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f7.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
-                            <div class="imgbox">
-                                <img src="{{ asset('assets/images/market/f8.png') }}" class="imbox-img" />
-
-                                <a href="#" class="imgbox-b">
-                                    <h4>Model J11</h4>
-                                </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                <div class="Btndiv">
-                                    <a href="#" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
-                                </div>
-                            </div>
+                            @empty
+                                <p class="text-center">
+                                    no products available
+                                </p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

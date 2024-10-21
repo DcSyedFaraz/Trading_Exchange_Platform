@@ -1,5 +1,3 @@
-<!-- resources/js/Pages/Chats/Show.vue -->
-
 <template>
     <div class="card-1">
         <div class="row g-0">
@@ -30,13 +28,9 @@
     </div>
 </template>
 
-
 <script>
 import ChatSidebar from '@/Components/ChatSidebar.vue';
 import ChatWindow from '@/Components/ChatWindow.vue';
-import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
-window.Pusher = Pusher;
 
 export default {
     components: {
@@ -118,14 +112,14 @@ export default {
         },
 
         setupEchoListeners() {
-           // Leave existing channels to prevent duplicate listeners
+            // Leave existing channels to prevent duplicate listeners
             if (this.chatChannels.length > 0) {
                 this.chatChannels.forEach(channel => {
                     window.Echo.leaveChannel(channel.name);
                 });
             }
 
-            // Set up new channels
+            // Set up new chat channels
             this.chatChannels = this.localChats.map(chat => {
                 const channel = window.Echo.private(`chat.${chat.id}`);
                 channel.listen('.MessageSent', (e) => {
@@ -135,10 +129,23 @@ export default {
                 });
                 return channel;
             });
+
+
+        },
+        setupUserChannel() {
+            const userId = this.authUser.id;
+            window.Echo.private(`user.${userId}`)
+                .listen('.ChatInitiated', (e) => {
+                    console.log('ChatInitiated event received:', e);
+                    // Handle the new chat initiation, e.g., update localChats
+                    this.localChats.push(e.chat);
+                    this.setupEchoListeners();
+                });
         },
     },
     mounted() {
         this.setupEchoListeners();
+        this.setupUserChannel();
     },
     beforeUnmount() {
         if (this.chatChannels.length > 0) {
@@ -146,6 +153,8 @@ export default {
                 window.Echo.leaveChannel(channel.name);
             });
         }
+        // Leave user channel
+        window.Echo.leave(`user.${this.authUser.id}`);
     },
 };
 </script>

@@ -35,7 +35,8 @@
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <a href="{{ route('marketplace') }}" class="market-btn">Marketplace</a>
+                    <a href="{{ route('marketplace') }}" class="market-btn">Barter Nation
+                    </a>
                 </div>
                 <div class="col-6 d-md-none">
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"

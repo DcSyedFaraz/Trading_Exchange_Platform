@@ -11,9 +11,9 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChatInitiated
+class ChatInitiated implements ShouldBroadcast
 {
-    use SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $chat;
 
@@ -25,8 +25,10 @@ class ChatInitiated
      */
     public function __construct(Chat $chat)
     {
-        $this->chat = $chat->load('userOne', 'userTwo', 'product');
+        $this->chat = $chat->load('userOne', 'product');
+        \Log::info("ChatInitiated event fired for chat ID: {$chat}");
     }
+
 
     /**
      * Get the channels the event should broadcast on.
@@ -63,9 +65,10 @@ class ChatInitiated
             'chat' => [
                 'id' => $this->chat->id,
                 'with_user' => [
-                    'id' => $this->chat->user_one_id === $this->chat->user_one_id ? $this->chat->user_two->id : $this->chat->user_one->id,
-                    'name' => $this->chat->user_one_id === $this->chat->user_one_id ? $this->chat->user_two->name : $this->chat->user_one->name,
+                    'id' => $this->chat->userOne->id,
+                    'name' => $this->chat->userOne->name,
                 ],
+                'unread_count' => 1,
                 'product' => [
                     'id' => $this->chat->product->id,
                     'name' => $this->chat->product->name,
