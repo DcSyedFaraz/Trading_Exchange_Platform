@@ -144,14 +144,12 @@ class ChatController extends Controller
                     'with_user' => [
                         'id' => $otherUser->id,
                         'name' => $otherUser->name,
-                        // Add other user fields as needed
                     ],
                     'product' => [
                         'id' => $chat->product->id,
                         'name' => $chat->product->name,
                         'description' => $chat->product->description,
                         'image' => $chat->product->images->first(),
-                        // Add other product fields as needed
                     ],
                     'last_message' => $chat->messages->last() ? [
                         'message' => $chat->messages->last()->message,

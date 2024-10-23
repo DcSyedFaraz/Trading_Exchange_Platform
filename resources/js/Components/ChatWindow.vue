@@ -33,8 +33,8 @@
             </div>
         </div>
 
-        <div class="position-relative">
-            <div class="chat-messages p-4" ref="chatMessages">
+        <div class="position-relative" ref="chatMessages">
+            <div class="chat-messages p-4">
                 <div v-for="message in messages" :key="message.id" :class="{
                     chat_message_left: message.sender.id !== currentUser.id,
                     chat_message_right: message.sender.id === currentUser.id,
@@ -53,6 +53,12 @@
                         {{ message.message }}
                     </div>
                 </div>
+                <div class="message-sending chat_message_left" v-if="typing">
+
+                    <div class="chat_opp">
+                        typing...
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -60,7 +66,8 @@
             <form @submit.prevent="sendMessage">
                 <div class="input-group">
 
-                    <input type="text" v-model="newMessage" class="form-control" placeholder="Type your message">
+                    <input type="text" @input="notifyTyping" v-model="newMessage" class="form-control"
+                        placeholder="Type your message">
                     <button class="send-btn" type="submit"><i class="fa-regular fa-location-arrow-up"></i></button>
                 </div>
             </form>
@@ -91,6 +98,8 @@ export default {
             sendingMessages: [],
             isInterested: false, // Tracks if the current user has expressed interest
             otherUserInterested: false, // Tracks if the other user has expressed interest
+            typing: false,
+            isTyping: false,
         };
     },
     computed: {
@@ -98,7 +107,20 @@ export default {
             return this.isInterested && this.otherUserInterested;
         }
     },
+
     methods: {
+        notifyTyping() {
+            if (!this.isTyping) {
+                this.isTyping = true;
+                window.Echo.private(`chat.${this.chat.id}`)
+                    .whisper('typing', { userId: this.currentUser.id });
+
+                // Reset typing status after 3 seconds of inactivity
+                setTimeout(() => {
+                    this.isTyping = false;
+                }, 3000);
+            }
+        },
         scrollToBottom() {
             const container = this.$refs.chatMessages;
             container.scrollTop = container.scrollHeight;
@@ -152,6 +174,7 @@ export default {
                 sender: this.currentUser, // Set the sender as the current user
                 status: 'sending', // Mark message as sending
             };
+            this.isTyping = false;
 
             // Push message into the array
             this.messages.push(tempMessage);
@@ -191,13 +214,22 @@ export default {
                 window.Echo.private(`chat.${this.chat.id}`)
                     .listen('.MessageSent', (e) => {
                         console.log('MessageSent event received:', e);
-                        this.addMessage(e.message);
+                        this.typing = false;
+                        this.addMessage(e);
                     })
                     // Listen for interest expressed by the other user
                     .listenForWhisper('InterestExpressed', (e) => {
                         if (e.userId !== this.currentUser.id) {
                             this.otherUserInterested = true;
                             Swal.fire('Interest Received!', 'The other user has expressed interest.', 'success');
+                        }
+                    })
+                    .listenForWhisper('typing', (e) => {
+                        console.log('typing event received:', e, this.currentUser);
+                        if (e.userId != this.currentUser.id) {
+                            this.typing = true;
+                            this.scrollToBottom();
+                            setTimeout(() => this.typing = false, 3000); // Reset after 2 seconds
                         }
                     });
             } else {
