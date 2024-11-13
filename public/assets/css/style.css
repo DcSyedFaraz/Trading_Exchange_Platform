@@ -2324,7 +2324,18 @@ select#searchType {
     cursor: pointer;
     transition: background 0.3s;
 }
-
+.p1-img {
+    width: 300px !important;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+.product-img {
+    width: 260px !important;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+}
 .inte-btn:disabled {
     background: rgb(49, 228, 49);
     /* Lighten the background color */

@@ -65,7 +65,7 @@
                 <div id="Flash" class="container tab-pane active"><br>
                     <div class="owl-carousel product-carousel owl-theme">
                         @forelse ($products as $product)
-                            <div class="item">
+                            <div class="item ">
                                 <!-- Product Image -->
                                 @if ($product->images->isNotEmpty() && $product->images->first()->path)
                                     <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="p1-img"
@@ -76,15 +76,15 @@
                                 @endif
 
                                 <!-- Product Name -->
-                                <h4 class="h4ofcarousel">
+                                <h4 class="h4ofcarousel text-center">
                                     <a href="{{ route('marketplace.details', $product->id) }}">{{ $product->name }}</a>
                                 </h4>
 
                                 <!-- Product Description -->
-                                <p>{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
+                                <p class="text-center">{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
 
                                 <!-- Action Buttons -->
-                                <div class="Btndiv">
+                                <div class="Btndiv text-center">
                                     <a href="{{ route('marketplace.details', $product->id) }}" class="Firstbtn">View
                                         Details</a>
                                     <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a>
