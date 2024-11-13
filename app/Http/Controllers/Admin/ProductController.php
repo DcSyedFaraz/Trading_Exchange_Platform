@@ -92,6 +92,7 @@ class ProductController extends Controller
         ]);
 
         try {
+            unset($validatedData['images']);
             $product->update($validatedData);
 
             // Handle file uploads
