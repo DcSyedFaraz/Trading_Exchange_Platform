@@ -1,13 +1,19 @@
 <?php
 
+use App\Http\Controllers\Admin\AdController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EditProfileController;
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LibraryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductPageController;
 use App\Http\Controllers\Admin\TeacherDashboardController;
 use App\Http\Controllers\Admin\StudentDashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserManageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
@@ -72,6 +78,12 @@ Route::middleware(['auth'])->prefix('marketplace')->group(function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('user_manage', UserManageController::class);
+    Route::resource('featured', FeatureController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('ad', AdController::class);
+    Route::resource('product_page', ProductPageController::class);
+    Route::resource('edit_profile', EditProfileController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
