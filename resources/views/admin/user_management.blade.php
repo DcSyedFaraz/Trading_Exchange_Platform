@@ -1,15 +1,12 @@
 @extends('admin.layout.master')
 @section('content')
 
-<div id="app-layout">
-    <div class="content-page">
-        <div class="content">
             <!-- Start Content-->
-            <div class="container-xxl">
+            <div class="container-fluid">
 
                 <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                     <div class="flex-grow-1">
-                        <h4 class="fs-18 fw-semibold m-0">User List</h4>
+                        <h4 class="fs-18 fw-semibold m-0">User Management</h4>
                     </div>
 
                     <div class="text-end">
@@ -26,7 +23,7 @@
                         <div class="card">
 
                             <div class="card-header">
-                                <h5 class="card-title mb-0">Users List</h5>
+
                                 <a href="/admin/users/create" class="btn btn-primary mt-3">Create</a>
 
                             </div><!-- end card header -->
@@ -81,8 +78,12 @@
 
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+
+    <!-- END wrapper -->
 @endsection
