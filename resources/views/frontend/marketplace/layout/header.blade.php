@@ -74,7 +74,7 @@
                             <a href="#"><i class="fa-regular fa-heart"></i></a>
                             <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
                         @endauth
-                        <a href="#" class="aucbtn">Auction</a>
+                        <a href="{{ route('auction.index') }}" class="aucbtn">Auction</a>
                     </div>
                 </div>
             </div>

@@ -1113,6 +1113,13 @@ button:focus:not(:focus-visible) {
 /*Contact Page Css*/
 
 /*Barter Page Css*/
+.Btndiv .Secbtn1:hover {
+    background-color: #3670EE;
+    color: white !important;
+    border: transparent;
+    transition: 0.5s;
+}
+
 .dropbtn {
     background-color: transparent;
     color: #777;
@@ -1412,7 +1419,9 @@ select#searchType {
     border-bottom: 2px solid #EAEAEA !important;
 }
 
-
+.market-div a:first-of-type {
+    /* border-radius: 20px 20px 0 0px; */
+}
 
 .market-div a:last-of-type {
     /* border-radius: 0 0 20px 20px; */
@@ -1479,20 +1488,6 @@ select#searchType {
 .market-c {
     background: #3670EE;
     color: #fff;
-    width: 100%;
-    text-decoration: none;
-    display: flex;
-    height: 50px;
-    align-items: center;
-    padding-left: 24px;
-    border-radius: 34px;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.market-d {
-    background: #36ee83;
-    color: black;
     width: 100%;
     text-decoration: none;
     display: flex;
@@ -1952,6 +1947,53 @@ select#searchType {
     float: right;
 }
 
+.auction-main .main-imgbox {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    gap: 20px;
+}
+
+.Btndiv .Secbtn1 {
+    background-color: white;
+    color: black;
+    border: 1px solid #3670EE;
+    padding: 11px 32px;
+}
+
+.auction-main .imgbox {
+    padding: 15px 15px 25px;
+    border-radius: 15px;
+    position: relative;
+    background: #3670ee;
+}
+
+.auction-main .imgbox-b,
+.auction-main p {
+    color: #fff;
+}
+
+.auction-imgbox .Firstbtn {
+    background: #fff;
+    color: #000 !important;
+    border: 1px solid #fff !important;
+}
+
+.auction-imgbox .Secbtn1 {
+    background: #fff;
+    color: #000 !important;
+    border: 1px solid #fff !important;
+}
+
+.auction-imgbox .Firstbtn:hover {
+    background: transparent !important;
+    color: #fff !important;
+    transition: 0.3s;
+}
+
+.auction-main {
+    padding: 50px 0 30px;
+}
+
 /*Barter Page Css*/
 
 
@@ -2183,17 +2225,17 @@ select#searchType {
     overflow-y: scroll
 }
 
-.chat_message_left,
-.chat_message_right {
+.chat-message-left,
+.chat-message-right {
     display: flex;
     flex-shrink: 0
 }
 
-.chat_message_left {
+.chat-message-left {
     margin-right: auto
 }
 
-.chat_message_right {
+.chat-message-right {
     flex-direction: row-reverse;
     margin-left: auto
 }
@@ -2321,29 +2363,6 @@ select#searchType {
     font-size: 14px;
     font-weight: 300;
     border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-.p1-img {
-    width: 300px !important;
-    height: 200px;
-    object-fit: contain;
-    margin: 0 auto;
-}
-.product-img {
-    width: 260px !important;
-    height: 200px;
-    object-fit: contain;
-    margin: 0 auto;
-}
-.inte-btn:disabled {
-    background: rgb(49, 228, 49);
-    /* Lighten the background color */
-    /* Change text color to gray */
-    cursor: not-allowed;
-    /* Change cursor to indicate disabled state */
-    opacity: 0.7;
-    /* Optional: make the button semi-transparent */
 }
 
 .all-btns {
@@ -2362,20 +2381,20 @@ select#searchType {
     margin-top: -5px;
 }
 
-.chat_opp {
+.chat-opp {
     color: #fff;
     background: #3670EE;
     padding: 25px;
     position: relative;
     border-radius: 0 20px 20px;
-    /* max-width: 45%; */
+    max-width: 45%;
     font-size: 16px;
     font-weight: 300;
     margin-left: 30px;
     margin-top: 35px;
 }
 
-.chat_opp:before {
+.chat-opp:before {
     content: "";
     width: 0px;
     height: 0px;
@@ -2388,13 +2407,13 @@ select#searchType {
     top: 0px;
 }
 
-.chat_opp1 {
+.chat-opp1 {
     color: #fff;
     background: #001B5769;
     padding: 25px;
     position: relative;
     border-radius: 20px 0 20px 20px;
-    /* max-width: 45%; */
+    max-width: 45%;
     font-size: 16px;
     font-weight: 300;
     margin-right: 30px;
@@ -2402,7 +2421,7 @@ select#searchType {
     /* border: 1px solid #001B5769; */
 }
 
-.chat_opp1:before {
+.chat-opp1:before {
     content: "";
     width: 0px;
     height: 0px;
@@ -2445,7 +2464,7 @@ select#searchType {
     font-family: 'Montserrat';
 }
 
-.message-box-input {
+.message-box input {
     border-radius: 0;
     color: #3670EE;
     padding-left: 30px;
@@ -2453,7 +2472,7 @@ select#searchType {
     font-weight: 300;
 }
 
-.message-box-input::placeholder {
+.message-box input::placeholder {
     color: #3670EE;
 }
 
@@ -2852,32 +2871,7 @@ body {
 
 /*Dashboard Page Css*/
 
-@media only screen and (max-width: 767px) {
-    .form-container .container {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .content h2 {
-        font-size: 26px;
-    }
-
-    .content p {
-        font-size: 16px;
-    }
-
-    .form-row input {
-        height: 55px;
-        font-size: 14px;
-    }
-
-    .signup-btn {
-        width: 180px;
-        height: 55px;
-        font-size: 15px;
-    }
-}
-
+/*Single Product Page Css*/
 .single-main {
     padding: 80px 0;
 }
@@ -2926,4 +2920,641 @@ body {
 
 .single-main .container {
     width: 70%;
+}
+
+/*Single Product Page Css*/
+
+/*New Pages*/
+.Dashlogo {
+    width: 50%;
+    margin-left: 40px;
+}
+
+.First_sec li a {
+    color: black;
+    display: flex;
+    text-decoration: none;
+}
+
+.main-cont {
+    border-bottom: 1px solid black;
+    width: 98%;
+}
+
+#sidebar-wrapper {
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.sm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    float: inline-end;
+}
+
+.notice_box a {
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.notice_box {
+    position: relative;
+    float: left;
+    margin-top: 8px;
+    padding: 5px 13px;
+    ;
+}
+
+.notice_box:hover {
+    background: #3670EE;
+    border-radius: 15px;
+    color: white;
+}
+
+.notice_box:hover a {
+    color: white;
+    font-size: 25px;
+}
+
+.notice_box .bubble_count {
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    color: white;
+    font-size: 10px;
+    background: #3670EE;
+    padding: 5px 10px;
+    border-radius: 25px;
+}
+
+.notice_box:hover .bubble_count {
+    background: black;
+}
+
+#sidebar {
+    width: 210px !important;
+    height: 100% !important;
+    background: white !important;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    border-right: 1px solid #e5e0d8;
+    border-width: 2px;
+    font-family: 'Montserrat' !important;
+    border-radius: 0px !important;
+    padding: 0 0 0 5px !important;
+}
+
+#sidebar .usersss h5 {
+    opacity: 1;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 20px;
+}
+
+.First_sec a img {
+    height: 25px;
+    width: 25px;
+    margin-left: 7px;
+}
+
+
+.First_sec {
+    margin-top: 10px;
+    width: 200px;
+    padding-bottom: 10px;
+}
+
+#sidebar ul li:hover {
+    background-color: #3670EE;
+    color: white;
+}
+
+#sidebar ul li:hover a {
+    color: white;
+}
+
+.usersss {
+    padding-top: 180px;
+}
+
+
+.usersss ul li a {
+    color: black;
+}
+
+#sidebar .profile {
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+    color: black;
+    transition: padding 0.3s ease;
+    width: 100%;
+}
+
+#sidebar .profile img {
+    position: relative;
+    left: 0;
+    opacity: 1;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+#sidebar .profile span {
+    margin-left: 85px;
+    font-size: 25px;
+}
+
+#sidebar .profile span a {
+    color: black;
+}
+
+#sidebar .Reelslogo img {
+    width: 80%;
+}
+
+#sidebar ul {
+    position: relative;
+    left: -13px;
+    list-style-type: none;
+    padding: 0px 0px;
+    position: relative;
+    margin-bottom: 0;
+}
+
+#sidebar ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: black;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s ease;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#sidebar ul li i {
+    position: relative;
+    left: 4px;
+    font-size: 20px;
+    margin-right: 20px;
+    transition: opacity 0.3s ease;
+}
+
+#sidebar ul li span {
+    margin-left: 0;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    opacity: 1;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+.Imgofproduct {
+    width: 100%;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: 18.7% 18.7% 18.7% 18.7% 18.7%;
+    gap: 15px;
+}
+
+.sub-head {
+    border-bottom: 1px solid #707070AD;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 35px;
+    font-weight: 500;
+    width: 100%;
+    padding-left: 0;
+}
+
+.admin {
+    margin-top: 30px;
+}
+
+.admin h1 {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.vd {
+    color: white;
+    background-color: #3670EE;
+    text-decoration: none;
+    font-size: 10px;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+.cn {
+    color: #3670EE;
+    background-color: white;
+    text-decoration: none;
+    font-size: 10px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: 1px solid #3670EE;
+}
+
+.cn:hover {
+    color: white;
+    background-color: #3670EE;
+    transition: 0.3s;
+}
+
+.vd:hover {
+    color: #3670EE;
+    background-color: white;
+    border: 1px solid #3670EE;
+    transition: 0.3s;
+}
+
+.product {
+    border: 1px solid #3670EE;
+    padding: 6px 6px 10px 6px;
+    border-radius: 20px;
+}
+
+.btns i {
+    background-color: #3670EE;
+    padding: 5px;
+    border-radius: 30px;
+    color: white;
+    font-size: 10px;
+}
+
+.table {
+    padding: 0;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+th {
+    border: 1px solid #00000033;
+    padding: 25px;
+    text-align: left;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 20px;
+}
+
+tr,
+td {
+    background-color: #3670EE1F;
+}
+
+.aprv {
+    color: white;
+    background-color: #3670EE;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.dec {
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.dec:hover {
+    color: white;
+    background-color: #3670EE;
+    transition: 0.3s;
+}
+
+.aprv:hover {
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.main-sec {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    gap: 60px;
+}
+
+.addprod {
+    color: white;
+    background-color: #3670EE;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.addprod:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    transition: 0.3s;
+}
+
+.field {
+    width: 100%;
+    padding: 20px;
+    border-radius: 35px;
+    border: 1px solid #707070AD;
+    margin-bottom: 15px;
+}
+
+.msgfield {
+    width: 100%;
+    padding: 20px 20px 90px;
+    border-radius: 35px;
+    border: 1px solid #707070AD;
+    margin-bottom: 15px;
+}
+
+.msgfield,
+.field:focus-visible {
+    outline-color: #707070AD;
+}
+
+.form-div1 {
+    padding: 0;
+}
+
+.submitbtn {
+    color: white;
+    background-color: #3670EE;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    border: 0;
+}
+
+.submitbtn:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    transition: 0.3s;
+}
+
+.usermanagesec {
+    width: 85%;
+}
+
+.adssec {
+    width: 50%;
+}
+
+/* User Management 3 Start */
+
+.field1 {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 35px;
+    border: 1px solid #707070AD;
+    margin-bottom: 15px;
+}
+
+.msgfield1 {
+    width: 100%;
+    padding: 20px 15px 70px;
+    border-radius: 35px;
+    border: 1px solid #707070AD;
+    margin-bottom: 15px;
+}
+
+.msgfield1,
+.field1:focus-visible {
+    outline-color: #707070AD;
+}
+
+.Label {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* User management 3 End */
+
+#sidebar ul li.active {
+    background-color: #3670EE;
+    color: white;
+}
+
+.First_sec li.active a {
+    color: #fff !important;
+}
+
+.Dashlogo img {
+    width: 100%;
+}
+
+/*New Pages*/
+
+/*Auction Details Page*/
+.auction-products-main {
+    background: #3670ee;
+    width: 80%;
+    margin: 50px auto;
+    border-radius: 40px;
+}
+
+.product-img {
+    width: 100%;
+    border-radius: 40px;
+}
+
+.auction-title-h3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Montserrat';
+}
+
+.auction-desc-p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    font-family: 'Montserrat';
+    width: 90%;
+}
+
+.chat-btn {
+    background-color: #3670EE;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 15px;
+    margin-top: 10px;
+    display: flex;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border: 1px solid #3670EE;
+    font-family: 'Montserrat';
+}
+
+.chat-btn:hover {
+    border-color: #3670EE;
+    background-color: transparent;
+    color: #3670EE;
+    transition: 0.3s;
+}
+
+.auction-products-main .container {
+    padding: 0;
+}
+
+.bid-div {
+    display: flex;
+    color: #fff;
+    border: 1px solid #fff;
+    border-left: 0px;
+    border-right: 0px;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+}
+
+.mb p {
+    margin-bottom: 0;
+}
+
+.hb p {
+    margin-bottom: 0;
+}
+
+.mb {
+    border-left: 1px solid #fff;
+    padding: 20px 0px 20px 40px;
+}
+
+.hb {
+    padding: 20px 40px 20px 0px;
+}
+
+.timings {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.prod-pge-field {
+    border-radius: 30px;
+    padding: 10px;
+    border: 1px solid #00000033;
+}
+
+.prod-pge-field:focus {
+    outline-color: #00000033;
+}
+
+.prod-pge-field {
+    border-radius: 30px;
+    padding: 10px;
+    border: 1px solid #00000033;
+    width: 60%;
+    height: 55px;
+}
+
+.s-prod-form p {
+    color: #fff;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.bidbtn {
+    border: 0;
+    border-radius: 20px;
+    padding: 10px 50px;
+    background-color: #3670EE;
+    color: white;
+    margin-left: -140px;
+    text-transform: capitalize;
+}
+
+.date h3 {
+    font-family: 'Montserrat';
+    color: #fff;
+    font-size: 22px;
+}
+
+.time-pm h3 {
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Montserrat';
+}
+
+.auction-main .main-imgbox1 {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    gap: 20px;
+}
+
+.form-horizontal {
+    border: 1px solid #3670EE;
+    border-radius: 15px;
+    padding: 20px;
+    font-family: 'Montserrat';
+}
+
+.form-horizontal label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-horizontal select {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/*Auction Details Page*/
+@media only screen and (max-width: 767px) {
+    .form-container .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content h2 {
+        font-size: 26px;
+    }
+
+    .content p {
+        font-size: 16px;
+    }
+
+    .form-row input {
+        height: 55px;
+        font-size: 14px;
+    }
+
+    .signup-btn {
+        width: 180px;
+        height: 55px;
+        font-size: 15px;
+    }
 }

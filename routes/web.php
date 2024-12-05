@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\StudentDashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
@@ -48,6 +49,11 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
     Route::get('/marketplace/category/{slug}', 'showCategoryProducts')->name('category.products');
 });
+Route::controller(AuctionController::class)->name('auction.')->group(function () {
+    Route::get('/auction', 'index')->name('index');
+    Route::get('/auction/{id}', 'show')->name('show');
+});
+Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.placeBid');
 // web.php
 
 

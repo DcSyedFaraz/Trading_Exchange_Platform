@@ -298,7 +298,6 @@
     <!-- App js-->
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script>
-        // toastr.info("{{ auth()->user()->id }}");
 
         @if (session('success'))
             toastr.success("{{ session('success') }}");
