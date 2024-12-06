@@ -8,17 +8,19 @@
         </div>
         <ul>
             <div class="First_sec">
-                <li><a href="{{ route('admin.dashboard') }}"><i
+                <li class="{{ request()->routeIs('admin.*') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i
                             class="fa-sharp fa-light fa-grid-horizontal"></i><span>Dashboard</span></a>
                 </li>
-                <li><a href="{{ route('product_page.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
-                            Pages</span></li></a>
-                <li class="active"><a href="{{ route('user_manage.index') }}"><i
-                            class="fa-light fa-file-lines"></i><span>User Management</span></a></li>
-                <li><a href="{{ route('ad.index') }}"><i class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
+                <li class="{{ request()->routeIS('product_page.*') ? 'active' : '' }}"><a href="{{ route('product_page.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
+                            Pages</span></a>
+                </li>
+                <li class="{{ request()->routeIs('user_manage.*') ? 'active' : '' }}"><a href="{{ route('user_manage.index') }}"><i
+                            class="fa-light fa-file-lines"></i><span>User Management</span></a>
+                </li>
+                <li class="{{ request()->routeIs('ad.*') ? 'active' : '' }}"><a href="{{ route('ad.index') }}"><i class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
                             Upload</span></a>
                 </li>
-                <li><a href="{{ route('category.index') }}"><i
+                <li class="{{ request()->routeIs('category.*') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i
                             class="fa-sharp fa-light fa-briefcase"></i><span>Categories
                             Update</span></a>
                 </li>
