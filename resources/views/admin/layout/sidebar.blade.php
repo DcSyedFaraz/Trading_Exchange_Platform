@@ -24,7 +24,7 @@
                             class="fa-sharp fa-light fa-briefcase"></i><span>Categories
                             Update</span></a>
                 </li>
-                <li>
+                <li class="{{ request()->routeIs('featured.*') ? 'active' : '' }}">
                     <a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
                             Featured</span>
                     </a>
