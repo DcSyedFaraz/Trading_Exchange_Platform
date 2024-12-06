@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <a href="{{ route('products.index') }}" class="btn btn-secondary">Back to Products</a>
+        <a href="{{ route('product_page.index') }}" class="btn btn-secondary">Back to Products</a>
     </div>
 @endsection
 
