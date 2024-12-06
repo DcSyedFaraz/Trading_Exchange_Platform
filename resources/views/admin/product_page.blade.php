@@ -11,7 +11,7 @@
                                 <img class="Imgofproduct" src="{{ asset('storage/' . $product->images->first()->path) }}"
                                     alt="{{ $product->name }}">
                             @endif
-                           
+
                             <h5>{{ $product->name }}</h5>
                             <div class="btns">
                                 <a href="{{ route('products.show', $product->id) }}" class="vd">View Details</a>
@@ -20,7 +20,6 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
             </div>
         </div>
