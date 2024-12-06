@@ -5,7 +5,16 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="owl-carousel product-detail owl-theme">
-                        <div class="item">
+                        @foreach ($product->images as $image)
+                            <div class="item">
+
+                                <a href="{{ asset('storage/' . $image->image_path) }}" data-fancybox="gallery" data-caption="">
+                                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->name }}"
+                                        class="product-img" />
+                                </a>
+                            </div>
+                        @endforeach
+                        {{-- <div class="item">
                             <a href="{{ asset('assets/images/market/f1.png') }}" data-fancybox="gallery" data-caption="">
                                 <img src="{{ asset('assets/images/market/f1.png') }}" class="product-img" />
                             </a>
@@ -14,12 +23,7 @@
                             <a href="{{ asset('assets/images/market/f1.png') }}" data-fancybox="gallery" data-caption="">
                                 <img src="{{ asset('assets/images/market/f1.png') }}" class="product-img" />
                             </a>
-                        </div>
-                        <div class="item">
-                            <a href="{{ asset('assets/images/market/f1.png') }}" data-fancybox="gallery" data-caption="">
-                                <img src="{{ asset('assets/images/market/f1.png') }}" class="product-img" />
-                            </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-md-6">

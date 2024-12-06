@@ -11,7 +11,7 @@
                 <li class="{{ request()->routeIs('admin.*') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i
                             class="fa-sharp fa-light fa-grid-horizontal"></i><span>Dashboard</span></a>
                 </li>
-                <li class="{{ request()->routeIS('product_page.*') ? 'active' : '' }}"><a href="{{ route('product_page.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
+                <li class="{{ request()->routeIS('products.*') ? 'active' : '' }}"><a href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
                             Pages</span></a>
                 </li>
                 <li class="{{ request()->routeIs('user_manage.*') ? 'active' : '' }}"><a href="{{ route('user_manage.index') }}"><i
@@ -29,7 +29,7 @@
                             Featured</span>
                     </a>
                 </li>
-                <li>
+                <li class="{{ request()->routeIs('auction_products.*') ? 'active' : '' }}">
                     <a href="{{ route('auction_products.index') }}"><i class="fa-light fa-wallet"></i><span>
                             Auction Products
                         </span>

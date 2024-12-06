@@ -11,7 +11,8 @@ class AuctionController extends Controller
 {
     public function index()
     {
-        return view('frontend.auction.index');
+        $products = AuctionProduct::active()->paginate(11);
+        return view('frontend.auction.index', compact('products'));
     }
     public function show($id)
     {

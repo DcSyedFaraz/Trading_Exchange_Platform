@@ -13,8 +13,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return view('products.index', compact('products'));
+        $products = Product::with('images')->get();
+        return view('admin.product_page', compact('products'));
     }
 
     // Show the form for creating a new product.

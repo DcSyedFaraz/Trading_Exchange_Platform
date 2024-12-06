@@ -13,7 +13,7 @@ class AdminAuctionController extends Controller
 {
     public function index()
     {
-        $products = AuctionProduct::with('user')->get();
+        $products = AuctionProduct::with('user')->paginate(10);
         return view('admin.auction_products.index', compact('products'));
     }
 
@@ -97,7 +97,7 @@ class AdminAuctionController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('auction_products', 'public');
-                $auctionProduct->images()->create(['path' => $path]);
+                $auctionProduct->images()->create(['image_path' => $path]);
             }
         }
 
@@ -122,8 +122,8 @@ class AdminAuctionController extends Controller
 
         // Delete the image record from the database
         $image->delete();
-
-        return redirect()->route('auction_products.edit', $auctionProduct)->with('success', 'Image deleted successfully.');
+        return response()->json('Image deleted successfully.', 200);
+        // return redirect()->route('auction_products.edit', $auctionProduct)->with('success', 'Image deleted successfully.');
     }
 
 }

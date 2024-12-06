@@ -60,7 +60,7 @@ Route::controller(AuctionController::class)->name('auction.')->group(function ()
     Route::get('/auction', 'index')->name('index');
     Route::get('/auction/{id}', 'show')->name('show');
 });
-Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.placeBid');
+Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.placeBid')->middleware('auth');
 // web.php
 
 
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('featured', FeatureController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('ad', AdController::class);
-    Route::resource('product_page', ProductPageController::class);
+    // Route::resource('product_page', ProductPageController::class);
     Route::resource('edit_profile', EditProfileController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);

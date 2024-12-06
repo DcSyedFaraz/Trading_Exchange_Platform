@@ -59,14 +59,10 @@
                                 <div class="col-md-3">
                                     <img src="{{ asset('storage/' . $image->image_path) }}" alt="Product Image"
                                         class="img-thumbnail mb-2" style="max-width: 100%; height: auto;">
-                                    <form
-                                        action="{{ route('admin.auction_products.images.destroy', ['auctionProduct' => $auctionProduct->id, 'image' => $image->id]) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this image?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
+
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm delete-image"
+                                        data-url="{{ route('admin.auction_products.images.destroy', ['auctionProduct' => $auctionProduct->id, 'image' => $image->id]) }}"
+                                        onclick="confirmAndDelete(event)">Delete</a>
                                 </div>
                             @endforeach
                         </div>
@@ -83,7 +79,38 @@
 @endsection
 @section('scripts')
     <script>
-        // Initialize the state and city dropdowns
-        // populateStates("state", "province");
+        // JavaScript function to confirm and trigger the image deletion
+        function confirmAndDelete(event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+
+            if (confirm('Are you sure you want to delete this image?')) {
+                var url = event.target.getAttribute(
+                    'data-url'); // Get the delete URL from the anchor's data-url attribute
+
+                // Perform the DELETE request using Fetch API
+                fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                'content')
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Optionally remove the image from the DOM after deletion
+                            event.target.closest('.col-md-3').remove();
+                            toastr.success('Image deleted successfully.');
+                        } else {
+                            alert('Error deleting image.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error deleting image.');
+                    });
+            }
+        }
+    // Initialize the state and city dropdowns
+    // populateStates("state", "province");
     </script>
 @endsection
