@@ -14,10 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->text('state');
+            $table->text('province');
             $table->decimal('minimum_bid', 10, 2);
             $table->decimal('highest_bid', 10, 2)->nullable();
             $table->timestamp('auction_end_time');
             $table->boolean('is_closed')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,34 +64,120 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+    var usa_states = {
+        "California": ["Los Angeles", "San Francisco", "San Diego", "Sacramento"],
+        "Texas": ["Houston", "Austin", "Dallas", "San Antonio"],
+        "Florida": ["Miami", "Orlando", "Tampa", "Jacksonville"],
+        "New York": ["New York City", "Buffalo", "Rochester", "Albany"],
+        "Illinois": ["Chicago", "Springfield", "Naperville", "Peoria"]
+    };
+
+    /**
+     * Populates the state dropdown with options
+     * @param {string} stateElementId - The id of the state dropdown element
+     * @param {string} cityElementId - The id of the city dropdown element
+     * @param {string} selectedState - The pre-selected state (optional)
+     * @param {string} selectedCity - The pre-selected city (optional)
+     */
+    function populateStates(stateElementId, cityElementId, selectedState = '', selectedCity = '') {
+        var stateElement = document.getElementById(stateElementId);
+        var cityElement = document.getElementById(cityElementId);
+
+
+        stateElement.innerHTML = '';
+        cityElement.innerHTML = '';
+
+
+        stateElement.options[0] = new Option("Select State", "");
+
+
+        for (var state in usa_states) {
+            var option = new Option(state, state);
+            if (state === selectedState) {
+                option.selected = true;
+            }
+            stateElement.appendChild(option);
+        }
+
+
+        if (selectedState) {
+            populateCities(stateElementId, cityElementId, selectedState, selectedCity);
+        }
+
+
+        stateElement.onchange = function() {
+            var newState = stateElement.value;
+            populateCities(stateElementId, cityElementId, newState);
+        };
+    }
+
+    /**
+     * Populates the city dropdown based on the selected state
+     * @param {string} stateElementId - The id of the state dropdown element
+     * @param {string} cityElementId - The id of the city dropdown element
+     * @param {string} selectedState - The selected state
+     * @param {string} selectedCity - The pre-selected city (optional)
+     */
+    function populateCities(stateElementId, cityElementId, selectedState, selectedCity = '') {
+        var stateElement = document.getElementById(stateElementId);
+        var cityElement = document.getElementById(cityElementId);
+
+
+        cityElement.innerHTML = '';
+
+
+        cityElement.options[0] = new Option("Select City", "");
+
+        var cities = usa_states[selectedState];
+        if (cities) {
+
+            for (var i = 0; i < cities.length; i++) {
+                var option = new Option(cities[i], cities[i]);
+                if (cities[i] === selectedCity) {
+                    option.selected = true;
+                }
+                cityElement.appendChild(option);
+            }
+        }
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var selectedState = "{{ old('state', $auctionProduct->state ?? '') }}";
+        var selectedCity = "{{ old('province', $auctionProduct->province ?? '') }}";
+        populateStates("state", "province", selectedState, selectedCity);
+    });
+</script>
+
+<script>
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggleBtn');
     const indicator = document.getElementById('indicator');
     const menuItems = document.querySelectorAll('.sidebar ul li');
 
-    // Toggle sidebar open/close
-    toggleBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        // Adjust button icon based on sidebar state
-        if (sidebar.classList.contains('open')) {
-            toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        } else {
-            toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        }
-    });
+    if (toggleBtn) {
 
-    // Move the indicator line on hover
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+
+            if (sidebar.classList.contains('open')) {
+                toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            } else {
+                toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        });
+    }
+
+
     menuItems.forEach((item, index) => {
         item.addEventListener('mouseover', () => {
             const itemHeight = item.offsetHeight;
-            const offsetTop = item.offsetTop; // Match the height of the current item
+            const offsetTop = item.offsetTop;
         });
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
-    // toastr.info("{{ auth()->user()->id }}");
-
     @if (session('success'))
         toastr.success("{{ session('success') }}");
     @endif
@@ -106,5 +193,7 @@
         @endforeach
     @endif
 </script>
+
+@yield('scripts')
 
 </html>

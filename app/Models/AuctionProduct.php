@@ -20,7 +20,6 @@ class AuctionProduct extends Model
             $this->save();
         }
     }
-
     public function scopeActive($query)
     {
         return $query->where('is_closed', false);
@@ -29,10 +28,16 @@ class AuctionProduct extends Model
     {
         return $this->hasOne(Bid::class)->orderByDesc('amount');
     }
-
-    // Relationship with bids
     public function bids()
     {
         return $this->hasMany(Bid::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function images()
+    {
+        return $this->hasMany(AuctionProductImage::class);
     }
 }

@@ -1,8 +1,10 @@
-
 <div class="sidebar-wrapper">
     <div class="sidebar" id="sidebar">
         <div class="Dashlogo">
-            <img src="./assets/images/BP-Logo.png" alt="">
+            <a href="{{ route('marketplace') }}">
+
+                <img src="{{ asset('assets/images/BP-Logo.png') }}" alt="">
+            </a>
         </div>
         <ul>
             <div class="First_sec">
@@ -20,8 +22,17 @@
                             class="fa-sharp fa-light fa-briefcase"></i><span>Categories
                             Update</span></a>
                 </li>
-                <li><a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
-                            Featured</span></a></li>
+                <li>
+                    <a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
+                            Featured</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('auction_products.index') }}"><i class="fa-light fa-wallet"></i><span>
+                            Auction Products
+                        </span>
+                    </a>
+                </li>
             </div>
         </ul>
         <div class="usersss">

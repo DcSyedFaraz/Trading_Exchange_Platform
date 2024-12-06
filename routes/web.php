@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdController;
+use App\Http\Controllers\Admin\AdminAuctionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditProfileController;
@@ -93,6 +94,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
+    Route::resource('auction_products', AdminAuctionController::class);
+
+    Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');
 
     // Products
     Route::resource('products', ProductController::class);
