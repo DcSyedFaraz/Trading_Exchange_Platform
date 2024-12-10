@@ -20,7 +20,7 @@
                 <li class="{{ request()->routeIs('ad.*') ? 'active' : '' }}"><a href="{{ route('ad.index') }}"><i class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
                             Upload</span></a>
                 </li>
-                <li class="{{ request()->routeIs('category.*') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i
+                <li class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><a href="{{ route('categories.index') }}"><i
                             class="fa-sharp fa-light fa-briefcase"></i><span>Categories
                             Update</span></a>
                 </li>

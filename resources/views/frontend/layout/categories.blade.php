@@ -1,7 +1,7 @@
 <a href="{{ route('marketplace') }}" class="market-c">Marketplace</a>
 
 <div class="market-div">
-    <ul class="mdn-accordion indigo-accordion-theme">
+    {{-- <ul class="mdn-accordion indigo-accordion-theme">
         <!-- AUTOMOBILES -->
         <li class="sub-level">
             <input class="accordion-toggle" type="checkbox" name="group-1" id="group-1">
@@ -159,8 +159,38 @@
                 SPORTING COLLECTIBLES
             </a>
         </li>
+    </ul> --}}
+    <ul class="mdn-accordion indigo-accordion-theme">
+
+        @foreach ($categories as $index => $category)
+            @if ($category->children->count() > 0)
+                <li class="sub-level">
+                    <input class="accordion-toggle" type="checkbox" name="group-{{ $index + 1 }}"
+                        id="group-{{ $index + 1 }}">
+                    <label class="accordion-title" for="group-{{ $index + 1 }}">
+                        {{ strtoupper($category->name) }}
+                    </label>
+                    <ul>
+                        @foreach ($category->children as $child)
+                            <li>
+                                <a href="{{ route('category.products', $child->slug) }}">
+                                    {{ $child->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+            @else
+                <!-- If a category has no children, show it as a direct link -->
+                <li class="sub-level">
+                    <a class="linked" href="{{ route('category.products', $category->slug) }}"
+                        name="group-{{ $index + 1 }}" id="group-{{ $index + 1 }}">
+                        {{ strtoupper($category->name) }}
+                    </a>
+                </li>
+            @endif
+        @endforeach
     </ul>
 
     <!-- mdn-accordion -->
 </div>
-

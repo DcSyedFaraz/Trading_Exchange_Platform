@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Auth;
@@ -20,7 +21,8 @@ class ProductController extends Controller
     // Show the form for creating a new product.
     public function create()
     {
-        return view('products.edit');
+        $categories = Category::whereNull('parent_id')->with('children')->get();
+        return view('products.edit', compact('categories'));
     }
 
     // Store a newly created product in storage.
@@ -69,12 +71,13 @@ class ProductController extends Controller
     // Display the specified product.
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        return view('products.show', compact('product', 'categories'));
     }
 
     // Show the form for editing the specified product.
     public function edit(Product $product)
     {
+        $categories = Category::whereNull('parent_id')->with('children')->get();
         return view('products.edit', compact('product'));
     }
 

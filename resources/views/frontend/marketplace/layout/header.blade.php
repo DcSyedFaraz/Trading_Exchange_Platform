@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+    
     <div class="header-inner1">
         <div class="container">
             <div class="row align-items-center">
@@ -41,37 +42,55 @@
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <div class="input-group">
-                        <input type="hidden" name="search_param" value="shirt" id="search_param">
-                        <input type="text" class="form-control" name="x" placeholder="i’m shoping for...">
-                        <select id="searchType" name="searchType">
-                            <option class="option" value="1">All Categories</option>
-                            <option class="option" value="2">AUTOMOBILES</option>
-                            <option class="option" value="3">BOATS</option>
-                            <option class="option" value="4">BUSINESS AND INDUSTRIAL</option>
-                            <option class="option" value="5">COLLECTIBLES</option>
-                            <option class="option" value="6">EPHEMERRA</option>
-                            <option class="option" value="7">FIREARMS</option>
-                            <option class="option" value="8">JEWELLRY and WATCHES</option>
-                            <option class="option" value="9">GOODS & SERVICES</option>
-                            <option class="option" value="10">MILITARIA</option>
-                            <option class="option" value="11">NUMISMATICS</option>
-                            <option class="option" value="12">PHILITATELICS</option>
-                            <option class="option" value="13">REAL ESTATE</option>
-                            <option class="option" value="13">UNIQUE/ ODD/ INVALUBLES</option>
-                            <option class="option" value="13">SPORTING COLLECTIBLES</option>
-                        </select>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default1" type="button"><i
-                                    class="fa fa-magnifying-glass"></i></button>
-                        </span>
-                    </div>
+                    <form action="{{ route('products.search') }}" method="GET">
+                        <div class="input-group">
+                            <!-- Hidden input if needed -->
+                            <input type="hidden" name="search_param" value="{{ $searchParam ?? '' }}"
+                                id="search_param">
+
+                            <!-- Search Text Input -->
+                            <input type="text" class="form-control" name="x" placeholder="I’m shopping for..."
+                                value="{{ request('x') }}">
+
+                            <!-- Category Select -->
+                            <select id="searchType" name="searchType" class="form-control" required>
+                                <option value="all"
+                                    {{ request('searchType') == 'all' || !request('searchType') ? 'selected' : '' }}>
+                                    All Categories</option>
+
+                                @foreach ($categories as $cat)
+                                    @if ($cat->children->count() > 0)
+                                        <optgroup label="{{ strtoupper($cat->name) }}">
+                                            @foreach ($cat->children as $child)
+                                                <option value="{{ $child->id }}"
+                                                    {{ request('searchType') == $child->id ? 'selected' : '' }}>
+                                                    {{ $child->name }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    @else
+                                        <option value="{{ $cat->id }}"
+                                            {{ request('searchType') == $cat->id ? 'selected' : '' }}>
+                                            {{ $cat->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+
+                            <!-- Submit Button -->
+                            <span class="input-group-btn">
+                                <button class="btn btn-default1" type="submit">
+                                    <i class="fa fa-magnifying-glass"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-3">
                     <div class="icons-div">
                         <a href="{{ route('login') }}"><i class="fa-regular fa-user"></i></a>
                         @auth
-                            <a href="#"><i class="fa-regular fa-heart"></i></a>
+                            {{-- <a href="#"><i class="fa-regular fa-heart"></i></a> --}}
                             <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
                         @endauth
                         <a href="{{ route('auction.index') }}" class="aucbtn">Auction</a>

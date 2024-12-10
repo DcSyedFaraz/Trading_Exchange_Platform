@@ -55,6 +55,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/marketplace', 'marketplace')->name('marketplace');
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
     Route::get('/marketplace/category/{slug}', 'showCategoryProducts')->name('category.products');
+    Route::get('/search', 'search')->name('products.search');
 });
 Route::controller(AuctionController::class)->name('auction.')->group(function () {
     Route::get('/auction', 'index')->name('index');
@@ -87,7 +88,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('user_manage', UserManageController::class);
     Route::resource('featured', FeatureController::class);
-    Route::resource('category', CategoryController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('ad', AdController::class);
     // Route::resource('product_page', ProductPageController::class);
     Route::resource('edit_profile', EditProfileController::class);
