@@ -83,33 +83,33 @@ Route::middleware(['auth'])->prefix('marketplace')->group(function () {
     // Route::get('/home', [AuthenticatedSessionController::class, 'home'])->name('home');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], function () {
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    // Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('user_manage', UserManageController::class);
     Route::resource('featured', FeatureController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('ad', AdController::class);
-    // Route::resource('product_page', ProductPageController::class);
     Route::resource('edit_profile', EditProfileController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
-    Route::resource('auction_products', AdminAuctionController::class);
+    // Route::resource('product_page', ProductPageController::class);
 
     Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');
 
     // Products
-    Route::resource('products', ProductController::class);
-    Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
 });
-Route::group(['prefix' => 'user', 'middleware' => ['auth', 'role:user']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 
-    Route::get('dashboard', [UserController::class, 'user'])->name('user.dashboard');
 
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
+    Route::get('index', [UserController::class, 'user'])->name('dashboard');
+    Route::resource('products', ProductController::class);
+    Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
+    Route::resource('auction_products', AdminAuctionController::class);
 
 });
 

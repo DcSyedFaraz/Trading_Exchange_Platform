@@ -8,26 +8,32 @@
         </div>
         <ul>
             <div class="First_sec">
-                <li class="{{ request()->routeIs('admin.*') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i
+                <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i
                             class="fa-sharp fa-light fa-grid-horizontal"></i><span>Dashboard</span></a>
                 </li>
-                <li class="{{ request()->routeIS('products.*') ? 'active' : '' }}"><a href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
+                @if (auth()->user()->hasRole('admin'))
+                    <li class="{{ request()->routeIs('user_manage.*') ? 'active' : '' }}"><a
+                            href="{{ route('user_manage.index') }}"><i class="fa-light fa-file-lines"></i><span>User
+                                Management</span></a>
+                    </li>
+                    <li class="{{ request()->routeIs('featured.*') ? 'active' : '' }}">
+                        <a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
+                                Featured</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('ad.*') ? 'active' : '' }}"><a href="{{ route('ad.index') }}"><i
+                                class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
+                                Upload</span></a>
+                    </li>
+                    <li class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><a
+                            href="{{ route('categories.index') }}"><i
+                                class="fa-sharp fa-light fa-briefcase"></i><span>Categories
+                                Update</span></a>
+                    </li>
+                @endif
+                <li class="{{ request()->routeIS('products.*') ? 'active' : '' }}"><a
+                        href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
                             Pages</span></a>
-                </li>
-                <li class="{{ request()->routeIs('user_manage.*') ? 'active' : '' }}"><a href="{{ route('user_manage.index') }}"><i
-                            class="fa-light fa-file-lines"></i><span>User Management</span></a>
-                </li>
-                <li class="{{ request()->routeIs('ad.*') ? 'active' : '' }}"><a href="{{ route('ad.index') }}"><i class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
-                            Upload</span></a>
-                </li>
-                <li class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><a href="{{ route('categories.index') }}"><i
-                            class="fa-sharp fa-light fa-briefcase"></i><span>Categories
-                            Update</span></a>
-                </li>
-                <li class="{{ request()->routeIs('featured.*') ? 'active' : '' }}">
-                    <a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
-                            Featured</span>
-                    </a>
                 </li>
                 <li class="{{ request()->routeIs('auction_products.*') ? 'active' : '' }}">
                     <a href="{{ route('auction_products.index') }}"><i class="fa-light fa-wallet"></i><span>

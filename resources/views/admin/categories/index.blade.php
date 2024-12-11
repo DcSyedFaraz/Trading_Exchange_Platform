@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+@section('title','Category')
 @section('content')
     <div class="adssec">
         <div class="container">

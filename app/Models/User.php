@@ -66,4 +66,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Chat::class, 'chat_interests')->withTimestamps();
     }
+    public function unreadMessages()
+    {
+        return Message::whereHas('chat', function ($query) {
+            $query->where('user_one_id', $this->id)
+                ->orWhere('user_two_id', $this->id);
+        })
+            ->where('sender_id', '!=', $this->id)
+            ->whereNull('read_at')->count();
+    }
 }

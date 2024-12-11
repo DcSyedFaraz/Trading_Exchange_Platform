@@ -1,13 +1,12 @@
 @extends('admin.layout.master')
 @section('content')
+    <!-- Start Content-->
+    <div class="container-fluid">
 
-            <!-- Start Content-->
-            <div class="container-fluid">
-
-               <h3>Dashboard</h3>
+        <h3>Dashboard</h3>
 
 
-            </div>
+    </div>
 
     <!-- ============================================================== -->
     <!-- End Page content -->

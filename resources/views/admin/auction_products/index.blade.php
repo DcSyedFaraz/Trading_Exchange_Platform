@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+@section('title', 'Auction Products')
 @section('content')
     <div class="container">
         <h1>Auction Products</h1>

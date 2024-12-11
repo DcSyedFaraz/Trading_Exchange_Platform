@@ -20,6 +20,7 @@ class UserController extends Controller
     public function user()
     {
         return view('user.dashboard');
+        // return view('user.dashboard');
     }
 
     public function create()

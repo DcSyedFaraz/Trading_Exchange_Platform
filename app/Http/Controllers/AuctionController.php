@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AuctionProduct;
 use App\Models\Bid;
+use App\Models\Category;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -12,14 +13,16 @@ class AuctionController extends Controller
     public function index()
     {
         $products = AuctionProduct::active()->paginate(11);
-        return view('frontend.auction.index', compact('products'));
+        $categories = Category::whereNull('parent_id')->with('children')->get();
+        return view('frontend.auction.index', compact('products','categories'));
     }
     public function show($id)
     {
         $product = AuctionProduct::active()->findOrFail($id);
+        $categories = Category::whereNull('parent_id')->with('children')->get();
         // dd(\Carbon\Carbon::now());
         $product->closeAuction();
-        return view('frontend.auction.show', compact('product'));
+        return view('frontend.auction.show', compact('product','categories'));
     }
     public function create(Request $request)
     {

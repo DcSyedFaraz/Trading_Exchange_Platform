@@ -32,12 +32,12 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::guard()->user()->getRoleNames();
 
 
-        // return redirect()->route('admin.dashboard');
-        return match ($user[0]) {
-            'admin' => redirect()->route('admin.dashboard'),
-            'user' => redirect()->route('marketplace'),
-            default => redirect()->route('home'),
-        };
+        return redirect()->route('dashboard');
+        // return match ($user[0]) {
+        //     'admin' => redirect()->route('admin.dashboard'),
+        //     'user' => redirect()->route('user.dashboard'),
+        //     default => redirect()->route('home'),
+        // };
 
     }
 
@@ -55,7 +55,8 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
-    public function home(){
+    public function home()
+    {
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

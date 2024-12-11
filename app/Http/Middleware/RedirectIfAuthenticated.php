@@ -24,11 +24,11 @@ class RedirectIfAuthenticated
                 $user = Auth::guard($guard)->user();
 
                 // Check if the user has the admin role
-                if ($user->hasRole('admin')) {
-                    return redirect(RouteServiceProvider::HOME);
-                } else {
-                    return redirect()->route('marketplace'); // Change '/marketplace' to the appropriate route if needed
-                }
+                return redirect()->route('dashboard'); // Change '/marketplace' to the appropriate route if needed
+                // if ($user->hasRole('admin')) {
+                //     return redirect(RouteServiceProvider::HOME);
+                // } else {
+                // }
             }
         }
 

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-light.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <title>User Management</title>
+    <title>@yield('title', 'Dashhboard')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
@@ -36,16 +36,38 @@
                         </div>
                         <div class="col-md-6">
                             <div class="sm-header">
-                                <div class="notice_box">
-                                    <a href="#">
+                                <div class="notice_box1">
+                                    <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fa-light fa-bell"></i>
                                         <span class="bubble_count">6</span>
                                     </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a href="#" class="mark-read"><i class="fa-solid fa-check-double"></i> Read All</a>
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                        <a href="#" class="view-all">View All Notifications <i class="fa-solid fa-up-right-from-square"></i></a>
+                                    </div>
                                 </div>
                                 <div class="notice_box">
+                                    @php
+                                        $authid = auth()->id();
+                                        $unread = App\Models\Message::whereHas('chat', function ($query) use ($authid) {
+                                            $query->where('user_one_id', $authid)->orWhere('user_two_id', $authid);
+                                        })
+                                            ->where('sender_id', '!=', $authid)
+                                            ->whereNull('read_at')
+                                            ->count();
+                                    @endphp
+
                                     <a href="#">
                                         <i class="fa-brands fa-facebook-messenger"></i>
-                                        <span class="bubble_count">6</span>
+                                        @if ($unread > 0)
+                                            <span class="bubble_count">{{ $unread }}</span>
+                                        @endif
                                     </a>
                                 </div>
                             </div>
