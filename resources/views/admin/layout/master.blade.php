@@ -43,13 +43,15 @@
                                         <span class="bubble_count">6</span>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a href="#" class="mark-read"><i class="fa-solid fa-check-double"></i> Read All</a>
+                                        <a href="#" class="mark-read"><i class="fa-solid fa-check-double"></i>
+                                            Read All</a>
                                         <ul>
                                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                                         </ul>
-                                        <a href="#" class="view-all">View All Notifications <i class="fa-solid fa-up-right-from-square"></i></a>
+                                        <a href="#" class="view-all">View All Notifications <i
+                                                class="fa-solid fa-up-right-from-square"></i></a>
                                     </div>
                                 </div>
                                 <div class="notice_box">
@@ -63,7 +65,7 @@
                                             ->count();
                                     @endphp
 
-                                    <a href="#">
+                                    <a href="{{ route('chat.index') }}">
                                         <i class="fa-brands fa-facebook-messenger"></i>
                                         @if ($unread > 0)
                                             <span class="bubble_count">{{ $unread }}</span>
