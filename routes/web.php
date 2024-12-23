@@ -90,7 +90,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::resource('featured', FeatureController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('ad', AdController::class);
-    Route::resource('edit_profile', EditProfileController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
@@ -106,6 +105,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
+    Route::resource('edit_profile', EditProfileController::class);
     Route::get('index', [UserController::class, 'user'])->name('dashboard');
     Route::resource('products', ProductController::class);
     Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');

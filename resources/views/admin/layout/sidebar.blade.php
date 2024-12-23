@@ -53,7 +53,23 @@
                         <img src="{{ asset('assets/img/account.png') }} " alt="profile pic">
                     </a>
 
-                    <span><a href="#"><i class="fa-light fa-right-from-bracket"></i></a></span>
+                    <span>
+                        <a href="#" id="logout-link">
+                            <i class="fa-light fa-right-from-bracket"></i>
+                        </a>
+                    </span>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
+                    <script>
+                        document.getElementById('logout-link').addEventListener('click', function(e) {
+                            e.preventDefault(); // Prevent default anchor behavior
+                            document.getElementById('logout-form').submit(); // Submit the hidden form
+                        });
+                    </script>
+
                 </div>
             </ul>
         </div>
