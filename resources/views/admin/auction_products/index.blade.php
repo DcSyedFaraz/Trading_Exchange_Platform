@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $product)
+                @forelse ($products as $product)
                     <tr>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
@@ -42,7 +42,11 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="8" class="text-center">No products found.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
         <div class="">

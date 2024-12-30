@@ -2,14 +2,21 @@
 
 @section('content')
     <div class="container-fluid py-4">
-        <h1 class="h2 mb-4">{{ $product->name }}</h1>
+        <div class="d-flex align-items-center">
+
+            <h1 class="mb-4 me-2">{{ $product->name }}</h1>
+            @if ($product->feature)
+                <span class="badge bg-success">Featured</span>
+            @endif
+
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="card mb-3">
                     <div class="card-body">
                         <p class="card-text">Description: {{ $product->description }}</p>
                         <p class="card-text">Status: {{ $product->is_active ? 'Active' : 'Inactive' }}</p>
-                        <p class="card-text">Auction: {{ $product->auction ? 'Yes' : 'No' }}</p>
                     </div>
                 </div>
             </div>

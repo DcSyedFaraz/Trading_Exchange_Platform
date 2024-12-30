@@ -88,14 +88,14 @@
                 </div>
                 <div class="col-md-6">
                     <!-- Auction Toggle -->
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <label for="auction" class="form-label">Auction:</label>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="auction" name="auction" value="1"
                                 {{ isset($product) && $product->auction ? 'checked' : '' }}>
                             <label class="form-check-label" for="auction">Enable Auction</label>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Images Upload -->
                     <div class="form-group mb-3">
                         <label for="images" class="form-label">Images:</label>

@@ -13,7 +13,13 @@ class AdminAuctionController extends Controller
 {
     public function index()
     {
-        $products = AuctionProduct::with('user')->paginate(10);
+        if (auth()->user()->hasRole('admin')) {
+            // If the user is an admin, fetch all products
+            $products = AuctionProduct::with('user')->paginate(10);
+        } else {
+            $products = AuctionProduct::with('user')->where('user_id', auth()->id())->paginate(10);
+            // If not an admin, fetch only the products belonging to the authenticated user
+        }
         return view('admin.auction_products.index', compact('products'));
     }
 

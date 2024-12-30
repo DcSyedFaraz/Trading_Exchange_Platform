@@ -93,6 +93,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
+    Route::post('/products/feature', [ProductController::class, 'feature'])->name('products.feature');
+
     // Route::resource('product_page', ProductPageController::class);
 
     Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');

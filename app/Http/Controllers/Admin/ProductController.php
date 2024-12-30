@@ -12,11 +12,49 @@ use Str;
 
 class ProductController extends Controller
 {
+    public function feature(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:products,id',
+            'action' => 'required|in:feature,unfeature',
+        ]);
+
+        try {
+            $product = Product::findOrFail($request->id);
+
+            if ($request->action === 'feature') {
+                $product->feature = true;
+                $messageTitle = 'Featured!';
+                $message = 'The product has been featured.';
+            } else { // 'unfeature'
+                $product->feature = false;
+                $messageTitle = 'Unfeatured!';
+                $message = 'The product feature has been removed.';
+            }
+
+            $product->save();
+
+            return response()->json([
+                'success' => true,
+                'messageTitle' => $messageTitle,
+                'message' => $message
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to process the request.'], 500);
+        }
+    }
+
     public function index()
     {
-        $products = Product::with('images')->get();
+        if (auth()->user()->hasRole('admin')) {
+            $products = Product::with('images')->get();
+        } else {
+            $products = Product::with('images')->where('user_id', auth()->id())->get();
+        }
+
         return view('admin.product_page', compact('products'));
     }
+
 
     // Show the form for creating a new product.
     public function create()
@@ -32,7 +70,6 @@ class ProductController extends Controller
             'name' => 'required',
             'category' => 'required',
             'description' => 'nullable',
-            'auction' => 'nullable|boolean',
             'images' => 'required|array|min:1',
             'images.*' => 'required|image|max:2048',
         ]);
@@ -78,7 +115,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::whereNull('parent_id')->with('children')->get();
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product', 'categories'));
     }
 
     // Update the specified product in storage.
@@ -89,7 +126,6 @@ class ProductController extends Controller
             'category' => 'required',
             'description' => 'nullable',
             'is_active' => 'boolean',
-            'auction' => 'nullable|boolean',
             'images' => 'nullable|array',
             'images.*' => 'nullable|image|max:2048',
         ]);
