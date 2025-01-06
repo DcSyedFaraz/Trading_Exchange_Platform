@@ -31,6 +31,13 @@ class FrontendController extends Controller
 
         return view('frontend.marketplace.marketplace', ['products' => $activeProducts, 'categories' => $categories]);
     }
+    public function plans()
+    {
+        $activeProducts = Product::active()->get();
+        $categories = Category::whereNull('parent_id')->with('children')->get();
+
+        return view('frontend.marketplace.plans', ['products' => $activeProducts, 'categories' => $categories]);
+    }
 
     public function details($id)
     {

@@ -3570,8 +3570,8 @@ td {
 }
 
 .notice_box1 .dropdown-menu.show:before {
-    content: '\f0d8';
-    font-family: 'PhpDebugbarFontAwesome';
+    content: "\f0d8";
+    font-family: "PhpDebugbarFontAwesome";
     color: #000;
     position: absolute;
     top: -17px;
@@ -3665,33 +3665,33 @@ td {
     }
 }
 .chat-online {
-    color: #34ce57
+    color: #34ce57;
 }
 
 .chat-offline {
-    color: #e4606d
+    color: #e4606d;
 }
 
 .chat-messages {
     display: flex;
     flex-direction: column;
     max-height: 575px;
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 
 .chat_message_left,
 .chat_message_right {
     display: flex;
-    flex-shrink: 0
+    flex-shrink: 0;
 }
 
 .chat_message_left {
-    margin-right: auto
+    margin-right: auto;
 }
 
 .chat_message_right {
     flex-direction: row-reverse;
-    margin-left: auto
+    margin-left: auto;
 }
 
 .py-3 {
@@ -3743,7 +3743,7 @@ td {
 }
 
 .side {
-    background: #3670EE;
+    background: #3670ee;
     padding: 60px 30px;
     height: 100vh;
     display: flex !important;
@@ -3760,7 +3760,7 @@ td {
 }
 
 .content-inner {
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     color: #fff;
     margin-left: 15px;
 }
@@ -3780,7 +3780,7 @@ td {
 }
 
 .chat-header {
-    box-shadow: 0px 6px 20px #11206E29;
+    box-shadow: 0px 6px 20px #11206e29;
     padding: 10px 50px;
 }
 
@@ -3807,7 +3807,7 @@ td {
 .inte-btn {
     width: 155px;
     height: 47px;
-    background: #3670EE;
+    background: #3670ee;
     border-radius: 33px;
     display: flex;
     align-items: center;
@@ -3835,29 +3835,27 @@ td {
     margin-top: -5px;
 }
 
-
 .chat_opp:before {
     content: "";
     width: 0px;
     height: 0px;
     position: absolute;
     border-left: 10px solid transparent;
-    border-right: 10px solid #3670EE;
-    border-top: 10px solid #3670EE;
+    border-right: 10px solid #3670ee;
+    border-top: 10px solid #3670ee;
     border-bottom: 10px solid transparent;
     left: -19px;
     top: 0px;
 }
-
 
 .chat_opp1:before {
     content: "";
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 10px solid #001B5769;
+    border-left: 10px solid #001b5769;
     border-right: 10px solid transparent;
-    border-top: 10px solid #001B5769;
+    border-top: 10px solid #001b5769;
     border-bottom: 10px solid transparent;
     right: -20px;
     top: 0px;
@@ -3871,7 +3869,7 @@ td {
 .send-btn {
     width: 90px;
     height: 60px;
-    background: #3670EE;
+    background: #3670ee;
     border: 0;
     color: #fff;
     font-size: 28px;
@@ -3882,7 +3880,7 @@ td {
 }
 
 .message-box {
-    box-shadow: 0px -6px 20px #11206E29;
+    box-shadow: 0px -6px 20px #11206e29;
 }
 
 .message-main {
@@ -3890,19 +3888,19 @@ td {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
 }
 
 .message-box input {
     border-radius: 0;
-    color: #3670EE;
+    color: #3670ee;
     padding-left: 30px;
     font-size: 16px;
     font-weight: 300;
 }
 
 .message-box input::placeholder {
-    color: #3670EE;
+    color: #3670ee;
 }
 
 .time {
@@ -3920,7 +3918,7 @@ td {
     padding: 12px 32px !important;
     margin: 26px 5px 0 5px !important;
     cursor: pointer !important;
-    font-family: 'Montserrat' !important;
+    font-family: "Montserrat" !important;
     font-weight: 300 !important;
     width: 110px !important;
 }
@@ -3932,11 +3930,63 @@ td {
 .sweet-alert h2 {
     color: #000;
     font-size: 36px;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-weight: 400;
 }
 
 .sweet-alert {
     border-radius: 26px;
     padding: 60px 0;
+}
+.one {
+    text-align: center;
+    background: #3670ee;
+    color: white;
+    padding: 15px;
+    border-radius: 40px 40px 1px 0px;
+}
+
+.three {
+    text-align: center;
+    background: #3670ee;
+    color: white;
+    padding: 15px;
+    border-radius: 0px 0px 40px 40px;
+}
+
+.one h4 {
+    margin: 0;
+    font-family: "Inter";
+    font-size: 20px;
+}
+
+.two {
+    text-align: center;
+    padding: 20px 10px;
+    box-shadow: 0px 5px 11px #00000021;
+}
+
+.gsbtn {
+    color: white;
+    text-decoration: none;
+}
+
+.mem-plans {
+    padding: 70px 10px;
+    font-family: "PlayFair Display";
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.blue-heading-plan {
+    color: #3670ee;
+}
+
+.blue-heading-plan span {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
 }
