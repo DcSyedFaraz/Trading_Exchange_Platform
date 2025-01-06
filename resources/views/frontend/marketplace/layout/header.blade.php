@@ -5,8 +5,8 @@
                 <div class="col-md-12">
                     <div class="inner-2">
                         <div>
-                            <a href="#" class="app-txt">
-                                <p class="apptext">Setting</p>|
+                            <a href="{{ route('marketplace.plans') }}" class="app-txt">
+                                <p class="apptext">Plans</p>|
                             </a>
                         </div>
                         <div>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="header-inner1">
         <div class="container">
             <div class="row align-items-center">

@@ -53,6 +53,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/contact-us', 'contact_us')->name('contact_us');
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/marketplace', 'marketplace')->name('marketplace');
+    Route::get('/marketplace/plans', 'plans')->name('marketplace.plans');
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
     Route::get('/marketplace/category/{slug}', 'showCategoryProducts')->name('category.products');
     Route::get('/search', 'search')->name('products.search');
