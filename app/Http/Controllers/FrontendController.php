@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Auth;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -31,14 +32,6 @@ class FrontendController extends Controller
 
         return view('frontend.marketplace.marketplace', ['products' => $activeProducts, 'categories' => $categories]);
     }
-    public function plans()
-    {
-        $activeProducts = Product::active()->get();
-        $categories = Category::whereNull('parent_id')->with('children')->get();
-
-        return view('frontend.marketplace.plans', ['products' => $activeProducts, 'categories' => $categories]);
-    }
-
     public function details($id)
     {
         $data['product'] = Product::active()->findOrFail($id);

@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <div class="inner-2">
                         <div>
-                            <a href="{{ route('marketplace.plans') }}" class="app-txt">
+                            <a href="{{ route('plans') }}" class="app-txt">
                                 <p class="apptext">Plans</p>|
                             </a>
                         </div>

@@ -3971,6 +3971,11 @@ td {
     text-decoration: none;
 }
 
+button.gsbtn {
+    border: none;
+    background: #3670ee;
+}
+
 .mem-plans {
     padding: 70px 10px;
     font-family: "PlayFair Display";

@@ -1,79 +1,55 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Plan;
-use Log;
-use response;
 
 class SubscriptionController extends Controller
 {
-    /**
 
-     * Write code on Method
-
-     *
-
-     * @return response()
-
-     */
-    public function index()
+    public function plans()
     {
+        $activeProducts = Product::active()->get();
+        $categories = Category::whereNull('parent_id')->with('children')->get();
 
-        return view('frontend.subscription');
+        $user = Auth::user();
+        if(!$user){
+            $intent = null;
+        } else {
+            $intent = auth()->user()->createSetupIntent();
+        }
+
+        return view('frontend.marketplace.plans',[
+            'products' => $activeProducts,
+            'categories' => $categories,
+            'intent' => $intent,
+        ]);
     }
-
-    /**
-
-     * Write code on Method
-
-     *
-
-     * @return response()
-
-     */
-
-    public function show(Plan $plan, Request $request)
+    public function planssubscription(Request $request)
     {
-        // dd($plan);
-
-        // Check if user is authenticated
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'Please login to proceed.');
         }
 
-        // Create Setup Intent
         $intent = auth()->user()->createSetupIntent();
 
-        return view("frontend.subscription", compact("plan", "intent"));
+        return view("frontend.marketplace.plans", compact("plan", "intent"));
     }
 
-
-
-    /**
-
-     * Write code on Method
-
-     *
-
-     * @return response()
-
-     */
-    public function subscription(Request $request)
+    public function planssuccess(Request $request)
     {
-
-        $plan = Plan::find($request->plan);
-
         try {
-            $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)
-                ->create($request->token);
 
-            return redirect()->route('subscription.index', $plan->slug)
+            $subscription = $request->user()
+            ->newSubscription('ANNUAL MEMBERSHIP', 'price_1QeeNyEvBehh4H8KxwMnhds3')
+            ->create($request->token);
+
+            return redirect()->route('plans')
                 ->with('success', 'Subscription purchased successfully!');
         } catch (\Exception $e) {
-            // Handle any exceptions that may occur during subscription creation
-            return redirect()->route('subscription', $plan->slug)
+            return redirect()->route('plans')
                 ->with('error', 'There was an issue with your subscription.');
         }
     }

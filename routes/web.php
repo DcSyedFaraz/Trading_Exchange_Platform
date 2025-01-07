@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,7 +54,8 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/contact-us', 'contact_us')->name('contact_us');
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/marketplace', 'marketplace')->name('marketplace');
-    Route::get('/marketplace/plans', 'plans')->name('marketplace.plans');
+    // Route::get('/marketplace/plans', 'plans')->name('marketplace.plans');
+
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
     Route::get('/marketplace/category/{slug}', 'showCategoryProducts')->name('category.products');
     Route::get('/search', 'search')->name('products.search');
@@ -63,7 +65,10 @@ Route::controller(AuctionController::class)->name('auction.')->group(function ()
     Route::get('/auction/{id}', 'show')->name('show');
 });
 Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.placeBid')->middleware('auth');
+Route::get('/plans', [SubscriptionController::class, 'plans'])->name('plans');
 // web.php
+
+
 
 
 // Dashboard and Logout routes
@@ -82,6 +87,11 @@ Route::middleware(['auth'])->prefix('marketplace')->group(function () {
 
     // Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     // Route::get('/home', [AuthenticatedSessionController::class, 'home'])->name('home');
+
+    Route::controller(SubscriptionController::class)->group(function () {
+        Route::post('/plans/subscription', 'planssubscription')->name('plans.subscription');
+        Route::post('/plans/success', 'planssuccess')->name('plans.success');
+    });
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], function () {
@@ -115,10 +125,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin
     Route::resource('auction_products', AdminAuctionController::class);
 
 });
-
-
-
-
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
