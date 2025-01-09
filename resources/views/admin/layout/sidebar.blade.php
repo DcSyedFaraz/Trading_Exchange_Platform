@@ -32,8 +32,8 @@
                     </li>
                 @endif
                 <li class="{{ request()->routeIS('products.*') ? 'active' : '' }}"><a
-                        href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Product
-                            Pages</span></a>
+                        href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Barter
+                            Listing</span></a>
                 </li>
                 <li class="{{ request()->routeIs('auction_products.*') ? 'active' : '' }}">
                     <a href="{{ route('auction_products.index') }}"><i class="fa-light fa-wallet"></i><span>
