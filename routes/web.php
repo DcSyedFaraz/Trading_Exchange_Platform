@@ -68,7 +68,7 @@ Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.
 Route::get('/plans', [SubscriptionController::class, 'plans'])->name('plans');
 // web.php
 
-
+Route::any('/stripe/webhook', [SubscriptionController::class, 'handleStripeWebhook']);
 
 
 // Dashboard and Logout routes
