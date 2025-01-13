@@ -3,8 +3,9 @@
         <div class="row align-items-center">
             <div class="col-md-4">
                 <a href="#"><img src="{{ asset('assets/images/footer-logo.png') }}" class="footer-logo" /></a>
-                <p class="footer-a">Reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur
-                    vel illum qui dolorem eum </p>
+                <p class="footer-a">Connect, trade, and auction your products with ease. A marketplace where goods and
+                    services find new homes through direct trade and competitive bidding.
+                </p>
                 <div class="social-div">
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
