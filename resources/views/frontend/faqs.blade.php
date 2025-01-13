@@ -27,16 +27,13 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Vestibulum Et Gravida Neque.
+                            Q: Do I need to sign up to use the platform?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
-                            vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                            Praesent id sapien nec nulla posuere vehicula ac a quam. Donec scelerisque et libero at
-                            sagittis. Mauris sed eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec
-                            ullamcorper ac, tristique ac neque.
+                            A: Yes, you need to sign up to access the full features of our platform, including bartering,
+                            auctions, and searching products by category.
                         </div>
                     </div>
                 </div>
@@ -44,16 +41,13 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Vestibulum Et Gravida Neque.
+                            Q: Are there different packages available?
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
-                            vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                            Praesent id sapien nec nulla posuere vehicula ac a quam. Donec scelerisque et libero at
-                            sagittis. Mauris sed eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec
-                            ullamcorper ac, tristique ac neque.
+                            A: Yes, we offer multiple packages to suit your needs. Each package comes with unique benefits
+                            and features. You can explore the details on the "Packages" page.
                         </div>
                     </div>
                 </div>
@@ -61,16 +55,13 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Vestibulum Et Gravida Neque.
+                            Q: What is the auction section, and how does it work?
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
-                            vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                            Praesent id sapien nec nulla posuere vehicula ac a quam. Donec scelerisque et libero at
-                            sagittis. Mauris sed eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec
-                            ullamcorper ac, tristique ac neque.
+                            A: The auction section allows users to bid on items or services listed by others. Simply browse
+                            the auctions, place your bids, and try to win the items you want.
                         </div>
                     </div>
                 </div>
@@ -78,16 +69,13 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Vestibulum Et Gravida Neque.
+                            Q: How can I find products or services?
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
-                            vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                            Praesent id sapien nec nulla posuere vehicula ac a quam. Donec scelerisque et libero at
-                            sagittis. Mauris sed eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec
-                            ullamcorper ac, tristique ac neque.
+                            A: You can explore products by categories listed on the side menu or use the search bar for
+                            specific items or services.
                         </div>
                     </div>
                 </div>
@@ -95,16 +83,41 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Vestibulum Et Gravida Neque.
+                            Q: Where can I read the refund policy?
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
-                            vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                            Praesent id sapien nec nulla posuere vehicula ac a quam. Donec scelerisque et libero at
-                            sagittis. Mauris sed eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec
-                            ullamcorper ac, tristique ac neque.
+                            A: You can find all the details about refunds on the dedicated "Refund Policy" page. Please
+                            review it for terms and conditions.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Q: How do I get started?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            A: Sign up for an account, choose a package, and start exploring the platform. You can barter,
+                            bid in auctions, and connect with other users seamlessly.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            Q: What if I face any issues or have questions?
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            A: If you encounter any issues or have questions, you can email us directly at
+                            wolappen@yahoo.com or visit the "Contact Us" page to reach our support team.
                         </div>
                     </div>
                 </div>
