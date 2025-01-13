@@ -27,7 +27,7 @@
 
                             <div class="card-header">
                                 <h5 class="card-title mb-0">Users List</h5>
-                                <a href="/admin/users/create" class="btn btn-primary mt-3">Create</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-primary mt-3">Create</a>
 
                             </div><!-- end card header -->
 

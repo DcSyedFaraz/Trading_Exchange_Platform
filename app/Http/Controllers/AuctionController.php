@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AuctionProduct;
 use App\Models\Bid;
 use App\Models\Category;
+use App\Models\User;
+use App\Notifications\NewBidOnAuctionNotification;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -61,13 +63,19 @@ class AuctionController extends Controller
         }
 
         // Save the bid
-        Bid::create([
+        $bid = Bid::create([
             'auction_product_id' => $productId,
             'amount' => $request->bid_amount,
             'user_id' => Auth::id(),
         ]);
         $product->highest_bid = $request->bid_amount;
         $product->save();
+
+        $adminUser = User::role('admin')->first();
+        if ($adminUser) {
+            $adminUser->notify(new NewBidOnAuctionNotification($product,  $bid));
+        }
+
 
         return redirect()->route('auction.show', $productId)->with('success', 'Bid placed successfully!');
     }

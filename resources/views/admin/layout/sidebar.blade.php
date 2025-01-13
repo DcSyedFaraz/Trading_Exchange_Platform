@@ -12,8 +12,8 @@
                             class="fa-sharp fa-light fa-grid-horizontal"></i><span>Dashboard</span></a>
                 </li>
                 @if (auth()->user()->hasRole('admin'))
-                    <li class="{{ request()->routeIs('user_manage.*') ? 'active' : '' }}"><a
-                            href="{{ route('user_manage.index') }}"><i class="fa-light fa-file-lines"></i><span>User
+                    <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><a
+                            href="{{ route('users.index') }}"><i class="fa-light fa-file-lines"></i><span>User
                                 Management</span></a>
                     </li>
                     <li class="{{ request()->routeIs('featured.*') ? 'active' : '' }}">

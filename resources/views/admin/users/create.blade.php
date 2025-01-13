@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
     <!-- Start Content-->
-  
+
             <!-- Start Content-->
             <div class="container-xxl">
 

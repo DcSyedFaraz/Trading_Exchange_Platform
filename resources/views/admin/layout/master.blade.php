@@ -227,6 +227,7 @@
             toastr.error("{{ $error }}")
         @endforeach
     @endif
+
 </script>
 
 @yield('scripts')

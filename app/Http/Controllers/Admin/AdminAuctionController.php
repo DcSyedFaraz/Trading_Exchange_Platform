@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AuctionProduct;
 use App\Models\AuctionProductImage;
+use App\Models\User;
+use App\Notifications\NewAuctionListedNotification;
+use App\Notifications\NewBarterListNotification;
+use App\Notifications\NewChatNotification;
+use App\Notifications\NewUserNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Storage;
@@ -32,6 +37,8 @@ class AdminAuctionController extends Controller
 
     public function store(Request $request)
     {
+        \Log::info('Store method triggered');
+
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -63,6 +70,14 @@ class AdminAuctionController extends Controller
                 'auction_product_id' => $auctionProduct->id,
                 'image_path' => $path,
             ]);
+        }
+
+        $adminUser = User::role('admin')->first();
+
+        if ($adminUser) {
+            $adminUser->notify(new NewAuctionListedNotification($auctionProduct));
+        } else {
+            echo 'no action available';
         }
 
         return redirect()->route('auction_products.index')->with('success', 'Auction Product Created Successfully!');
@@ -131,5 +146,6 @@ class AdminAuctionController extends Controller
         return response()->json('Image deleted successfully.', 200);
         // return redirect()->route('auction_products.edit', $auctionProduct)->with('success', 'Image deleted successfully.');
     }
+
 
 }

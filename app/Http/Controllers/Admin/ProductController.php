@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\User;
+use App\Notifications\NewBarterListNotification;
 use Auth;
 use Illuminate\Http\Request;
 use Str;
@@ -97,6 +99,16 @@ class ProductController extends Controller
                     ]);
                 }
             }
+
+
+            $adminUser = User::role('admin')->first();
+
+            if ($adminUser) {
+                $adminUser->notify(new NewBarterListNotification($product));
+            } else {
+                echo 'no action available';
+            }
+
         } catch (\Exception $e) {
             // throw $e;
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

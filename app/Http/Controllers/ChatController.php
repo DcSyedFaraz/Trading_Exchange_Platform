@@ -9,6 +9,7 @@ use App\Events\MessageSent;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Models\Product;
+use App\Notifications\NewChatNotification;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -267,6 +268,9 @@ class ChatController extends Controller
 
             // Broadcast the ChatInitiated event
             broadcast(new ChatInitiated($chat))->toOthers();
+
+            // $seller->notify(new NewChatNotification($chat));
+
         }
 
         // Redirect to the chat page

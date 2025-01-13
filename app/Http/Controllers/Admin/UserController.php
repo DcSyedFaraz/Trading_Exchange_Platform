@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\NewUserNotification;
 use Arr;
 use DB;
 use Hash;
@@ -39,7 +40,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|same:confirm-password',
-                'roles' => 'required'
+                'roles' => 'required',
             ]);
 
             $input = $request->all();
@@ -54,6 +55,9 @@ class UserController extends Controller
             } else {
                 $users->assignRole([$roles]);
             }
+
+
+            $users->notify(new NewUserNotification($users));
 
             DB::commit();
             return redirect()->route('users.index')
