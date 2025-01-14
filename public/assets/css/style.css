@@ -64,15 +64,15 @@ body {
 
 /* @all levels :active panels
 ----------------------------------------------------- */
-.mdn-accordion .accordion-toggle:checked + .accordion-title {
+.mdn-accordion .accordion-toggle:checked+.accordion-title {
     background: #f7f9f9;
 }
 
-.mdn-accordion ul .accordion-toggle:checked + .accordion-title {
+.mdn-accordion ul .accordion-toggle:checked+.accordion-title {
     background: #fdfdfd;
 }
 
-.mdn-accordion ul ul .accordion-toggle:checked + .accordion-title {
+.mdn-accordion ul ul .accordion-toggle:checked+.accordion-title {
     background: #ffffff;
 }
 
@@ -88,11 +88,8 @@ body {
 
 /* @show panel content
 ----------------------------------------------------- */
-.mdn-accordion .accordion-toggle:checked + .accordion-title + ul,
-.mdn-accordion
-    .accordion-toggle:checked
-    + .accordion-title:nth-of-type(n)
-    + ul {
+.mdn-accordion .accordion-toggle:checked+.accordion-title+ul,
+.mdn-accordion .accordion-toggle:checked+.accordion-title:nth-of-type(n)+ul {
     display: block;
 }
 
@@ -151,7 +148,7 @@ body {
     top: 49%;
 }
 
-.mdn-accordion .accordion-toggle:checked + .accordion-title::before {
+.mdn-accordion .accordion-toggle:checked+.accordion-title::before {
     top: 45%;
     right: 22px;
     -webkit-transform: rotate(90deg);
@@ -339,12 +336,15 @@ body {
 /* @body background style
 ----------------------------------------------- */
 .custom-bg {
-    background: #eaf0f2 /*#F3F5F6#EDF1F2*/;
+    background: #eaf0f2
+        /*#F3F5F6#EDF1F2*/
+    ;
 }
 
 /* @responsive styles
 ----------------------------------------------- */
 @media only screen and (min-width: 600px) {
+
     .mdn-accordion a,
     .mdn-accordion .accordion-title {
         /* padding:24px;  */
@@ -914,17 +914,13 @@ footer {
 }
 
 .bg6-submit:hover {
-    background: transparent
-        linear-gradient(262deg, #bbbbbb 0%, #dedbdb 54%, #9a9595 100%) 0% 0%
-        no-repeat padding-box;
+    background: transparent linear-gradient(262deg, #bbbbbb 0%, #dedbdb 54%, #9a9595 100%) 0% 0% no-repeat padding-box;
     border-color: #000;
     transition: 0.5s;
 }
 
 .get-btn:hover {
-    background: transparent
-        linear-gradient(86deg, #9d9898 0%, #dddada 49%, #bdbdbd 100%) 0% 0%
-        no-repeat padding-box;
+    background: transparent linear-gradient(86deg, #9d9898 0%, #dddada 49%, #bdbdbd 100%) 0% 0% no-repeat padding-box;
     transform: translate(0px, -10px);
     transition: 0.5s;
 }
@@ -939,9 +935,7 @@ footer {
 .market-btn:hover,
 .submit-btn:hover {
     transition: 0.5s;
-    background: transparent
-        linear-gradient(252deg, #bbbbbb 0%, #dedbdb 54%, #9a9595 100%) 0% 0%
-        no-repeat padding-box;
+    background: transparent linear-gradient(252deg, #bbbbbb 0%, #dedbdb 54%, #9a9595 100%) 0% 0% no-repeat padding-box;
     transform: translate(0px, -10px);
 }
 
@@ -1095,9 +1089,7 @@ button:focus:not(:focus-visible) {
 
 .contactbg1 .submit-btn {
     height: 52px;
-    background: transparent
-        linear-gradient(266deg, #bbbbbb 0%, #dedbdb 54%, #9a9595 100%) 0% 0%
-        no-repeat padding-box;
+    background: transparent linear-gradient(266deg, #bbbbbb 0%, #dedbdb 54%, #9a9595 100%) 0% 0% no-repeat padding-box;
     font-size: 14px;
     font-weight: 500;
     width: 85%;
@@ -1329,6 +1321,8 @@ select#searchType {
 }
 
 .barter-bg1 .item {
+    background-position: center center;
+    background-size: cover;
     height: 500px;
     border-radius: 30px;
     display: flex;
@@ -1339,11 +1333,11 @@ select#searchType {
     text-align: right;
 }
 
-.barter-bg1 .dynamic-bg {
+/* .barter-bg1 .dynamic-bg {
     background-size: cover;
     height: 300px;
     width: 300px;
-}
+} */
 
 .barter1-a {
     color: #fff;
@@ -3645,6 +3639,7 @@ td {
 .auction-products-main .owl-carousel .owl-stage-outer {
     padding: 0 !important;
 }
+
 @media only screen and (max-width: 767px) {
     .form-container .container {
         width: 100%;
@@ -3670,6 +3665,7 @@ td {
         font-size: 15px;
     }
 }
+
 .chat-online {
     color: #34ce57;
 }
@@ -3944,6 +3940,7 @@ td {
     border-radius: 26px;
     padding: 60px 0;
 }
+
 .one {
     text-align: center;
     background: #3670ee;
@@ -4030,4 +4027,5 @@ ul {
 .new-section {
     padding: 80px 0 50px;
 }
+
 /*New Css*/

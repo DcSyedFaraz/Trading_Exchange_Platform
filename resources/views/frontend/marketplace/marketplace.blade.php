@@ -10,18 +10,11 @@
                 <div class="col-md-6">
                     <div class="owl-carousel barter-bg1 owl-theme">
                         @foreach ($ads as $ad)
-                            <div class="item">
-                                @if ($ad->image)
-                                    <div class="dynamic-bg"
-                                        style="background-image: url('{{ asset('storage/' . $ad->image) }}'); background-size: cover; height: 300vh; width: 100%;">
-                                        <div class="item">
-                                            <h4 class="barter1-a">{{ $ad->title }}</h4>
-                                        </div>
-                                    </div>
-                                @endif
+                            <div class="item" style="background-image: url('{{ asset('storage/' . $ad->image) }}');">
+                                <h4 class="barter1-a">{{ $ad->title }}</h4>
                                 <div class="Btndiv">
                                     <a href="{{ route('ad.show', $ad->id) }}" class="Firstbtn">View Details</a>
-                                    <a href="#" class="Secbtn">Chat Now</a>
+                                    {{-- <a href="#" class="Secbtn">Chat Now</a> --}}
                                 </div>
                             </div>
                         @endforeach
