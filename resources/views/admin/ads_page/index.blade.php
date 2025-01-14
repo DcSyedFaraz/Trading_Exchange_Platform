@@ -23,7 +23,7 @@
                             </div>
                         </div>
 
-                        @if ($previousSecondaryImage->image)
+                        @if ($previousSecondaryImage)
                             <div class="text-center mt-4">
                                 <h5>Previously Uploaded Secondary Image:</h5>
                                 <img src="{{ asset('storage/' . $previousSecondaryImage->image) }}" alt="Secondary Image"
