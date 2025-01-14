@@ -107,7 +107,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::post('/products/feature', [ProductController::class, 'feature'])->name('products.feature');
 
     // Route::resource('product_page', ProductPageController::class);
-    Route::put('/ads/update-secondary-image/{id}', [AdController::class, 'updateSecondaryImage'])->name('ad.updateSecondaryImage');
+    Route::put('/ads/update-secondary-image', [AdController::class, 'updateSecondaryImage'])->name('ad.updateSecondaryImage');
 
     Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');
 

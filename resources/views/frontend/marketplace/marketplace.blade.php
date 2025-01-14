@@ -13,7 +13,7 @@
                             <div class="item">
                                 @if ($ad->image)
                                     <div class="dynamic-bg"
-                                        style="background-image: url('{{ asset('ad_images/' . $ad->image) }}'); background-size: cover; height: 300vh; width: 100%;">
+                                        style="background-image: url('{{ asset('storage/' . $ad->image) }}'); background-size: cover; height: 300vh; width: 100%;">
                                         <div class="item">
                                             <h4 class="barter1-a">{{ $ad->title }}</h4>
                                         </div>
@@ -31,8 +31,8 @@
                 </div>
 
                 <div class="col-md-3">
-                    @if($firstAd && $firstAd->secondary_image)
-                        <img src="{{ asset('ad_images/' . $firstAd->secondary_image) }}" class="main2-img" />
+                    @if ($firstAd && $firstAd->image)
+                        <img src="{{ asset('storage/' . $firstAd->image) }}" class="main2-img" />
                     @else
                         <p>not found</p>
                     @endif
@@ -227,7 +227,7 @@
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
                         <div class="main-imgbox">
-                            @forelse ($products as $product)
+                            @forelse ($products->where('feature',1) as $product)
                                 <div class="imgbox">
                                     @if ($product->images->isNotEmpty() && $product->images->first()->path)
                                         <img src="{{ asset('storage/' . $product->images->first()->path) }}"

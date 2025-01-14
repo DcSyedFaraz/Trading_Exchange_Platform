@@ -28,12 +28,13 @@ class FrontendController extends Controller
     }
     public function marketplace()
     {
-        $ads = Ad::select('id', 'title', 'description', 'image')->get();
         $activeProducts = Product::active()->get();
         $categories = Category::whereNull('parent_id')->with('children')->get();
 
 
-        $firstAd = Ad::select('secondary_image')->first();
+        $ads = Ad::where('title', '!=', 'single_image')->get();
+        // dd($ads);
+        $firstAd = Ad::where('title', 'single_image')->first();
 
         return view('frontend.marketplace.marketplace', [
             'products' => $activeProducts,

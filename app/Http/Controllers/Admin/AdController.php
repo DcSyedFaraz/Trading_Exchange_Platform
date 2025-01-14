@@ -11,9 +11,9 @@ class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ad::all();
-        $ad = Ad::first();
-        return view('admin.ads_page.index', compact('ads', 'ad'));  
+        $ads = Ad::where('title', '!=', 'single_image')->get();
+        // dd($ads);
+        return view('admin.ads_page.index', compact('ads'));
     }
 
     public function create()
@@ -29,13 +29,14 @@ class AdController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-        $request->image->move(public_path('ad_images'), $imageName);
-
         $ad = new Ad();
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $imagePath = $request->image->storeAs('ad_images', $imageName, 'public');
+            $ad->image = $imagePath;
+        }
         $ad->title = $request->title;
         $ad->description = $request->description;
-        $ad->image = $imageName;
         $ad->save();
 
         return redirect()->route('ad.index')->with('success', 'Ad created successfully');
@@ -61,7 +62,7 @@ class AdController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $ad = Ad::find($id);
@@ -70,8 +71,8 @@ class AdController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move(public_path('ad_images'), $imageName);
-            $ad->image = $imageName;
+            $imagePath = $request->image->storeAs('ad_images', $imageName, 'public');
+            $ad->image = $imagePath;
         }
 
         $ad->save();
@@ -88,21 +89,21 @@ class AdController extends Controller
     }
 
 
-    public function updateSecondaryImage(Request $request, $id)
+    public function updateSecondaryImage(Request $request)
     {
         $request->validate([
             'secondary_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $secondaryImageName = time() . '_secondary.' . $request->secondary_image->getClientOriginalExtension();
-        $request->secondary_image->move(public_path('ad_images'), $secondaryImageName);
+        if ($request->hasFile('secondary_image')) {
+            $secondaryImageName = time() . '_secondary.' . $request->secondary_image->getClientOriginalExtension();
+            $secondaryImagePath = $request->secondary_image->storeAs('ad_images', $secondaryImageName, 'public');
 
-        $adsec = Ad::updateOrCreate(
-            ['id' => $id],
-            ['secondary_image' => $secondaryImageName]
-        );
-
-        $adsec->save();
+            $adsec = Ad::updateOrCreate(
+                ['title' => 'single_image'],
+                ['image' => $secondaryImagePath]
+            );
+        }
 
         return redirect()->route('ad.index')->with('success', 'Secondary image uploaded successfully');
     }

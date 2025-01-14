@@ -6,7 +6,7 @@
 
                 <h2 class="sub-head">Ads Upload</h2>
 
-                <form action="{{ route('ad.updateSecondaryImage', $ad->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('ad.updateSecondaryImage') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="imageupload mb-5">
@@ -46,7 +46,7 @@
                                     <td>{{ $ad->description }}</td>
                                     <td>
 
-                                        <img class="Imgofproduct" src="{{ asset('ad_images/' . $ad->image) }}"
+                                        <img class="Imgofproduct" src="{{ asset('storage/' . $ad->image) }}"
                                             alt="{{ $ad->image }}">
                                     </td>
 
