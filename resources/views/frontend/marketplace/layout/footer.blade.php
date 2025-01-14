@@ -8,11 +8,8 @@
                         <li><i class="fa-solid fa-location-dot"></i> 73 Roosevelt Wilson Lane Big Bear Lake, CA
                             92315</li>
                     </a>
-                    <a href="">
-                        <li><i class="fa-solid fa-phone"></i> 909-866-8011</li>
-                    </a>
-                    <a href="">
-                        <li><i class="fa-regular fa-envelope"></i> Dummy@gmail.com</li>
+                    <a href="mailto:wolappen@yahoo.com">
+                        <li><i class="fa-regular fa-envelope"></i> wolappen@yahoo.com </li>
                     </a>
                 </ul>
                 <h4 class="barf-a">Follow us</h4>

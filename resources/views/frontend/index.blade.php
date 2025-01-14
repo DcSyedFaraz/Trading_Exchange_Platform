@@ -21,12 +21,10 @@
             <div class="item">
                 <div class="item-bg1">
                     <div class="container">
-                        <h3 class="bg1-a">NEW CUSTOMERS. BETTER CASH FLOW.</h3>
-                        <h4 class="bg1-b">"Empowering individuals and businesses to connect, exchange, and thrive
-                            through a
-                            fair and
-                            transparent barter system, fostering a community built on trust, reciprocity, and mutual
-                            benefit."*</h4>
+                        <h3 class="bg1-a">Trade for the Future</h3>
+                        <h4 class="bg1-b">"Step into a marketplace built for growth. With easy trades and auction
+                            opportunities, Traders Exchange helps your business thrive and discover new paths to success."
+                        </h4>
                         <div class="btn-div">
                             <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
                             <a href="{{ route('about_us') }}" class="read-btn">Read More</a>
@@ -37,12 +35,10 @@
             <div class="item">
                 <div class="item-bg2">
                     <div class="container">
-                        <h3 class="bg1-a">NEW CUSTOMERS. BETTER CASH FLOW.</h3>
-                        <h4 class="bg1-b">"Empowering individuals and businesses to connect, exchange, and thrive
-                            through a
-                            fair and
-                            transparent barter system, fostering a community built on trust, reciprocity, and mutual
-                            benefit."*</h4>
+                        <h3 class="bg1-a">Expand Your Reach</h3>
+                        <h4 class="bg1-b">"Join a growing network where your products and services are just a trade away.
+                            Connect with new customers, build relationships, and grow your business through simple
+                            exchanges."</h4>
                         <div class="btn-div">
                             <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
                             <a href="{{ route('about_us') }}" class="read-btn">Read More</a>
@@ -52,6 +48,21 @@
             </div>
         </div>
 
+    </section>
+
+    <section class="center-div">
+        <div class="container">
+            <h3 class="buz-text">Welcome to Traders Exchange</h3>
+            <p class="buz-p">At Traders Exchange, you can easily list and trade your products with other users, directly
+                exchanging goods and services in a seamless marketplace. Our platform connects you with a wide range of
+                buyers and sellers, giving you access to a network of potential new partners for both trade and auctions.
+                Whether you’re trading everyday items or something more specialized, our community helps you find what you
+                need while offering opportunities to offload excess stock or services. <br> <br>
+                Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you get the best
+                value for what you’re offering. Get started today, and unlock the full potential of trading and auctioning
+                within the Traders Exchange ecosystem!
+            </p>
+        </div>
     </section>
 
     <section class="bg2">
@@ -80,6 +91,57 @@
                             <textarea class="text-area" placeholder="Message:" rows="4"></textarea>
                             <input type="submit" class="submit-btn" value="Send Now" />
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-section">
+        <h3 class="barter3-a">Our Feature Products</h3>
+        <div class="container">
+            <div class="main-imgbox">
+                <div class="imgbox">
+                    <img src="./assets/images/market/f1.png" class="imbox-img" />
+                    <a href="#" class="imgbox-b">
+                        <h4>Model J11</h4>
+                    </a>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                    <div class="Btndiv">
+                        <a href="#" class="Firstbtn">View Details</a>
+                    </div>
+                </div>
+                <div class="imgbox">
+                    <img src="./assets/images/market/f2.png" class="imbox-img" />
+
+                    <a href="#" class="imgbox-b">
+                        <h4>Model J11</h4>
+                    </a>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                    <div class="Btndiv">
+                        <a href="#" class="Firstbtn">View Details</a>
+                    </div>
+                </div>
+                <div class="imgbox">
+                    <img src="./assets/images/market/f3.png" class="imbox-img" />
+
+                    <a href="#" class="imgbox-b">
+                        <h4>Model J11</h4>
+                    </a>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                    <div class="Btndiv">
+                        <a href="#" class="Firstbtn">View Details</a>
+                    </div>
+                </div>
+                <div class="imgbox">
+                    <img src="./assets/images/market/f4.png" class="imbox-img" />
+
+                    <a href="#" class="imgbox-b">
+                        <h4>Model J11</h4>
+                    </a>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                    <div class="Btndiv">
+                        <a href="#" class="Firstbtn">View Details</a>
                     </div>
                 </div>
             </div>

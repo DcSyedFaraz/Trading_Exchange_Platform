@@ -38,11 +38,8 @@
                 <h4 class="footer-b">Contact us</h4>
                 <ul class="footer-ul1">
                     <!--<li>Address: 121 King Street Melbourne, 3000, USA</li>-->
-                    <a href="#">
-                        <li>Email: info@Dummy.com</li>
-                    </a>
-                    <a href="#">
-                        <li>Phone: +1 3 8376 6284</li>
+                    <a href="mailto:wolappen@yahoo.com">
+                        <li>Email: wolappen@yahoo.com </li>
                     </a>
                 </ul>
             </div>

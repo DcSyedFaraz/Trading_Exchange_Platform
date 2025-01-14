@@ -533,6 +533,7 @@ body {
     font-size: 54px;
     font-weight: 700;
     color: #fff;
+    text-transform: uppercase;
 }
 
 .bg1-b {
@@ -657,7 +658,6 @@ body {
     box-shadow: 0.79px 15px 33px #0000003b;
     padding: 50px 30px;
     text-align: center;
-    margin-top: -100px;
     z-index: 9999;
     position: relative;
 }
@@ -4001,3 +4001,33 @@ ul {
     font-size: 15px;
     font-weight: 400;
 }
+
+/*New Css*/
+.center-div .container {
+    padding: 10px 125px;
+}
+
+.buz-text {
+    font-size: 30px;
+    color: #2E2E2E;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+}
+
+.buz-p {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    color: #737373;
+    font-weight: 400;
+}
+
+.center-div {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.new-section {
+    padding: 80px 0 50px;
+}
+/*New Css*/

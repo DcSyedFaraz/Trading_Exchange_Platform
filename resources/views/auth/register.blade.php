@@ -53,7 +53,7 @@
 
                 <div class="form-row">
                     <input type="text" name="city" placeholder="City" required>
-                    <input type="text" name="province" placeholder="Province" required>
+                    <input type="text" name="province" placeholder="State" required>
                 </div>
 
                 <div class="form-row form-btn">
