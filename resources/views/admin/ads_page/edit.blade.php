@@ -18,7 +18,7 @@
 
             <div class="mb-3">
                 <label for="images" class="form-label">Images</label>
-                <input type="file" name="image" class="form-control" id="images" value="{{ $ad->title }}" multiple required>
+                <input type="file" name="image" class="form-control" id="images" value="{{ $ad->title }}" accept="image/*">
                 <small class="form-text text-muted">You must upload at least 1 image.</small>
             </div>
 
