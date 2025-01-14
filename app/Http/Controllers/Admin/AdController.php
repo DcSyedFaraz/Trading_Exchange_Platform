@@ -12,8 +12,9 @@ class AdController extends Controller
     public function index()
     {
         $ads = Ad::where('title', '!=', 'single_image')->get();
+        $previousSecondaryImage = Ad::where('title', 'single_image')->first();
         // dd($ads);
-        return view('admin.ads_page.index', compact('ads'));
+        return view('admin.ads_page.index', compact('ads', 'previousSecondaryImage'));
     }
 
     public function create()

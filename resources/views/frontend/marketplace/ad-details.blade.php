@@ -6,7 +6,7 @@
 
                 <div class="col-md-6">
                     <div class="ad-image">
-                        <img src="{{ asset('ad_images/' . $ad->image) }}" alt="{{ $ad->title }}"
+                        <img src="{{ asset('storage/' . $ad->image) }}" alt="{{ $ad->title }}"
                             style="width: 100%; max-width: 600px;">
                     </div>
                 </div>
