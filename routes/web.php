@@ -107,12 +107,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::post('/products/feature', [ProductController::class, 'feature'])->name('products.feature');
 
     // Route::resource('product_page', ProductPageController::class);
+    Route::put('/ads/update-secondary-image/{id}', [AdController::class, 'updateSecondaryImage'])->name('ad.updateSecondaryImage');
 
     Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');
 
     Route::post('/auction-products/{auctionProduct}/send-notifications', [AdminAuctionController::class,'sendAdminNotifications'])->name('auction_products.send_notifications');
-
-    // Products
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 

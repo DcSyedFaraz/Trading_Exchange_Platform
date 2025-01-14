@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Product;
 use Auth;
@@ -27,11 +28,21 @@ class FrontendController extends Controller
     }
     public function marketplace()
     {
+        $ads = Ad::select('id', 'title', 'description', 'image')->get();
         $activeProducts = Product::active()->get();
         $categories = Category::whereNull('parent_id')->with('children')->get();
 
-        return view('frontend.marketplace.marketplace', ['products' => $activeProducts, 'categories' => $categories]);
+
+        $firstAd = Ad::select('secondary_image')->first();
+
+        return view('frontend.marketplace.marketplace', [
+            'products' => $activeProducts,
+            'categories' => $categories,
+            'ads' => $ads,
+            'firstAd' => $firstAd
+        ]);
     }
+
     public function details($id)
     {
         $data['product'] = Product::active()->findOrFail($id);

@@ -9,34 +9,33 @@
                 </div>
                 <div class="col-md-6">
                     <div class="owl-carousel barter-bg1 owl-theme">
-                        <div class="item">
-                            <h4 class="barter1-a">Power to the pro</h4>
-                            <h4 class="barter1-b">Feel special this summer with 15% off*</h4>
-                            <div class="Btndiv">
-                                <a href="#" class="Firstbtn">View Details</a>
-                                <a href="#" class="Secbtn">Chat Now</a>
+                        @foreach ($ads as $ad)
+                            <div class="item">
+                                @if ($ad->image)
+                                    <div class="dynamic-bg"
+                                        style="background-image: url('{{ asset('ad_images/' . $ad->image) }}'); background-size: cover; height: 300vh; width: 100%;">
+                                        <div class="item">
+                                            <h4 class="barter1-a">{{ $ad->title }}</h4>
+                                        </div>
+                                    </div>
+                                @endif
+                                <div class="Btndiv">
+                                    <a href="{{ route('ad.show', $ad->id) }}" class="Firstbtn">View Details</a>
+                                    <a href="#" class="Secbtn">Chat Now</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <h4 class="barter1-a">Power to the pro</h4>
-                            <h4 class="barter1-b">Feel special this summer with 15% off*</h4>
-                            <div class="Btndiv">
-                                <a href="#" class="Firstbtn">View Details</a>
-                                <a href="#" class="Secbtn">Chat Now</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <h4 class="barter1-a">Power to the pro</h4>
-                            <h4 class="barter1-b">Feel special this summer with 15% off*</h4>
-                            <div class="Btndiv">
-                                <a href="#" class="Firstbtn">View Details</a>
-                                <a href="#" class="Secbtn">Chat Now</a>
-                            </div>
-                        </div>
+                        @endforeach
+
+
                     </div>
                 </div>
+
                 <div class="col-md-3">
-                    <img src="{{ asset('assets/images/market/main-2.png') }}" class="main2-img" />
+                    @if($firstAd && $firstAd->secondary_image)
+                        <img src="{{ asset('ad_images/' . $firstAd->secondary_image) }}" class="main2-img" />
+                    @else
+                        <p>not found</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -81,7 +80,8 @@
                                 </h4>
 
                                 <!-- Product Description -->
-                                <p class="text-center">{{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
+                                <p class="text-center">
+                                    {{ \Illuminate\Support\Str::limit($product->description, 100, '...') }}</p>
 
                                 <!-- Action Buttons -->
                                 <div class="Btndiv text-center">

@@ -1329,9 +1329,6 @@ select#searchType {
 }
 
 .barter-bg1 .item {
-    background: url(../images/market/main-1.png) no-repeat;
-    background-position: center center;
-    background-size: cover;
     height: 500px;
     border-radius: 30px;
     display: flex;
@@ -1340,6 +1337,12 @@ select#searchType {
     justify-content: end;
     padding: 20px;
     text-align: right;
+}
+
+.barter-bg1 .dynamic-bg {
+    background-size: cover;
+    height: 300px;
+    width: 300px;
 }
 
 .barter1-a {
@@ -1354,7 +1357,6 @@ select#searchType {
     font-weight: 700;
     color: #fff;
     font-family: "Inter";
-    width: 68%;
 }
 
 .barter1-btn {
@@ -1373,6 +1375,7 @@ select#searchType {
 }
 
 .main2-img {
+    height: 455px;
     width: 100%;
 }
 
@@ -3222,18 +3225,20 @@ td {
     color: white;
     background-color: #3670ee;
     text-decoration: none;
-    padding: 12px 25px;
+    padding: 12px 20px;
     border-radius: 20px;
     font-size: 13px;
 }
+
 
 .dec {
     color: black;
     background-color: white;
     text-decoration: none;
-    padding: 12px 25px;
+    padding: 12px 15px;
     border-radius: 20px;
     font-size: 13px;
+    border: none;
 }
 
 .dec:hover {
