@@ -63,7 +63,7 @@ class AdController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $ad = Ad::find($id);
