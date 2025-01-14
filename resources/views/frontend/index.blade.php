@@ -101,49 +101,30 @@
         <h3 class="barter3-a">Our Feature Products</h3>
         <div class="container">
             <div class="main-imgbox">
-                <div class="imgbox">
-                    <img src="./assets/images/market/f1.png" class="imbox-img" />
-                    <a href="#" class="imgbox-b">
-                        <h4>Model J11</h4>
-                    </a>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                    <div class="Btndiv">
-                        <a href="#" class="Firstbtn">View Details</a>
+                @forelse ($products as $product)
+                    <div class="imgbox">
+                        @if ($product->images->isNotEmpty() && $product->images->first()->path)
+                            <img src="{{ asset('storage/' . $product->images->first()->path) }}"
+                                class="imbox-img product-img" />
+                        @else
+                            <img src="{{ asset('assets/images/no_product.svg') }}" class="imbox-img product-img" />
+                        @endif
+                        <a href="#" class="imgbox-b">
+                            <h4>{{ $product->name }}</h4>
+                        </a>
+                        <p>{{ $product->description }}</p>
+                        <div class="Btndiv">
+                            <a href="{{ route('marketplace') }}" class="Firstbtn">View
+                                Details</a>
+                            {{-- <a href="{{ route('products.chat', $product->id) }}" class="Secbtn">Chat Now</a> --}}
+                        </div>
                     </div>
-                </div>
-                <div class="imgbox">
-                    <img src="./assets/images/market/f2.png" class="imbox-img" />
 
-                    <a href="#" class="imgbox-b">
-                        <h4>Model J11</h4>
-                    </a>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                    <div class="Btndiv">
-                        <a href="#" class="Firstbtn">View Details</a>
-                    </div>
-                </div>
-                <div class="imgbox">
-                    <img src="./assets/images/market/f3.png" class="imbox-img" />
-
-                    <a href="#" class="imgbox-b">
-                        <h4>Model J11</h4>
-                    </a>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                    <div class="Btndiv">
-                        <a href="#" class="Firstbtn">View Details</a>
-                    </div>
-                </div>
-                <div class="imgbox">
-                    <img src="./assets/images/market/f4.png" class="imbox-img" />
-
-                    <a href="#" class="imgbox-b">
-                        <h4>Model J11</h4>
-                    </a>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                    <div class="Btndiv">
-                        <a href="#" class="Firstbtn">View Details</a>
-                    </div>
-                </div>
+                @empty
+                    <p class="text-center">
+                        no products available
+                    </p>
+                @endforelse
             </div>
         </div>
     </section>

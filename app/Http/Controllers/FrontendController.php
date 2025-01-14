@@ -12,8 +12,10 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $products = Product::latest()->take(4)->get();
+        return view('frontend.index', compact('products'));
     }
+
     public function about_us()
     {
         return view('frontend.about-us');

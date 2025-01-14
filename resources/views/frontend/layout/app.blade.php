@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/fav.png') }}">
     <title>Home</title>
 </head>
 
