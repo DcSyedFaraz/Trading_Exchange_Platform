@@ -11,7 +11,7 @@
                     <div class="owl-carousel barter-bg1 owl-theme">
                         @foreach ($ads as $ad)
                             <div class="item" style="background-image: url('{{ asset('storage/' . $ad->image) }}');">
-                                <h4 class="barter1-a">{{ $ad->title }}</h4>
+                                <h4 class="barter1-b">{{ $ad->title }}</h4>
                                 <div class="Btndiv">
                                     <a href="{{ route('ad.show', $ad->id) }}" class="Firstbtn">View Details</a>
                                     {{-- <a href="#" class="Secbtn">Chat Now</a> --}}
