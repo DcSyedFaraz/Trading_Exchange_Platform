@@ -22,14 +22,16 @@
                     </div>
                     @auth
                         <div class="three">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#subscriptionModal" class="gsbtn">
+                            <button type="button" data-bs-toggle="modal" data-plan="lifetime" data-bs-target="#subscriptionModal"
+                                class="gsbtn">
                                 Get Started
                             </button>
                         </div>
                     @endauth
                     @guest
-                        <div class="d-flex justify-content-center mt-3">
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                        <div class="three">
+                            <a href="{{ route('login') }}" class="gsbtn">Login</a>
+
                         </div>
 
                     @endguest
@@ -54,14 +56,16 @@
                     </div>
                     @auth
                         <div class="three">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#subscriptionModal" class="gsbtn">
+                            <button type="button" data-bs-toggle="modal" data-plan="annual" data-bs-target="#subscriptionModal"
+                                class="gsbtn">
                                 Get Started
                             </button>
                         </div>
                     @endauth
                     @guest
-                        <div class="d-flex justify-content-center mt-3">
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                        <div class="three">
+                            <a href="{{ route('login') }}" class="gsbtn">Login</a>
+
                         </div>
 
                     @endguest
@@ -85,14 +89,16 @@
                     </div>
                     @auth
                         <div class="three">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#subscriptionModal" class="gsbtn">
+                            <button type="button" data-bs-toggle="modal" data-plan="90-day" data-bs-target="#subscriptionModal"
+                                class="gsbtn">
                                 Get Started
                             </button>
                         </div>
                     @endauth
                     @guest
-                        <div class="d-flex justify-content-center mt-3">
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                        <div class="three">
+                            <a href="{{ route('login') }}" class="gsbtn">Login</a>
+
                         </div>
 
                     @endguest
@@ -116,14 +122,16 @@
                     </div>
                     @auth
                         <div class="three">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#subscriptionModal" class="gsbtn">
+                            <button type="button" data-bs-toggle="modal" data-plan="monthly"
+                                data-bs-target="#subscriptionModal" class="gsbtn">
                                 Get Started
                             </button>
                         </div>
                     @endauth
                     @guest
-                        <div class="d-flex justify-content-center mt-3">
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                        <div class="three">
+                            <a href="{{ route('login') }}" class="gsbtn">Login</a>
+
                         </div>
 
                     @endguest
@@ -141,6 +149,7 @@
                                 <div class="modal-body">
                                     <form id="payment-form" action="{{ route('plans.success') }}" method="POST">
                                         @csrf
+                                        <input type="hidden" name="plan_id" id="plan_id" value="">
                                         <section class="subs-main">
                                             <div class="container">
                                                 <div class="row justify-content-center">
@@ -191,9 +200,31 @@
             hidePostalCode: true
         });
         cardElement.mount('#card-element');
+
         const form = document.getElementById('payment-form');
         const cardBtn = document.getElementById('card-button');
         const cardHolderName = document.getElementById('card-holder-name');
+        const planIdInput = document.getElementById('plan_id');
+
+        // Listen for the modal to be shown
+        const subscriptionModal = document.getElementById('subscriptionModal');
+        subscriptionModal.addEventListener('show.bs.modal', function(event) {
+            // Button that triggered the modal
+            const button = event.relatedTarget;
+            // Extract info from data-plan attribute
+            const plan = button.getAttribute('data-plan');
+            // Update the hidden input with the selected plan
+            planIdInput.value = plan;
+
+            // Optionally, update the modal title or other UI elements based on the plan
+            const modalTitle = subscriptionModal.querySelector('.modal-title');
+            modalTitle.textContent = `Subscribe to ${capitalizeFirstLetter(plan)} Plan`;
+        });
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             cardBtn.disabled = true;
@@ -210,6 +241,8 @@
                 },
             });
             if (error) {
+                // Handle error here
+                console.error(error);
                 cardBtn.disabled = false;
             } else {
                 let token = document.createElement('input');

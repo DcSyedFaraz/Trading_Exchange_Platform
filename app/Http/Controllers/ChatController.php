@@ -9,11 +9,15 @@ use App\Events\MessageSent;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\DynamicNotification;
 use App\Notifications\NewChatNotification;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Log;
+use Notification;
 
 class ChatController extends Controller
 {
@@ -83,21 +87,39 @@ class ChatController extends Controller
         if ($chat->interestedUsers()->where('user_id', $user->id)->exists()) {
             return response()->json(['message' => 'You have already expressed interest.', 'bothInterested' => true], 400);
         }
+        try {
+            DB::beginTransaction();
+            // Attach the user to the chat's interested users
+            $chat->interestedUsers()->attach($user->id);
 
-        // Attach the user to the chat's interested users
-        $chat->interestedUsers()->attach($user->id);
+            // Check if both users have expressed interest
+            $interestedCount = $chat->interestedUsers()->count();
+            $bothInterested = $interestedCount >= 2;
 
-        // Check if both users have expressed interest
-        $interestedCount = $chat->interestedUsers()->count();
-        $bothInterested = $interestedCount >= 2;
+            // Broadcast the interest event
+            broadcast(new InterestExpressed($chat, $user))->toOthers();
 
-        // Broadcast the interest event
-        broadcast(new InterestExpressed($chat, $user))->toOthers();
+            $otherUser = $chat->userOne->id === $user->id ? $chat->userTwo : $chat->userOne;
+            // dd($otherUser);
+            // Send notification to the other user
+            if ($otherUser) {
+                $message = "{$user->name} has expressed interest in your chat.";
+                $url = route('chats.show', ['id' => $chat->id]);
 
-        return response()->json([
-            'message' => 'Interest expressed successfully.',
-            'bothInterested' => $bothInterested,
-        ], 200);
+                $otherUser->notify(new DynamicNotification($message, $url));
+            }
+
+            DB::commit();
+            return response()->json([
+                'message' => 'Interest expressed successfully.',
+                'bothInterested' => $bothInterested,
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 400);
+        }
     }
 
     /**
@@ -269,7 +291,12 @@ class ChatController extends Controller
             // Broadcast the ChatInitiated event
             broadcast(new ChatInitiated($chat))->toOthers();
 
-            // $seller->notify(new NewChatNotification($chat));
+            $seller->notify(new NewChatNotification($chat));
+            $adminUser = User::role('admin')->get();
+
+            if (count($adminUser) > 0) {
+                Notification::send($adminUser, new NewChatNotification($chat));
+            }
 
         }
 

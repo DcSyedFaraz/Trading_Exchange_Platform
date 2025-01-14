@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/fav.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
@@ -45,24 +46,54 @@
                         </div>
                         <div class="col-md-6">
                             <div class="sm-header">
+                                <!-- resources/views/partials/notifications.blade.php -->
+
                                 <div class="notice_box1">
                                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fa-light fa-bell"></i>
-                                        <span class="bubble_count">6</span>
+                                        @if (auth()->user()->unreadNotifications->count() > 0)
+                                            <span
+                                                class="bubble_count">{{ auth()->user()->unreadNotifications->count() }}</span>
+                                        @endif
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a href="#" class="mark-read"><i class="fa-solid fa-check-double"></i>
-                                            Read All</a>
-                                        <ul>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        <!-- Mark All as Read -->
+                                        <form action="{{ route('notifications.markAllRead') }}" method="POST"
+                                            class="d-flex justify-content-end px-3 py-2">
+                                            @csrf
+                                            <button type="submit" class="btn btn-link mark-read p-0"
+                                                title="Mark all as read" data-bs-toggle="tooltip"
+                                                @if (auth()->user()->unreadNotifications->count() == 0) disabled @endif>
+                                                <i class="fa-solid fa-check-double"></i> Read All
+                                            </button>
+                                        </form>
+
+                                        <!-- Notifications List -->
+                                        <ul class="list-unstyled mb-0">
+                                            @forelse (auth()->user()->unreadNotifications as $notification)
+                                                <li>
+                                                    <a class="dropdown-item d-flex justify-content-between align-items-center"
+                                                        href="{{ $notification->data['url'] ?? '#' }}">
+                                                        <span>{{ $notification->data['message'] ?? 'No message available' }}</span>
+                                                        @if (is_null($notification->read_at))
+                                                            <span class="badge bg-primary rounded-pill">New</span>
+                                                        @endif
+                                                    </a>
+                                                </li>
+                                            @empty
+                                                <li class="dropdown-item text-center">No notifications available.</li>
+                                            @endforelse
                                         </ul>
-                                        <a href="#" class="view-all">View All Notifications <i
-                                                class="fa-solid fa-up-right-from-square"></i></a>
+
+                                        <!-- View All Notifications -->
+                                        {{-- <div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item view-all">
+                                            View All Notifications <i class="fa-solid fa-up-right-from-square"></i>
+                                        </a> --}}
                                     </div>
                                 </div>
+
                                 <div class="notice_box">
                                     @php
                                         $authid = auth()->id();
@@ -79,6 +110,7 @@
                                         @if ($unread > 0)
                                             <span class="bubble_count">{{ $unread }}</span>
                                         @endif
+                                        Messages
                                     </a>
                                 </div>
                             </div>
@@ -227,7 +259,6 @@
             toastr.error("{{ $error }}")
         @endforeach
     @endif
-
 </script>
 
 @yield('scripts')

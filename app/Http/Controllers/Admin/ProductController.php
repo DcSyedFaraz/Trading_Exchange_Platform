@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Notifications\NewBarterListNotification;
 use Auth;
 use Illuminate\Http\Request;
+use Notification;
 use Str;
 
 class ProductController extends Controller
@@ -101,12 +102,13 @@ class ProductController extends Controller
             }
 
 
-            $adminUser = User::role('admin')->first();
+            if (!auth()->user()->hasRole('admin')) {
+                $adminUser = User::role('admin')->get();
 
-            if ($adminUser) {
-                $adminUser->notify(new NewBarterListNotification($product));
-            } else {
-                echo 'no action available';
+                if (count($adminUser) > 0) {
+                    // $adminUser->notify(new NewBarterListNotification($product));
+                    Notification::send($adminUser, new NewBarterListNotification($product));
+                }
             }
 
         } catch (\Exception $e) {

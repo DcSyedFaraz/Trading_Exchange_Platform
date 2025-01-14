@@ -73,7 +73,7 @@
                                                 {{-- @dd(config('permission.teams')); // This should output `false` --}}
 
                                                 <strong>Role:</strong>
-                                                <select name="roles" class="form-control my-2 text-capitalize" required>
+                                                <select name="roles" class="form-select my-2 text-capitalize" required>
                                                     <option>Select role</option>
                                                     @foreach ($roles as $role)
                                                     <option value="{{ $role->name }}" {{ in_array($role->name, $userRole) ? 'selected' : '' }} class="text-capitalize">{{ $role->name }}</option>
