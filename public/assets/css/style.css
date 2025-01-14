@@ -2950,21 +2950,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 120px;
+    width: max-content;
     float: inline-end;
+    gap: 10px;
 }
 
 .notice_box a {
     color: black;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 14px;
+    padding: 8px 13px 5px;
+    display: block;
 }
 
 .notice_box {
     position: relative;
     float: left;
-    margin-top: 8px;
-    padding: 5px 13px;
 }
 
 .notice_box:hover {
@@ -2975,7 +2976,7 @@ body {
 
 .notice_box:hover a {
     color: white;
-    font-size: 25px;
+    /* font-size: 25px; */
 }
 
 .notice_box .bubble_count {
@@ -3543,7 +3544,7 @@ td {
 .notice_box1 a {
     color: black;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .notice_box1 {

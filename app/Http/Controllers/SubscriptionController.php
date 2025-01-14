@@ -19,13 +19,13 @@ class SubscriptionController extends Controller
         $categories = Category::whereNull('parent_id')->with('children')->get();
 
         $user = Auth::user();
-        if(!$user){
+        if (!$user) {
             $intent = null;
         } else {
             $intent = auth()->user()->createSetupIntent();
         }
 
-        return view('frontend.marketplace.plans',[
+        return view('frontend.marketplace.plans', [
             'products' => $activeProducts,
             'categories' => $categories,
             'intent' => $intent,
@@ -127,17 +127,50 @@ class SubscriptionController extends Controller
 
     public function planssuccess(Request $request)
     {
-        try {
+        // Validate the incoming request
+        $request->validate([
+            'plan_id' => 'required|string',
+            'token' => 'required|string',
+            'name' => 'required|string|max:255',
+        ]);
 
+        // Map plan identifiers to Stripe price IDs
+        switch ($request->plan_id) {
+            case 'lifetime':
+                $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4'; // Replace with your actual Stripe price ID
+                $subscriptionName = 'LIFETIME';
+                break;
+            case 'annual':
+                $priceId = 'price_annual'; // Replace with your actual Stripe price ID
+                $subscriptionName = 'ANNUAL MEMBERSHIP';
+                break;
+            case '90-day':
+                $priceId = 'price_90day'; // Replace with your actual Stripe price ID
+                $subscriptionName = '90-DAY MEMBERSHIP';
+                break;
+            case 'monthly':
+                $priceId = 'price_monthly'; // Replace with your actual Stripe price ID
+                $subscriptionName = 'MONTHLY MEMBERSHIP';
+                break;
+            default:
+                return redirect()->route('plans')->with('error', 'Invalid subscription plan selected.');
+        }
+
+        try {
+            // Create the subscription
             $subscription = $request->user()
-            ->newSubscription('ANNUAL MEMBERSHIP', 'price_1QeeNyEvBehh4H8KxwMnhds3')
-            ->create($request->token);
+                ->newSubscription($subscriptionName, $priceId)->trialDays(7)
+                ->create($request->token);
 
             return redirect()->route('plans')
                 ->with('success', 'Subscription purchased successfully!');
         } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Subscription Error: ' . $e->getMessage());
+
             return redirect()->route('plans')
                 ->with('error', 'There was an issue with your subscription.');
         }
     }
+
 }

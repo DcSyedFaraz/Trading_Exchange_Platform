@@ -10,18 +10,21 @@ use Illuminate\Http\Request;
 
 class EditProfileController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $user = User::first();
         return view('admin.edit_profile', compact('user'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $user = User::findOrFail($id);
 
         return view('admin.edit_profile', compact('user'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
@@ -51,4 +54,12 @@ class EditProfileController extends Controller
 
         return redirect()->route('edit_profile.index')->with('success', 'Profile updated successfully');
     }
+    public function markAllRead()
+    {
+        $user = Auth::user();
+        $user->unreadNotifications->markAsRead();
+
+        return redirect()->back()->with('success', 'All notifications marked as read.');
+    }
+
 }

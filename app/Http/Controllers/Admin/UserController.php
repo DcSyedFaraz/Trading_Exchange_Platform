@@ -57,7 +57,7 @@ class UserController extends Controller
             }
 
 
-            $users->notify(new NewUserNotification($users));
+            // $users->notify(new NewUserNotification($users));
 
             DB::commit();
             return redirect()->route('users.index')
@@ -65,7 +65,7 @@ class UserController extends Controller
 
         } catch (\Exception $e) {
             DB::rollback();
-            throw $e;
+            // throw $e;
             return redirect()->back()->with('error', 'An error occurred while creating the checklist. Please try again or contact support for assistance.');
         }
     }
@@ -81,6 +81,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        // dd($id);
         $user = User::find($id);
         $roles = Role::select('id', 'name')->get();
         $userRole = $user->roles->pluck('name', 'name')->all();

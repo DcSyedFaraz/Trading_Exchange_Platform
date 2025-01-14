@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\DynamicNotification;
 use App\Notifications\NewUserNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Notification;
 
 class RegisteredUserController extends Controller
 {
@@ -55,7 +57,13 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        $user->notify(new NewUserNotification());
+        $admins = User::role('admin')->get();
+
+        $message = "A new user, {$user->name}, has registered.";
+        $url = route('users.edit', ['user' => $user->id]); // Adjust the route to your user details page.
+
+        Notification::send($admins, new DynamicNotification($message, $url));
+
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

@@ -12,6 +12,7 @@ use App\Notifications\NewChatNotification;
 use App\Notifications\NewUserNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Notification;
 use Storage;
 
 class AdminAuctionController extends Controller
@@ -72,12 +73,11 @@ class AdminAuctionController extends Controller
             ]);
         }
 
-        $adminUser = User::role('admin')->first();
+        $adminUser = User::role('admin')->get();
 
-        if ($adminUser) {
-            $adminUser->notify(new NewAuctionListedNotification($auctionProduct));
-        } else {
-            echo 'no action available';
+        if (count($adminUser) > 0) {
+            // $adminUser->notify(new NewAuctionListedNotification($auctionProduct));
+            Notification::send($adminUser, new NewAuctionListedNotification($auctionProduct));
         }
 
         return redirect()->route('auction_products.index')->with('success', 'Auction Product Created Successfully!');
