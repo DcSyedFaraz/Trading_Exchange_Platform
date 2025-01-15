@@ -658,6 +658,7 @@ body {
     box-shadow: 0.79px 15px 33px #0000003b;
     padding: 50px 30px;
     text-align: center;
+    margin-top: -100px;
     z-index: 9999;
     position: relative;
 }
@@ -1023,6 +1024,7 @@ footer {
     letter-spacing: -0.44px;
     color: #737373;
     font-size: 17px;
+    font-weight: 700;
 }
 
 .accordion-button:not(.collapsed) {
@@ -1495,6 +1497,20 @@ select#searchType {
     position: relative;
 }
 
+.market-d {
+    background: #fff;
+    color: black;
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    padding-left: 24px;
+    border-radius: 34px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
 .logo-market {
     width: 40%;
 }
@@ -1686,8 +1702,10 @@ select#searchType {
 }
 
 .imbox-img {
-    width: 100%;
-    margin-bottom: 15px;
+    width: 100% !important;
+    height: 200px;
+    object-fit: initial;
+    margin: 0 auto 20px;
 }
 
 .imgbox-a {
@@ -4022,7 +4040,7 @@ ul {
 
 .center-div {
     text-align: center;
-    padding-bottom: 50px;
+    padding-top: 60px;
 }
 
 .new-section {
@@ -4030,3 +4048,10 @@ ul {
 }
 
 /*New Css*/
+
+.p1-img {
+    width: 100% !important;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}

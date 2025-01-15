@@ -201,7 +201,7 @@
 
     <section class="barter-3">
         <div class="container">
-            <h3 class="barter3-a">Our Feature Products</h3>
+            <h3 class="barter3-a">Our Featured Products</h3>
             <div class="container mt-3">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">

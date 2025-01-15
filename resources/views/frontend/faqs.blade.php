@@ -4,9 +4,9 @@
         <div class="faq-item-bg">
             <div class="container">
                 <h3 class="bg1-a">Faqs</h3>
-                <h4 class="bg1-b">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque.
+                <!--<h4 class="bg1-b">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque.
                     Donec vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                    Praesent id sapien nec nulla posuere vehicula ac a quam.</h4>
+                    Praesent id sapien nec nulla posuere vehicula ac a quam.</h4>-->
             </div>
         </div>
     </section>
@@ -14,12 +14,12 @@
     <section class="faqbg2">
         <div class="container">
             <h3 class="faq-a">FAQS</h3>
-            <p class="faq-b">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
+            <!--<p class="faq-b">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
                 vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet.</p>
             <p class="faq-b">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
                 vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium. Praesent id
                 sapien nec nulla posuere vehicula ac a quam. Donec scelerisque et libero at sagittis. Mauris sed
-                eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec ullamcorper ac, tristique ac neque.</p>
+                eleifend dui, non pulvinar dolor. Nulla lectus ex, tempus nec ullamcorper ac, tristique ac neque.</p>-->
         </div>
         <div class="container">
             <div class="accordion" id="accordionExample">
@@ -152,9 +152,7 @@
         <div class="container">
             <h4 class="bg6-a">Get in touch</h4>
             <h4 class="bg6-b">SUBSCRIBE TO OUR NEWSLETTER</h4>
-            <p class="bg6-c">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque. Donec
-                vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium. Praesent id
-                sapien nec nulla.</p>
+            <p class="bg6-c">Sign up to receive updates, exclusive offers, and the latest news delivered straight to your inbox.</p>
             <form>
                 <input class="bg6-input" type="email" placeholder="Enter your email address:" required />
                 <input type="submit" class="bg6-submit" value="Subscribe" />

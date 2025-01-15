@@ -23,40 +23,22 @@
             <div class="col-md-3">
                 <h4 class="barf-b">Quick menu</h4>
                 <ul class="bar-footer-ul-a">
-                    <a href="">
+                    <a href="/">
                         <li>Home</li>
                     </a>
-                    <a href="">
+                    <a href="{{ route('about_us') }}">
                         <li>About Us</li>
-                    </a>
-                    <a href="">
-                        <li>FAQs</li>
-                    </a>
-                    <a href="">
-                        <li>Contact us</li>
-                    </a>
-                    <a href="">
-                        <li>Marketplace</li>
                     </a>
                 </ul>
             </div>
             <div class="col-md-3">
                 <h4 class="barf-b">Customer Service</h4>
                 <ul class="bar-footer-ul-a">
-                    <a href="">
-                        <li>My Account</li>
-                    </a>
-                    <a href="">
-                        <li>Track your Order</li>
-                    </a>
-                    <a href="">
-                        <li>Returns/Exchange</li>
-                    </a>
-                    <a href="">
+                    <a href="{{ route('faqs') }}">
                         <li>FAQs</li>
                     </a>
-                    <a href="">
-                        <li>Customer Service</li>
+                    <a href="{{ route('contact_us') }}">
+                        <li>Contact Us</li>
                     </a>
                 </ul>
             </div>

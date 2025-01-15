@@ -47,7 +47,7 @@
                 <div class="col-md-6">
                     <!-- Product Name -->
                     <div class="form-group mb-3">
-                        <label for="name" class="form-label">Name:</label>
+                        <label for="name" class="form-label">Product Title:</label>
                         <input type="text" name="name" id="name" class="form-control"
                             value="{{ old('name', $product->name ?? '') }}" required>
                     </div>

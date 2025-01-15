@@ -50,35 +50,21 @@
 
     </section>
 
-    <section class="center-div">
-        <div class="container">
-            <h3 class="buz-text">Welcome to Traders Exchange</h3>
-            <p class="buz-p">At Traders Exchange, you can easily list and trade your products with other users, directly
-                exchanging goods and services in a seamless marketplace. Our platform connects you with a wide range of
-                buyers and sellers, giving you access to a network of potential new partners for both trade and auctions.
-                Whether you’re trading everyday items or something more specialized, our community helps you find what you
-                need while offering opportunities to offload excess stock or services. <br> <br>
-                Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you get the best
-                value for what you’re offering. Get started today, and unlock the full potential of trading and auctioning
-                within the Traders Exchange ecosystem!
-            </p>
-        </div>
-    </section>
-
     <section class="bg2">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7">
-                    <!-- <h4 class="bg2-a">About us</h4> -->
-                    <h4 class="bg2-b">What is bartering?</h4>
-                    <p class="bg2-c">Bartering is the exchange of goods or services without using money. It's a simple
-                        yet powerful concept that has been around for centuries. Our platform makes it easy, secure, and
-                        convenient to barter online.</p>
-                    <h4 class="bg2-b">How does it work?</h4>
-                    <p class="bg2-c">Browse our marketplace to find what you need. Offer what you have to give.
-                        Negotiate a trade that works for both parties. Our platform provides the tools and support to
-                        make it happen.</p>
-                    <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
+                    <h3 class="buz-text">Welcome to Traders Exchange</h3>
+                    <p class="bg2-c">At Traders Exchange, you can easily list and trade your products with other users,
+                        directly exchanging goods and services in a seamless marketplace. Our platform connects you with
+                        a wide range of buyers and sellers, giving you access to a network of potential new partners for
+                        both trade and auctions. Whether you’re trading everyday items or something more specialized,
+                        our community helps you find what you need while offering opportunities to offload excess stock
+                        or services. <br> <br>
+                        Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you
+                        get the best value for what you’re offering. Get started today, and unlock the full potential of
+                        trading and auctioning within the Traders Exchange ecosystem!
+                    </p>
                 </div>
                 <div class="col-md-5">
                     <div class="form-div">
@@ -94,11 +80,25 @@
                     </div>
                 </div>
             </div>
+    </section>
+
+    <section class="center-div">
+        <div class="container">
+            <!-- <h4 class="bg2-a">About us</h4> -->
+            <h4 class="bg2-b">What is bartering?</h4>
+            <p class="buz-p">Bartering is the exchange of goods or services without using money. It's a simple
+                yet powerful concept that has been around for centuries. Our platform makes it easy, secure, and
+                convenient to barter online.</p>
+            <h4 class="bg2-b">How does it work?</h4>
+            <p class="buz-p">Browse our marketplace to find what you need. Offer what you have to give.
+                Negotiate a trade that works for both parties. Our platform provides the tools and support to
+                make it happen.</p>
+            <!-- <a href="./contact-us.html" class="get-btn">Get Started</a> -->
         </div>
     </section>
 
     <section class="new-section">
-        <h3 class="barter3-a">Our Feature Products</h3>
+        <h3 class="barter3-a">Our Featured Products</h3>
         <div class="container">
             <div class="main-imgbox">
                 @forelse ($products as $product)
