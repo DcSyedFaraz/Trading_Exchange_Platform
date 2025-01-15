@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Notifications\NewBidOnAuctionNotification;
 use Auth;
 use Illuminate\Http\Request;
+use Notification;
 
 class AuctionController extends Controller
 {
@@ -16,7 +17,7 @@ class AuctionController extends Controller
     {
         $products = AuctionProduct::active()->paginate(11);
         $categories = Category::whereNull('parent_id')->with('children')->get();
-        return view('frontend.auction.index', compact('products','categories'));
+        return view('frontend.auction.index', compact('products', 'categories'));
     }
     public function show($id)
     {
@@ -24,7 +25,7 @@ class AuctionController extends Controller
         $categories = Category::whereNull('parent_id')->with('children')->get();
         // dd(\Carbon\Carbon::now());
         $product->closeAuction();
-        return view('frontend.auction.show', compact('product','categories'));
+        return view('frontend.auction.show', compact('product', 'categories'));
     }
     public function create(Request $request)
     {
@@ -45,7 +46,7 @@ class AuctionController extends Controller
         $request->validate([
             'bid_amount' => 'required|numeric|min:0.01',
         ]);
-
+        $userid = Auth::id();
         $product = AuctionProduct::findOrFail($productId);
         if ($product->is_closed) {
             return redirect()->back()->with('error', 'Auction is closed.');
@@ -55,6 +56,10 @@ class AuctionController extends Controller
         if ($request->bid_amount < $product->minimum_bid) {
             return redirect()->back()->with('error', 'Bid must be higher than the minimum bid.');
         }
+        if ($userid == $product->user_id) {
+            return redirect()->back()->with('error', 'You cannot place a bid on your own product.');
+        }
+
 
         // Ensure the bid is higher than the current highest bid
         $highestBid = $product->highestBid;
@@ -66,14 +71,19 @@ class AuctionController extends Controller
         $bid = Bid::create([
             'auction_product_id' => $productId,
             'amount' => $request->bid_amount,
-            'user_id' => Auth::id(),
+            'user_id' => $userid,
         ]);
         $product->highest_bid = $request->bid_amount;
         $product->save();
 
         $adminUser = User::role('admin')->first();
         if ($adminUser) {
-            $adminUser->notify(new NewBidOnAuctionNotification($product,  $bid));
+            // $adminUser->notify(new NewBidOnAuctionNotification($product,  $bid));
+            Notification::send($adminUser, new NewBidOnAuctionNotification($product, $bid));
+        }
+        $productUser = User::find($product->user_id);
+        if ($productUser) {
+            Notification::send($productUser, new NewBidOnAuctionNotification($product, $bid));
         }
 
 

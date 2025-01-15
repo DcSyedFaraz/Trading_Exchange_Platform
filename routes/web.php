@@ -38,6 +38,8 @@ use Tighten\Ziggy\Ziggy;
 |
 */
 
+Route::any('/stripe/webhook', [SubscriptionController::class, 'handleStripeWebhook']);
+
 Route::get('/login', function () {
     return view('auth/login');
 });
@@ -68,7 +70,7 @@ Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.
 Route::get('/plans', [SubscriptionController::class, 'plans'])->name('plans');
 // web.php
 
-Route::any('/stripe/webhook', [SubscriptionController::class, 'handleStripeWebhook']);
+Route::any('marketplace/ad/{id}', [AdController::class, 'show'])->name('ad.show');
 
 
 // Dashboard and Logout routes
@@ -100,7 +102,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::resource('user_manage', UserManageController::class);
     Route::resource('featured', FeatureController::class);
     Route::resource('categories', CategoryController::class);
-    Route::resource('ad', AdController::class);
+    Route::resource('ad', AdController::class)->except('show');
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
@@ -124,6 +126,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin
     Route::resource('products', ProductController::class);
     Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
     Route::resource('auction_products', AdminAuctionController::class);
+    Route::get('auction_products/bids/{id}', [AdminAuctionController::class, 'bids'])->name('auction_products.bids');
 
 });
 

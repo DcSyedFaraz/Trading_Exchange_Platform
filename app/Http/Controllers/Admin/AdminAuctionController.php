@@ -31,6 +31,11 @@ class AdminAuctionController extends Controller
     {
         return view('admin.auction_products.create');
     }
+    public function bids($id)
+    {
+        $product = AuctionProduct::with('bids.user')->where('id', $id)->first();
+        return view('admin.auction_products.bids', compact('product'));
+    }
 
 
     public function store(Request $request)

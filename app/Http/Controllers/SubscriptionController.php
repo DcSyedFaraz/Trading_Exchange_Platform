@@ -141,15 +141,15 @@ class SubscriptionController extends Controller
                 $subscriptionName = 'LIFETIME';
                 break;
             case 'annual':
-                $priceId = 'price_annual'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4'; // Replace with your actual Stripe price ID
                 $subscriptionName = 'ANNUAL MEMBERSHIP';
                 break;
             case '90-day':
-                $priceId = 'price_90day'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4'; // Replace with your actual Stripe price ID
                 $subscriptionName = '90-DAY MEMBERSHIP';
                 break;
             case 'monthly':
-                $priceId = 'price_monthly'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4'; // Replace with your actual Stripe price ID
                 $subscriptionName = 'MONTHLY MEMBERSHIP';
                 break;
             default:

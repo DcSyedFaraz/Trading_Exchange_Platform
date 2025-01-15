@@ -34,6 +34,7 @@
                         </td>
                         <td>
                             <a href="{{ route('auction_products.edit', $product) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('auction_products.bids', $product) }}" class="btn btn-primary btn-sm">Bids</a>
                             <form action="{{ route('auction_products.destroy', $product) }}" method="POST"
                                 style="display:inline;">
                                 @csrf

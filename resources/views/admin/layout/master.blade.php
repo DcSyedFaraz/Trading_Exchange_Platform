@@ -77,7 +77,7 @@
                                                         href="{{ $notification->data['url'] ?? '#' }}">
                                                         <span>{{ $notification->data['message'] ?? 'No message available' }}</span>
                                                         @if (is_null($notification->read_at))
-                                                            <span class="badge bg-primary rounded-pill">New</span>
+                                                            <span class="badge bg-primary ms-2 rounded-pill">New</span>
                                                         @endif
                                                     </a>
                                                 </li>

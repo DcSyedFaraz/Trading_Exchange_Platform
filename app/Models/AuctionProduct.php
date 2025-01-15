@@ -30,7 +30,7 @@ class AuctionProduct extends Model
     }
     public function bids()
     {
-        return $this->hasMany(Bid::class);
+        return $this->hasMany(Bid::class)->orderByDesc('amount');
     }
     public function user()
     {

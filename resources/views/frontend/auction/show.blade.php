@@ -50,11 +50,11 @@
                             <h3>{{ $product->auction_end_time->format('h:i A') }}</h3>
                         </div>
                     </div>
-                    <p class="auction-closed">Auction Closed</p>
 
-                    <p class="auction-closed">Login To Send Bid</p>
                     @if ($product->is_closed)
+                        <p class="auction-closed">Auction Closed</p>
                     @elseif (!Auth::user())
+                        <p class="auction-closed">Login To Send Bid</p>
                     @else
                         <div class="s-prod-form">
                             <p>Place your bid</p>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\NewUserNotification;
 use Arr;
+use Auth;
+use Config;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
@@ -20,8 +22,21 @@ class UserController extends Controller
     }
     public function user()
     {
-        return view('user.dashboard');
-        // return view('user.dashboard');
+        $user = Auth::user();
+        $subscription = $user->subscription('default'); // Replace 'default' if using a different subscription name
+
+        $package = null;
+
+        if ($subscription && $subscription->active()) {
+            $plans = Config::get('subscriptions.plans');
+            foreach ($plans as $plan) {
+                if ($plan['id'] === $subscription->stripe_price) { // stripe_price holds the Stripe Price ID
+                    $package = $plan;
+                    break;
+                }
+            }
+        }
+        return view('user.dashboard', compact('user'));
     }
 
     public function create()
