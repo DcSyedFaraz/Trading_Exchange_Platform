@@ -9,7 +9,7 @@
                     </div>
                     <div class="two">
                         <h3 class="blue-heading-plan">$400.00 <span>/ Annual</span></h3>
-                        <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
+                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
                         <ul>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
@@ -18,7 +18,7 @@
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     @auth
                         <div class="three">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="two">
                         <h3 class="blue-heading-plan">$275.00 <span>/ Annual</span></h3>
-                        <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
+                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
                         <ul>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
@@ -52,7 +52,7 @@
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     @auth
                         <div class="three">
@@ -76,7 +76,7 @@
                     </div>
                     <div class="two">
                         <h3 class="blue-heading-plan">$75.00 <span>/ 90-day</span></h3>
-                        <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
+                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
                         <ul>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
@@ -85,7 +85,7 @@
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     @auth
                         <div class="three">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="two">
                         <h3 class="blue-heading-plan">$29.00 <span>/ Monthly</span></h3>
-                        <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
+                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
                         <ul>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
@@ -118,7 +118,7 @@
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
                             <li>. Lorem ipsum dolor sit amet elit.</li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     @auth
                         <div class="three">
