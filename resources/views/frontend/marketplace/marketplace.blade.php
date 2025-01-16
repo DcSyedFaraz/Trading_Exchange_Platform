@@ -37,7 +37,7 @@
     <section class="barter-2">
         <div class="container">
             <h3 class="barter2-a">All Products</h3>
-            <ul class="nav nav-tabs" role="tablist">
+            {{-- <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="tab" href="#Flash"><i class="fa-light fa-gem"></i> Flash
                         Deals</a>
@@ -52,7 +52,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#Gift">Gift Cards<span class="sale">Sale</span></a>
                 </li>
-            </ul>
+            </ul> --}}
             <div class="tab-content">
                 <div id="Flash" class="container tab-pane active"><br>
                     <div class="owl-carousel product-carousel owl-theme">

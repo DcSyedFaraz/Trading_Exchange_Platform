@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    @if (Route::currentRouteName() == 'marketplace')
+    {{-- @if (Route::currentRouteName() == 'marketplace')
         <div class="header-inner2">
             <h4 class="inner2-a">Most searched :</h4>
             <a href="" class="inner2-b">Electronics</a>
@@ -107,6 +107,6 @@
             <a href="" class="inner2-b">Mobile</a>
             <a href="" class="inner2-b">Car</a>
         </div>
-    @endif
+    @endif --}}
 
 </header>
