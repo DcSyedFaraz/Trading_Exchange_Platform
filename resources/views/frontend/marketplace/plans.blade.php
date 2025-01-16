@@ -109,16 +109,7 @@
                     </div>
                     <div class="two">
                         <h3 class="blue-heading-plan">$29.00 <span>/ Monthly</span></h3>
-                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
-                        <ul>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                        </ul> --}}
+                        {{-- <p>Lorem ipsu1 --}}
                     </div>
                     @auth
                         <div class="three">
