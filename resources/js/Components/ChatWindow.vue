@@ -1,5 +1,6 @@
 <template>
     <div class="message-main">
+        <Head title="Chat Room" />
         <div class="py-2 border-bottom d-none d-lg-block chat-header">
             <div class="d-flex align-items-center py-1">
                 <div class="position-relative">

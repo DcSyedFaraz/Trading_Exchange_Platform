@@ -1,6 +1,7 @@
 <!-- resources/js/Components/ChatSidebar.vue -->
 <template>
     <div>
+        <Head title="Chat Room" />
         <a :href="route('marketplace')" class="market-d">
             <i class="fas fa-shopping-cart mr-2"></i> <!-- Use the appropriate icon name here -->
             Marketplace
@@ -9,11 +10,11 @@
         <div v-for="chat in chats" :key="chat.id" :class="['chat-item', { 'current-chat': chat.id === currentChatId }]">
             <Link :href="route('chats.show', chat.id)" class="user-div">
             <div class="d-flex align-items-center">
-                <img v-if="chat.product.image?.path"
-                :src="'/storage/' + chat.product.image.path" class="rounded-circle mr-1" alt="Vanessa Tucker">
+                <img v-if="chat.product.image?.path" :src="'/storage/' + chat.product.image.path"
+                    class="rounded-circle mr-1" alt="Vanessa Tucker">
                 <div class="content-inner">
-                    <h3>{{ chat.with_user.name }}</h3>
-                    <p v-if="chat.product">Regarding: {{ chat.product.name }}</p>
+                    <h3 v-if="chat.product">{{ chat.product.name }}</h3>
+                    <p v-if="chat.product">Description: {{ truncateText(chat.product.description, 50) }}</p>
                     <p v-if="chat.last_message" class="d-flex justify-between">
                         <span v-if="chat.last_message.message?.message">
                             {{ chat.last_message.message.message }}
@@ -42,6 +43,14 @@ export default {
             type: [Number, String], // Depending on how your IDs are defined
         },
     },
+    methods: {
+        truncateText(text, maxLength) {
+            if (text.length > maxLength) {
+                return text.substring(0, maxLength) + '...';
+            }
+            return text;
+        }
+    }
 };
 </script>
 <!-- resources/js/Components/ChatSidebar.vue -->

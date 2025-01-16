@@ -66,6 +66,7 @@ class ChatController extends Controller
                     'unread_count' => $unreadCount,
                 ];
             });
+            // dd($chats);
 
         return Inertia::render('Chats/Show', [
             'chat' => null, // No specific chat selected
