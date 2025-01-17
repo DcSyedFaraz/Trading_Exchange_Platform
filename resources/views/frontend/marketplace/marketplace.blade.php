@@ -312,12 +312,12 @@
 
     <section class="barter-4">
         <div class="container">
-            <div>
+            {{-- <div>
                 <img src="{{ asset('assets/images/market/truck.png') }}" class="truck-img" />
                 <h4 class="barter4-a">Worldwide Delivery</h4>
                 <p class="barter4-b">With sites in 5 languages, we ship to over 200
                     countries & regions.</p>
-            </div>
+            </div> --}}
             <div>
                 <img src="{{ asset('assets/images/market/credit-card.png') }}" class="truck-img" />
                 <h4 class="barter4-a">Safe Payment</h4>

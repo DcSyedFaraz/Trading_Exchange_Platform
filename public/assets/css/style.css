@@ -1822,9 +1822,21 @@ select#searchType {
     margin: 0;
 }
 
+.nav-link:focus, .nav-link:hover {
+    color: #fff !important;
+}
+
+.premium {
+    font-size: 16px;
+    color: red;
+    width: 60%;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
 .barter-4 .container {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 33% 33% 33%;
     text-align: center;
     align-items: center;
 }

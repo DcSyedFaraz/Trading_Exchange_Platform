@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-4">
-                <a href="#"><img src="{{ asset('assets/images/footer-logo.png') }}" class="footer-logo" /></a>
+                <a href="/"><img src="{{ asset('assets/images/footer-logo.png') }}" class="footer-logo" /></a>
                 <p class="footer-a">Connect, trade, and auction your products with ease. A marketplace where goods and
                     services find new homes through direct trade and competitive bidding.
                 </p>
@@ -37,7 +37,7 @@
             <div class="col-md-4">
                 <h4 class="footer-b">Contact us</h4>
                 <ul class="footer-ul1">
-                    <!--<li>Address: 121 King Street Melbourne, 3000, USA</li>-->
+                    <li>350 Vestal Street Beaumont, TX. 77703</li>
                     <a href="mailto:wolappen@yahoo.com">
                         <li>Email: wolappen@yahoo.com </li>
                     </a>

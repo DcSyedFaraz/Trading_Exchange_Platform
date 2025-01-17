@@ -47,7 +47,7 @@
                         cash to resolve business solutions and, is a powerful way to connect people and businesses,
                         fostering a community built on trust, reciprocity, and mutual benefit. Our platform aims to make
                         bartering easy, secure, and convenient.</p>
-                    <div class="tick-div">
+                    {{-- <div class="tick-div">
                         <img src="{{ asset('assets/images/tick.png') }}" class="tick-img" />
                         <div>
                             <h3 class="bg3-c">Business management</h3>
@@ -70,7 +70,7 @@
                             <h3 class="bg3-d">Earue ipsa quae ab illo inventore veritatis et quasi architector ea ae
                                 vitae dicta aliae sunt.</h3>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

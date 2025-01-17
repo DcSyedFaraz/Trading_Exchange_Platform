@@ -2,11 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <img src="{{ asset('assets/images/BP-Logo.png') }}" class="barterf-logo" />
+                <a href="/"><img src="{{ asset('assets/images/BP-Logo.png') }}" class="barterf-logo" /></a>
                 <ul class="bar-footer-ul">
                     <a href="">
-                        <li><i class="fa-solid fa-location-dot"></i> 73 Roosevelt Wilson Lane Big Bear Lake, CA
-                            92315</li>
+                        <li><i class="fa-solid fa-location-dot"></i> 350 Vestal Street Beaumont, TX. 77703</li>
                     </a>
                     <a href="mailto:wolappen@yahoo.com">
                         <li><i class="fa-regular fa-envelope"></i> wolappen@yahoo.com </li>

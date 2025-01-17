@@ -4,6 +4,7 @@
     <div class="container">
         <h1>Auction Products</h1>
         <a href="{{ route('auction_products.create') }}" class="btn btn-primary">Create New Product</a>
+        <p class="premium">Premium Members; 5% for each Premiere Member.  Other Members:  7%. per side.  Guests:  10% per side. Credit card fees, shipping fees, if any, are calculated on Invoice.</p>
 
         <table class="table mt-3">
             <thead>
