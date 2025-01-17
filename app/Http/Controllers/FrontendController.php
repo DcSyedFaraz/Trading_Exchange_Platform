@@ -20,6 +20,11 @@ class FrontendController extends Controller
     {
         return view('frontend.about-us');
     }
+    public function market_terms()
+    {
+        $categories = Category::whereNull('parent_id')->with('children')->get();
+        return view('frontend.marketplace.barter_terms', compact('categories'));
+    }
     public function contact_us()
     {
         return view('frontend.contact-us');

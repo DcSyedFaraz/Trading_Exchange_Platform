@@ -13,12 +13,19 @@ use Notification;
 
 class AuctionController extends Controller
 {
+    public function terms_auction()
+    {
+        // dd('s');
+        $categories = Category::whereNull('parent_id')->with('children')->get();
+        return view('frontend.auction.terms', compact('categories'));
+    }
     public function index()
     {
         $products = AuctionProduct::active()->paginate(11);
         $categories = Category::whereNull('parent_id')->with('children')->get();
         return view('frontend.auction.index', compact('products', 'categories'));
     }
+
     public function show($id)
     {
         $product = AuctionProduct::active()->findOrFail($id);

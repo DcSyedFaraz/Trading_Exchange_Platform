@@ -56,7 +56,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/contact-us', 'contact_us')->name('contact_us');
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/marketplace', 'marketplace')->name('marketplace');
-    // Route::get('/marketplace/plans', 'plans')->name('marketplace.plans');
+    Route::get('/marketplace/terms', 'market_terms')->name('marketplace.terms');
 
     Route::get('/marketplace/details/{id}', 'details')->name('marketplace.details');
     Route::get('/marketplace/category/{slug}', 'showCategoryProducts')->name('category.products');
@@ -65,7 +65,10 @@ Route::controller(FrontendController::class)->group(function () {
 Route::controller(AuctionController::class)->name('auction.')->group(function () {
     Route::get('/auction', 'index')->name('index');
     Route::get('/auction/{id}', 'show')->name('show');
+    // Route::get('/auction/terms', 'terms')->name('terms');
 });
+Route::get('/auctions/terms', [AuctionController::class, 'terms_auction'])->name('auction.terms');
+
 Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.placeBid')->middleware('auth');
 Route::get('/plans', [SubscriptionController::class, 'plans'])->name('plans');
 // web.php
@@ -113,7 +116,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
 
     Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');
 
-    Route::post('/auction-products/{auctionProduct}/send-notifications', [AdminAuctionController::class,'sendAdminNotifications'])->name('auction_products.send_notifications');
+    Route::post('/auction-products/{auctionProduct}/send-notifications', [AdminAuctionController::class, 'sendAdminNotifications'])->name('auction_products.send_notifications');
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 

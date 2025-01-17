@@ -28,6 +28,11 @@
                     <a href="{{ route('about_us') }}">
                         <li>About Us</li>
                     </a>
+                    <a
+                        href="{{ route(str_contains(Route::currentRouteName(), 'auction') ? 'auction.terms' : 'marketplace.terms') }}">
+                        <li>Terms & Conditions</li>
+                    </a>
+
                 </ul>
             </div>
             <div class="col-md-3">

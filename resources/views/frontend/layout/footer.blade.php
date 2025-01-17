@@ -31,6 +31,7 @@
                         <a href="{{ route('contact_us') }}">
                             <li>Contact Us</li>
                         </a>
+
                     </ul>
                 </div>
             </div>
