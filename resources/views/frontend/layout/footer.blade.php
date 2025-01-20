@@ -38,10 +38,10 @@
             <div class="col-md-4">
                 <h4 class="footer-b">Contact us</h4>
                 <ul class="footer-ul1">
-                    <li>350 Vestal Street Beaumont, TX. 77703</li>
-                    {{-- <a href="mailto:wolappen@yahoo.com">
-                        <li>Email: wolappen@yahoo.com </li>
-                    </a> --}}
+                    {{-- <li>350 Vestal Street Beaumont, TX. 77703</li> --}}
+                    <a href="mailto:info@tradersexchange.org">
+                        <li>Email: info@tradersexchange.org </li>
+                    </a>
                 </ul>
             </div>
         </div>

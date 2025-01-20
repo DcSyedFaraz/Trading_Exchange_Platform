@@ -5,11 +5,11 @@
                 <a href="/"><img src="{{ asset('assets/images/BP-Logo.png') }}" class="barterf-logo" /></a>
                 <ul class="bar-footer-ul">
                     <a href="">
-                        <li><i class="fa-solid fa-location-dot"></i> 350 Vestal Street Beaumont, TX. 77703</li>
+                        {{-- <li><i class="fa-solid fa-location-dot"></i> 350 Vestal Street Beaumont, TX. 77703</li> --}}
                     </a>
-                    {{-- <a href="mailto:wolappen@yahoo.com">
-                        <li><i class="fa-regular fa-envelope"></i> wolappen@yahoo.com </li>
-                    </a> --}}
+                    <a href="mailto:info@tradersexchange.org">
+                        <li><i class="fa-regular fa-envelope"></i> info@tradersexchange.org </li>
+                    </a>
                 </ul>
                 <h4 class="barf-a">Follow us</h4>
                 <div class="social-div" bis_skin_checked="1">

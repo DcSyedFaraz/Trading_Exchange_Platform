@@ -117,7 +117,7 @@
                     <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             A: If you encounter any issues or have questions, you can email us directly at
-                            wolappen@yahoo.com or visit the "Contact Us" page to reach our support team.
+                            info@tradersexchange.org or visit the "Contact Us" page to reach our support team.
                         </div>
                     </div>
                 </div>
