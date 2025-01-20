@@ -39,9 +39,9 @@
                 <h4 class="footer-b">Contact us</h4>
                 <ul class="footer-ul1">
                     <li>350 Vestal Street Beaumont, TX. 77703</li>
-                    <a href="mailto:wolappen@yahoo.com">
+                    {{-- <a href="mailto:wolappen@yahoo.com">
                         <li>Email: wolappen@yahoo.com </li>
-                    </a>
+                    </a> --}}
                 </ul>
             </div>
         </div>

@@ -7,9 +7,9 @@
                     <a href="">
                         <li><i class="fa-solid fa-location-dot"></i> 350 Vestal Street Beaumont, TX. 77703</li>
                     </a>
-                    <a href="mailto:wolappen@yahoo.com">
+                    {{-- <a href="mailto:wolappen@yahoo.com">
                         <li><i class="fa-regular fa-envelope"></i> wolappen@yahoo.com </li>
-                    </a>
+                    </a> --}}
                 </ul>
                 <h4 class="barf-a">Follow us</h4>
                 <div class="social-div" bis_skin_checked="1">
