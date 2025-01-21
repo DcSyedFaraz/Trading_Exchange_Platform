@@ -8,17 +8,12 @@
                         <h4>LIFETIME</h4>
                     </div>
                     <div class="two">
-                        <h3 class="blue-heading-plan">$400.00 <span>/ Annual</span></h3>
-                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p>
+                        <h3 class="blue-heading-plan">$1000.00 <span>/ One Time</span></h3>
+                        {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p> --}}
                         <ul>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                            <li>. Lorem ipsum dolor sit amet elit.</li>
-                        </ul> --}}
+                            <li>. Unlimited product listings.</li>
+                            <li>. No charges for listing products in auctions.</li>
+                        </ul>
                     </div>
                     @auth
                         <div class="three">
