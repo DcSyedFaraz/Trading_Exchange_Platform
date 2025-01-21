@@ -23,6 +23,12 @@
                         <a href="{{ route('about_us') }}">
                             <li>About Us</li>
                         </a>
+                        <a href="{{ route('privacy_policy') }}">
+                            <li>Privacy Policy</li>
+                        </a>
+                        <a href="{{ route('refund_policy') }}">
+                            <li>Refund Policy</li>
+                        </a>
                     </ul>
                     <ul class="footer-ul">
                         <a href="{{ route('faqs') }}">
@@ -31,14 +37,19 @@
                         <a href="{{ route('contact_us') }}">
                             <li>Contact Us</li>
                         </a>
-
+                        <a href="{{ route('auction.terms') }}">
+                            <li>Terms & Conditions (Auction)</li>
+                        </a>
+                        <a href="{{ route('marketplace.terms') }}">
+                            <li>Terms & Conditions (Barter)</li>
+                        </a>
                     </ul>
                 </div>
             </div>
             <div class="col-md-4">
                 <h4 class="footer-b">Contact us</h4>
                 <ul class="footer-ul1">
-                    {{-- <li>350 Vestal Street Beaumont, TX. 77703</li> --}}
+                    <li>350 Vestal Street Beaumont, TX. 77703</li>
                     <a href="mailto:info@tradersexchange.org">
                         <li>Email: info@tradersexchange.org </li>
                     </a>
@@ -48,5 +59,5 @@
     </div>
 </footer>
 <div class="footer-copyright">
-    <p class="footer-d">Michael Durham copyright © 2024. All Rights Reserved.</p>
+    <p class="footer-d">Michael Durham copyright © {{ now()->year }}. All Rights Reserved.</p>
 </div>

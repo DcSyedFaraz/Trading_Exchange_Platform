@@ -4,8 +4,8 @@
             <div class="col-md-3">
                 <a href="/"><img src="{{ asset('assets/images/BP-Logo.png') }}" class="barterf-logo" /></a>
                 <ul class="bar-footer-ul">
-                    <a href="">
-                        {{-- <li><i class="fa-solid fa-location-dot"></i> 350 Vestal Street Beaumont, TX. 77703</li> --}}
+                    <a href="#">
+                        <li><i class="fa-solid fa-location-dot"></i> 350 Vestal Street Beaumont, TX. 77703</li>
                     </a>
                     <a href="mailto:info@tradersexchange.org">
                         <li><i class="fa-regular fa-envelope"></i> info@tradersexchange.org </li>
@@ -28,9 +28,11 @@
                     <a href="{{ route('about_us') }}">
                         <li>About Us</li>
                     </a>
-                    <a
-                        href="{{ route(str_contains(Route::currentRouteName(), 'auction') ? 'auction.terms' : 'marketplace.terms') }}">
-                        <li>Terms & Conditions</li>
+                    <a href="{{ route('auction.terms') }}">
+                        <li>Terms & Conditions (Auction)</li>
+                    </a>
+                    <a href="{{ route('marketplace.terms') }}">
+                        <li>Terms & Conditions (Barter)</li>
                     </a>
 
                 </ul>
@@ -43,6 +45,12 @@
                     </a>
                     <a href="{{ route('contact_us') }}">
                         <li>Contact Us</li>
+                    </a>
+                    <a href="{{ route('privacy_policy') }}">
+                        <li>Privacy Policy</li>
+                    </a>
+                    <a href="{{ route('refund_policy') }}">
+                        <li>Refund Policy</li>
                     </a>
                 </ul>
             </div>
@@ -61,7 +69,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="barf-copy">Copyright © 2024 Michael Durham, All Rights Reserved.</p>
+                    <p class="barf-copy">Copyright © {{ now()->year }} Michael Durham, All Rights Reserved.</p>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ asset('assets/images/market/multi-img.png') }}" class="multi-img" />

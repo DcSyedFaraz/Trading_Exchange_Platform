@@ -53,6 +53,8 @@ Route::get('/ziggy', function () {
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/about-us', 'about_us')->name('about_us');
+    Route::get('/privacy_policy', 'privacy_policy')->name('privacy_policy');
+    Route::get('/refund_policy', 'refund_policy')->name('refund_policy');
     Route::get('/contact-us', 'contact_us')->name('contact_us');
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/marketplace', 'marketplace')->name('marketplace');

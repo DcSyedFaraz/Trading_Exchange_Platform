@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-3">
-                    <a href="{{ route('marketplace') }}">
+                    <a href="{{ route('home') }}">
 
                         <img src="{{ asset('assets/images/BP-Logo.png') }}" class="logo-market" />
                     </a>

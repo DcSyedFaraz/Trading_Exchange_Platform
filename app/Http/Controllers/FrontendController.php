@@ -33,6 +33,14 @@ class FrontendController extends Controller
     {
         return view('frontend.faqs');
     }
+    public function privacy_policy()
+    {
+        return view('frontend.privacy_policy');
+    }
+    public function refund_policy()
+    {
+        return view('frontend.refund_policy');
+    }
     public function marketplace()
     {
         $activeProducts = Product::active()->get();
