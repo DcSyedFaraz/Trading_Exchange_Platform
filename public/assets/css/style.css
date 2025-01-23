@@ -870,7 +870,7 @@ footer {
     font-size: 18px;
     color: #fff;
     font-weight: 500;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 .footer-ul li {
