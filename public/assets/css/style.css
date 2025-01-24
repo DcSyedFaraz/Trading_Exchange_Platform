@@ -428,7 +428,7 @@ body {
 
 .item-bg {
     height: 100vh;
-    background: url(../images/bg1a.png) no-repeat;
+    background: url(../images/bg1a.webp) no-repeat;
     background-position: center center;
     background-size: cover;
     display: flex;
@@ -439,7 +439,7 @@ body {
 
 .item-bg1 {
     height: 100vh;
-    background: url(../images/bg1b.png) no-repeat;
+    background: url(../images/bg1b.webp) no-repeat;
     background-position: center center;
     background-size: cover;
     display: flex;
@@ -450,7 +450,7 @@ body {
 
 .item-bg2 {
     height: 100vh;
-    background: url(../images/bg1c.png) no-repeat;
+    background: url(../images/bg1c.webp) no-repeat;
     background-position: center center;
     background-size: cover;
     display: flex;
@@ -1822,7 +1822,8 @@ select#searchType {
     margin: 0;
 }
 
-.nav-link:focus, .nav-link:hover {
+.nav-link:focus,
+.nav-link:hover {
     color: #fff !important;
 }
 
