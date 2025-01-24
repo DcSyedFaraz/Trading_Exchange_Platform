@@ -19,6 +19,8 @@
                 <div class="content">
                     <h2>SIGN IN</h2>
                     <p>Enter Your Email & Password to Login</p>
+                    <!-- Session Status -->
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
                 </div>
                 <form action="{{ route('login') }}" method="POST">
                     @if ($errors->any())
