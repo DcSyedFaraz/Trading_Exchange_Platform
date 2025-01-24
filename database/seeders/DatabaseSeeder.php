@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole('user');
 
+        $this->call(CategoriesSeeder::class);
+        
         Product::factory()->count(5)->create();
         ProductImage::factory()->count(10)->create();
 
