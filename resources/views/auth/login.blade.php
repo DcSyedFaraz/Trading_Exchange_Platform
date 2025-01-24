@@ -47,7 +47,7 @@
                         <label>
                             <input type="radio" name="rememberMe"> Remember Me
                         </label>
-                        <a href="#">Forgot Password?</a>
+                        <a href="{{ route('password.request') }}">Forgot Password?</a>
                     </div>
 
                     <button type="submit" class="signup-btn">Sign In</button>
