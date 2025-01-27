@@ -5,7 +5,7 @@
             <div class="item">
                 <div class="item-bg">
                     <div class="container">
-                        <h3 class="bg1-a">NEW CUSTOMERS. BETTER CASH FLOW.</h3>
+                        <h3 class="bg1-a">NEWs CUSTOMERS. BETTER CASH FLOW.</h3>
                         <h4 class="bg1-b">"Empowering individuals and businesses to connect, exchange, and thrive
                             through a
                             fair and
