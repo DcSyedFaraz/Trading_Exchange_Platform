@@ -3,11 +3,11 @@
     <section class="barter-1">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-3">
                     @include('frontend.layout.categories')
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5 col-lg-6">
                     <div class="owl-carousel barter-bg1 owl-theme">
                         @foreach ($ads as $ad)
                             <div class="item" style="background-image: url('{{ asset('storage/' . $ad->image) }}');">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 col-lg-3">
                     @if ($firstAd && $firstAd->image)
                         <img src="{{ asset('storage/' . $firstAd->image) }}" class="main2-img" />
                     @else

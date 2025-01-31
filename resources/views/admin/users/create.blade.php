@@ -30,7 +30,7 @@
 
                 <!-- General Form -->
 
-                <div class="card">
+                <div class="card create-form">
 
                     <div class="card-header">
                         <h5 class="card-title mb-0">Create Form</h5>

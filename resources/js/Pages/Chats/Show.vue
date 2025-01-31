@@ -1,10 +1,9 @@
 <template>
     <div class="card-1">
-        <div class="row g-0">
-            <div class="col-12 col-lg-5 col-xl-4 border-right side">
+            <div class="border-right side">
                 <ChatSidebar :chats="localChats" :current-chat-id="chat?.id" />
             </div>
-            <div class="col-12 col-lg-7 col-xl-8">
+            <div class="chat-side">
                 <template v-if="chat">
                     <!-- Display the selected chat -->
                     <ChatWindow :chat="chat" :current-user="authUser" @message-sent="handleMessageSent"
@@ -24,7 +23,6 @@
                 </template>
 
             </div>
-        </div>
     </div>
 </template>
 

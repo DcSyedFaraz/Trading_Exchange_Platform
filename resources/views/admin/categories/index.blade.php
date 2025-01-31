@@ -8,7 +8,7 @@
                 Categories Add
             </a>
             <div class="row align-items-center">
-                <div class="table">
+                <div class="table cat-table">
                     <table class="table table-bordered my-3">
                         <thead>
                             <tr>

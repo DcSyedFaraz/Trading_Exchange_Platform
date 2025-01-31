@@ -1,11 +1,11 @@
 <template>
     <div class="message-main">
         <Head title="Chat Room" />
-        <div class="py-2 border-bottom d-none d-lg-block chat-header">
+        <div class="py-2 border-bottom d-block d-lg-block chat-header">
             <div class="d-flex align-items-center py-1">
                 <div class="position-relative">
                     <img v-if="chat.product.image?.path" :src="'/storage/' + chat.product.image.path"
-                        class="rounded-circle mr-1" alt="Product image for {{ chat.product.name }}" />
+                        class="rounded-circle mr-1 chat-dp" alt="Product image for {{ chat.product.name }}" />
                 </div>
                 <div class="flex-grow-1 username-main pl-3 mt-2">
                     <h4 v-if="bothInterested">{{ chat.product.name }}</h4>
@@ -80,6 +80,7 @@
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from 'axios';
+
 
 export default {
     props: {

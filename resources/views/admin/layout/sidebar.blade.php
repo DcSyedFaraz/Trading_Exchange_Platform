@@ -12,24 +12,24 @@
                             class="fa-sharp fa-light fa-grid-horizontal"></i><span>Dashboard</span></a>
                 </li>
                 @if (auth()->user()->hasRole('admin'))
-                    <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><a
-                            href="{{ route('users.index') }}"><i class="fa-light fa-file-lines"></i><span>User
-                                Management</span></a>
-                    </li>
-                    <li class="{{ request()->routeIs('featured.*') ? 'active' : '' }}">
-                        <a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
-                                Featured</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('ad.*') ? 'active' : '' }}"><a href="{{ route('ad.index') }}"><i
-                                class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
-                                Upload</span></a>
-                    </li>
-                    <li class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><a
-                            href="{{ route('categories.index') }}"><i
-                                class="fa-sharp fa-light fa-briefcase"></i><span>Categories
-                                Update</span></a>
-                    </li>
+                <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><a
+                        href="{{ route('users.index') }}"><i class="fa-light fa-file-lines"></i><span>User
+                            Management</span></a>
+                </li>
+                <li class="{{ request()->routeIs('featured.*') ? 'active' : '' }}">
+                    <a href="{{ route('featured.index') }}"><i class="fa-light fa-wallet"></i><span>Our
+                            Featured</span>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('ad.*') ? 'active' : '' }}"><a href="{{ route('ad.index') }}"><i
+                            class="fa-sharp fa-light fa-arrow-up-to-arc"></i><span>Ads
+                            Upload</span></a>
+                </li>
+                <li class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><a
+                        href="{{ route('categories.index') }}"><i
+                            class="fa-sharp fa-light fa-briefcase"></i><span>Categories
+                            Update</span></a>
+                </li>
                 @endif
                 <li class="{{ request()->routeIS('products.*') ? 'active' : '' }}"><a
                         href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Barter
@@ -72,6 +72,11 @@
 
                 </div>
             </ul>
+        </div>
+    </div>
+    <div class="content-menu">
+        <div class="top-navbar">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
         </div>
     </div>
 </div>

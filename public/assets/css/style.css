@@ -1244,7 +1244,7 @@ button:focus:not(:focus-visible) {
     font-size: 14px;
 }
 
-.header-inner1 .form-control {
+.header-inner1 input {
     border-top-left-radius: 34px !important;
     border-bottom-left-radius: 34px !important;
     border-right: 0px;
@@ -1287,7 +1287,7 @@ select#searchType {
 
 .icons-div {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: end;
     gap: 20px;
 }
@@ -1465,15 +1465,10 @@ select#searchType {
     color: white;
 }
 
-.form-control {
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-}
-
 #searchType {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-    border: 2px solid #eaeaea;
+    border: 1px solid #eaeaea;
     border-left: 0px;
     font-family: "Inter";
     padding-left: 18px;
@@ -2239,6 +2234,16 @@ select#searchType {
 /*Membership Page Css*/
 
 /*Chat Screen Page Css*/
+
+.chat-side {
+    width: 67%;
+    transition: .5s ease;
+}
+
+.card-1 {
+    display: flex;
+}
+
 .chat-online {
     color: #34ce57;
 }
@@ -2252,6 +2257,7 @@ select#searchType {
     flex-direction: column;
     max-height: 575px;
     overflow-y: scroll;
+    word-wrap: break-word;
 }
 
 .chat_message_left,
@@ -2325,6 +2331,8 @@ select#searchType {
     flex-direction: column !important;
     gap: 35px !important;
     overflow-y: scroll;
+    width: 33%;
+    position: relative;
 }
 
 .content-inner h3 {
@@ -2418,8 +2426,8 @@ select#searchType {
     border-radius: 0 20px 20px;
     font-size: 16px;
     font-weight: 300;
-    margin-left: 30px;
-    margin-top: 35px;
+    margin-left: 25px;
+    margin-top: 10px;
 }
 
 .chat_opp:before {
@@ -3025,8 +3033,8 @@ body {
 }
 
 #sidebar {
-    width: 210px !important;
-    height: 100% !important;
+    width: 15%;
+    height: 100%;
     background: white !important;
     transition: width 0.3s ease;
     overflow: hidden;
@@ -3067,7 +3075,7 @@ body {
 }
 
 .usersss {
-    padding-top: 180px;
+    padding-top: 100px;
 }
 
 .usersss ul li a {
@@ -3287,6 +3295,9 @@ td {
     justify-content: flex-start;
     height: 100vh;
     gap: 60px;
+    width: 84%;
+    float: right;
+    transition: .5s ease;
 }
 
 .addprod {
@@ -3352,7 +3363,7 @@ td {
 }
 
 .adssec {
-    width: 50%;
+    width: 100%;
 }
 
 /* User Management 3 Start */
@@ -3673,32 +3684,6 @@ td {
     padding: 0 !important;
 }
 
-@media only screen and (max-width: 767px) {
-    .form-container .container {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .content h2 {
-        font-size: 26px;
-    }
-
-    .content p {
-        font-size: 16px;
-    }
-
-    .form-row input {
-        height: 55px;
-        font-size: 14px;
-    }
-
-    .signup-btn {
-        width: 180px;
-        height: 55px;
-        font-size: 15px;
-    }
-}
-
 .chat-online {
     color: #34ce57;
 }
@@ -3785,6 +3770,7 @@ td {
     flex-direction: column !important;
     gap: 35px !important;
     overflow-y: scroll;
+    transition: .5s ease;
 }
 
 .content-inner h3 {
@@ -4069,3 +4055,1188 @@ ul {
     object-fit: contain;
     margin: 0 auto 20px;
 }
+
+/*Sidebar Css*/
+#sidebar {
+    position: fixed;
+    overflow: hidden;
+    transition: .5s ease;
+    z-index: 9;
+}
+
+#sidebar.active {
+    width: 60px;
+}
+
+#sidebar.active .Dashlogo {
+    width: 100%;
+    transition: 0.3s;
+}
+
+#sidebar ul {
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#sidebar ul li {
+    width: 100%;
+}
+
+#sidebar ul li a .icon {
+    min-width: 60px;
+    display: block;
+    font-size: 25px;
+    line-height: 60px;
+    height: 60px;
+    text-align: center;
+}
+
+.content-menu {
+    position: absolute;
+    left: 208px;
+    transition: .5s ease;
+    display: none;
+}
+
+.content-menu.active {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.profile img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#menu-icon {
+    font-size: 14px;
+    cursor: pointer;
+    width: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 14px #00000047;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3670ee;
+}
+
+.dashi.active .main-sec {
+    width: 95%;
+}
+
+.chat-item {
+    overflow: hidden;
+}
+
+.chat_opp,
+.chat_opp1 {
+    max-width: 100%;
+}
+
+.chat_message_left,
+.chat_message_right {
+    max-width: 50%;
+}
+
+#close-bar {
+    cursor: pointer;
+    color: #000;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+}
+
+.content-inner span {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content-inner p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icons-div span {
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 400;
+    color: #000;
+}
+
+.icons-div a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Sidebar Css*/
+
+/*Responsive Css*/
+
+@media only screen and (max-width: 767px) {
+
+    .side.active {
+        width: 15%;
+    }
+
+    .chat-side.active {
+        width: 85%;
+    }
+
+    .current-chat {
+        border-width: 1px 0px 1px 5px !important;
+        border-color: #fff;
+        border-bottom-style: solid;
+    }
+
+    .content-inner p {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chat-side {
+        width: 55%;
+        float: right;
+    }
+
+    #close-bar {
+        display: flex;
+        font-size: 14px;
+        top: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .mr-1 {
+        width: 35px;
+        height: 35px;
+    }
+
+    .chat-messages {
+        max-height: 70vh;
+    }
+
+    .chat_message_left,
+    .chat_message_right {
+        max-width: 95%;
+    }
+
+    .message-box input {
+        padding-left: 10px;
+        font-size: 14px;
+    }
+
+    .chat_message_left div:first-of-type {
+        display: none;
+    }
+
+    #swal2-title {
+        font-size: 20px;
+    }
+
+    #swal2-html-container {
+        font-size: 16px;
+    }
+
+    .swal2-confirm {
+        font-size: 14px;
+    }
+
+    .swal2-cancel {
+        font-size: 14px;
+    }
+
+    .inte-btn {
+        width: 80px;
+        height: 35px;
+        font-size: 10px;
+    }
+
+    .chat-messages {
+        padding: 0 15px !important;
+    }
+
+    .content-inner h3 {
+        font-size: 14px;
+    }
+
+    .content-inner p {
+        font-size: 10px;
+        font-weight: 300;
+    }
+
+    .username-main p {
+        font-size: 10px;
+    }
+
+    .chat-dp {
+        display: none;
+    }
+
+    .chat-header {
+        padding: 10px 10px;
+    }
+
+    .username-main h4 {
+        font-size: 14px;
+    }
+
+    .chat_opp:before {
+        border-left: 5px solid transparent;
+        border-right: 5px solid #3670ee;
+        border-top: 5px solid #3670ee;
+        border-bottom: 5px solid transparent;
+        left: -10px;
+    }
+
+    .send-btn {
+        width: 65px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .chat_opp1:before {
+        border-left: 5px solid #001b5769;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #001b5769;
+        border-bottom: 5px solid transparent;
+        right: -10px;
+    }
+
+    .chat_opp {
+        padding: 15px;
+        font-size: 14px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .chat_opp1 {
+        padding: 15px;
+        font-size: 14px;
+        margin-right: 10px;
+        margin-top: 15px;
+    }
+
+    .market-d {
+        padding-left: 6px;
+        font-size: 12px;
+        height: 40px;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .content-inner {
+        margin-left: 5px;
+        word-wrap: break-word;
+        width: 27vw;
+    }
+
+    .side {
+        padding: 30px 0px;
+        overflow-x: hidden;
+        width: 45%;
+    }
+
+    .logo {
+        width: 50%;
+    }
+
+    .barterf-logo {
+        width: 30%;
+    }
+
+    .mem-plans {
+        padding: 50px 10px;
+    }
+
+    .mem-plans .col-md-6 {
+        margin-bottom: 20px;
+    }
+
+    .one h4 {
+        font-size: 18px;
+    }
+
+    .main2-img {
+        height: 350px;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+
+    .barter-bg1 .item {
+        height: 360px;
+        margin-top: 25px;
+    }
+
+    .Btndiv a {
+        font-size: 10px;
+    }
+
+    .barter1-b {
+        font-size: 24px;
+    }
+
+    .auction-form label,
+    .auction-form input,
+    .auction-form select {
+        font-size: 14px;
+    }
+
+    .create-form strong,
+    .create-form input,
+    .create-form select {
+        font-size: 13px;
+    }
+
+    .admin h1 {
+        font-size: 18px;
+    }
+
+    .notice_box i {
+        font-size: 12px;
+    }
+
+    .prod-table th,
+    .prod-table td {
+        font-size: 12px;
+    }
+
+    .notice_box1 a {
+        font-size: 18px;
+    }
+
+    .notice_box1 .dropdown-menu {
+        width: 200px;
+    }
+
+    .notice_box1 .bubble_count {
+        font-size: 6px;
+        padding: 5px 6px;
+    }
+
+    .main-sec h1 {
+        font-size: 16px;
+    }
+
+    .premium {
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .notice_box1 {
+        padding: 0;
+    }
+
+    .content h4 {
+        font-size: 16px;
+    }
+
+    .text-end li {
+        font-size: 10px;
+    }
+
+    #sidebar .profile span {
+        margin-left: 20px;
+        font-size: 18px;
+    }
+
+    #menu-icon {
+        font-size: 10px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    #datatable th {
+        font-size: 12px;
+    }
+
+    #datatable tr {
+        font-size: 12px;
+    }
+
+    #datatable .btn {
+        font-size: 10px;
+    }
+
+    .card-header a {
+        font-size: 10px;
+        margin: 0 !important;
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sm-header {
+        gap: 5px;
+        margin-top: 15px;
+    }
+
+    .notice_box a {
+        font-size: 12px;
+    }
+
+    #sidebar ul li i {
+        left: 0px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    #sidebar {
+        width: 40%;
+    }
+
+    .main-sec {
+        width: 58%;
+        gap: 10px;
+    }
+
+    .Dashlogo {
+        width: 50%;
+        margin-left: 10px;
+    }
+
+    #sidebar ul li {
+        width: 70%;
+        padding: 10px 10px;
+        font-size: 10px;
+    }
+
+    .products {
+        grid-template-columns: 100%;
+    }
+
+    .prod-table {
+        overflow: auto;
+    }
+
+    .productsec h2 {
+        font-size: 16px;
+    }
+
+    .card-body {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    .sub-head {
+        font-size: 16px;
+    }
+
+    .cat-table {
+        overflow: auto;
+    }
+
+    .btn {
+        font-size: 12px;
+    }
+
+    .addprod {
+        padding: 12px 10px;
+        font-size: 10px;
+    }
+
+    .adssec th,
+    .adssec td {
+        font-size: 12px;
+    }
+
+    .notice_box1 .dropdown-item {
+        font-size: 10px !important;
+        white-space: pre-line;
+    }
+
+    .mark-read {
+        font-size: 10px !important;
+    }
+
+    .Dashlogo img {
+        margin-top: 10px;
+    }
+
+    .card h5 {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .card a {
+        font-size: 12px;
+    }
+
+    #sidebar.active {
+        width: 38px;
+    }
+
+    #sidebar .profile img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .content-menu.active {
+        width: calc(100% - 60px);
+        left: 9vw;
+    }
+
+    .dashi.active .main-sec {
+        width: 88%;
+    }
+
+    .content-menu {
+        display: block;
+        left: 40vw;
+        top: 5px;
+    }
+
+    .bg3-img,
+    .bg4-img {
+        width: 100%;
+    }
+
+    .navbar-toggler {
+        float: right;
+        background-color: #000;
+    }
+
+    #navbarOffcanvas {
+        background: #4e85fb !important;
+        width: 70%;
+    }
+
+    .navbar-nav {
+        gap: 15px;
+    }
+
+    body {
+        padding: 0 !important;
+    }
+
+    .bg1-a {
+        font-size: 34px;
+    }
+
+    .bg1-b {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .bg2 .container,
+    .center-div .container {
+        padding: 10px 10px;
+    }
+
+    .buz-text {
+        font-size: 24px;
+    }
+
+    .form-div {
+        margin-top: 10px;
+        z-index: 1;
+    }
+
+    .bg2-e {
+        font-size: 24px;
+    }
+
+    .bg2-b {
+        font-size: 24px;
+    }
+
+    .buz-p {
+        font-size: 16px;
+    }
+
+    .barter3-a {
+        font-size: 24px;
+    }
+
+    .main-imgbox {
+        grid-template-columns: 100%;
+    }
+
+    .bg3 {
+        padding: 50px 10px 10px;
+    }
+
+    .bg2-a {
+        line-height: 20px;
+        margin-bottom: 5px;
+        margin-top: 20px;
+    }
+
+    .bg3-a {
+        font-size: 24px;
+    }
+
+    .bg3-b {
+        line-height: 24px;
+    }
+
+    .bg4 {
+        padding: 60px 10px;
+    }
+
+    .bg4-b {
+        font-size: 24px;
+    }
+
+    .bg4-c {
+        font-size: 14px;
+    }
+
+    .bg6 .container {
+        padding: 60px 10px 60px;
+    }
+
+    .bg6-b {
+        font-size: 24px;
+    }
+
+    .bg6-c {
+        width: 100%;
+    }
+
+    .bg6-submit {
+        font-size: 14px;
+        width: 100px;
+        height: 50px;
+        right: 10px;
+        top: 10px;
+    }
+
+    .bg6-input {
+        height: 70px;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 60px 10px 10px;
+    }
+
+    .social-div {
+        margin-bottom: 30px;
+    }
+
+    .footer-d {
+        font-size: 12px;
+    }
+
+    .about2-img {
+        margin-top: 0;
+    }
+
+    .faqbg2 {
+        padding: 30px 10px 50px;
+    }
+
+    .contactbg1 {
+        width: 90%;
+        padding-bottom: 50px;
+    }
+
+    .icons-div .aucbtn {
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+
+    #searchType option,
+    #searchType optgroup {
+        font-size: 14px;
+    }
+
+    .barter-2 {
+        padding: 25px 10px;
+    }
+
+    .barter2-a {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .barter-2 .owl-dots {
+        width: 40%;
+        margin: 10px auto 0;
+    }
+
+    .barter-3 {
+        padding: 0px 0 50px;
+    }
+
+    .barter-4 .container {
+        grid-template-columns: 100%;
+    }
+
+    .barter-4 .container div {
+        padding: 10px 20px 20px;
+        border-bottom: 1px solid #ffffff6b;
+        border-right: 0;
+    }
+
+    .barter-4 {
+        padding: 30px 0;
+    }
+
+    .barf-btn {
+        font-size: 12px;
+    }
+
+    .barf-b {
+        font-size: 16px;
+    }
+
+    .barf-copy {
+        font-size: 12px;
+        margin: 0 0 10px;
+        text-align: center;
+    }
+
+    .multi-img {
+        width: 100%;
+    }
+
+    .header-form {
+        margin-top: 15px;
+    }
+
+    .auction-main .main-imgbox {
+        grid-template-columns: 100%;
+    }
+
+    .text p {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .form-container .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content h2 {
+        font-size: 26px;
+    }
+
+    .content p {
+        font-size: 16px;
+    }
+
+    .form-row input {
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .signup-btn {
+        width: 180px;
+        height: 55px;
+        font-size: 15px;
+    }
+
+    .form-container {
+        padding: 0 10px;
+    }
+
+    .extra-options {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .icons-div .aucbtn {
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+
+    .mem-plans .col-md-6 {
+        margin-bottom: 10px;
+    }
+
+    .one h4 {
+        font-size: 16px;
+    }
+
+    .send-btn {
+        width: 80px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .message-box input {
+        padding-left: 10px;
+        font-size: 14px;
+    }
+
+    .chat_opp:before {
+        border-left: 7px solid transparent;
+        border-right: 7px solid #3670ee;
+        border-top: 7px solid #3670ee;
+        border-bottom: 7px solid transparent;
+        left: -14px;
+    }
+
+    .chat_opp {
+        padding: 20px;
+        font-size: 14px;
+        margin-left: 25px;
+    }
+
+    .chat_opp1:before {
+        border-left: 7px solid #001b5769;
+        border-right: 7px solid transparent;
+        border-top: 7px solid #001b5769;
+        border-bottom: 7px solid transparent;
+        right: -14px;
+    }
+
+    .chat_opp1 {
+        padding: 20px;
+        font-size: 14px;
+        margin-top: 25px;
+    }
+
+    .chat-messages {
+        max-height: 70vh;
+        padding: 0px 10px !important;
+    }
+
+    .chat-side {
+        width: 70%;
+    }
+
+    .username-main h4 {
+        font-size: 16px;
+    }
+
+    .inte-btn {
+        width: 125px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .chat-header {
+        padding: 10px 10px;
+    }
+
+    .content-inner h3 {
+        font-size: 16px;
+    }
+
+    .mr-1 {
+        width: 50px;
+        height: 50px;
+    }
+
+    .market-d {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .side {
+        padding: 30px 10px;
+        width: 30%;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+    }
+
+    .nav-link {
+        font-size: 16px;
+    }
+
+    .market-btn {
+        width: 115px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .bg1-a {
+        font-size: 40px;
+    }
+
+    .bg1-b {
+        font-size: 16px;
+    }
+
+    .get-btn,
+    .read-btn {
+        width: 135px;
+        height: 45px;
+        font-size: 13px;
+    }
+
+    .buz-text {
+        font-size: 26px;
+    }
+
+    .buz-text {
+        font-size: 26px;
+    }
+
+    .form-div {
+        padding: 35px 15px;
+    }
+
+    .bg2-d {
+        font-size: 14px;
+    }
+
+    .bg2-e {
+        font-size: 20px;
+    }
+
+    .text-input {
+        height: 40px;
+    }
+
+    .submit-btn {
+        height: 45px;
+    }
+
+    .bg2-b {
+        font-size: 26px;
+    }
+
+    .buz-p {
+        font-size: 16px;
+    }
+
+    .barter3-a {
+        font-size: 30px;
+    }
+
+    .main-imgbox {
+        grid-template-columns: 50% 50%;
+        justify-content: center;
+    }
+
+    .bg3 {
+        padding: 60px 10px 10px;
+    }
+
+    .bg3-img,
+    .bg4-img {
+        width: 100%;
+    }
+
+    .bg2-a {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .bg3-a {
+        font-size: 30px;
+    }
+
+    .bg3-b {
+        line-height: 22px;
+    }
+
+    .bg4 {
+        padding: 60px 10px;
+    }
+
+    .bg4-b {
+        font-size: 26px;
+    }
+
+    .bg6-b {
+        font-size: 26px;
+    }
+
+    .bg6-c {
+        font-size: 14px;
+    }
+
+    .bg6-input {
+        height: 60px;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .bg6-submit {
+        font-size: 12px;
+        width: 130px;
+        height: 45px;
+        right: 12px;
+        top: 7px;
+    }
+
+    footer {
+        padding: 75px 10px 25px;
+    }
+
+    .footer-ul li {
+        font-size: 12px;
+    }
+
+    .footer-d {
+        font-size: 12px;
+    }
+
+    .bg2 .container {
+        padding: 10px 10px;
+    }
+
+    .bg2-c {
+        font-size: 14px;
+    }
+
+    .logo-market {
+        width: 65%;
+    }
+
+    .auction-main .main-imgbox {
+        grid-template-columns: 33.33% 33.33% 33.33%;
+    }
+
+    .barf-b {
+        font-size: 16px;
+    }
+
+    .barf-btn {
+        font-size: 10px;
+        height: 40px;
+        width: 65px;
+    }
+
+    .barf-input {
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .bar-footer-ul a li {
+        font-size: 12px;
+    }
+
+    .barf-copy {
+        font-size: 10px;
+    }
+
+    .multi-img {
+        width: 100%;
+    }
+
+    .bar-footer-ul-a li {
+        font-size: 12px;
+    }
+
+    .barter4-a {
+        font-size: 16px;
+    }
+
+    .barter4-b {
+        font-size: 12px;
+
+    }
+
+    .market-div label.accordion-title {
+        font-size: 12px;
+        padding: 10px 10px;
+    }
+
+    .market-div a {
+        font-size: 12px;
+        padding: 10px 10px;
+    }
+
+    .mdn-accordion .accordion-title::before {
+        right: 0px;
+    }
+
+    .barter2-a {
+        font-size: 30px;
+    }
+
+    .barter-3 .nav-link {
+        font-size: 16px;
+    }
+
+    #sidebar {
+        width: 28%;
+    }
+
+    .main-sec {
+        width: 71%;
+    }
+
+    #sidebar ul li {
+        padding: 10px 10px;
+        font-size: 13px;
+    }
+
+    .usersss {
+        padding-top: 60px;
+    }
+
+    .content p {
+        font-size: 16px;
+    }
+
+    .card-body {
+        overflow: auto;
+    }
+
+    .btn {
+        font-size: 12px;
+    }
+
+    .sub-head {
+        font-size: 26px;
+    }
+
+    .addprod {
+        font-size: 12px;
+    }
+
+    .cat-table {
+        overflow: auto;
+    }
+
+    .products {
+        grid-template-columns: 48% 48%;
+    }
+
+    .prod-table {
+        overflow: auto;
+    }
+
+    .premium {
+        font-size: 14px;
+        width: 100%;
+    }
+}
+
+/*Responsive Css*/

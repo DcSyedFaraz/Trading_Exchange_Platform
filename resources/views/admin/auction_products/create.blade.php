@@ -3,7 +3,7 @@
     <div class="container">
         <h1>Create Auction Product</h1>
 
-        <form action="{{ route('auction_products.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('auction_products.store') }}" class="auction-form" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>

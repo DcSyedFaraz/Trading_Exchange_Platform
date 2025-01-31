@@ -2,6 +2,8 @@
 <template>
     <div>
         <Head title="Chat Room" />
+        <i class="fa-solid fa-bars" id="close-bar"></i>
+
         <a :href="route('marketplace')" class="market-d">
             <i class="fas fa-shopping-cart mr-2"></i> <!-- Use the appropriate icon name here -->
             Marketplace
@@ -66,3 +68,4 @@ export default {
     /* Additional styles to highlight the current chat */
 }
 </style>
+
