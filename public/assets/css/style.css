@@ -3628,6 +3628,11 @@ td {
     border-radius: 0;
 }
 
+.ak-ol1 {
+    padding-left: 15px;
+    list-style: disc;
+}
+
 .mark-read {
     font-size: 14px !important;
     font-weight: 400;
@@ -3639,6 +3644,8 @@ td {
 .notice_box1 ul {
     list-style: none;
     padding: 0;
+    height: 145px;
+    overflow: auto;
     margin: 0;
 }
 

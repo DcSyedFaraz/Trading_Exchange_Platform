@@ -68,9 +68,8 @@
 
                 <div class="extra-options">
                     <label>
-                        <input type="radio" name="rememberMe"> Remember Me
+                        <input type="radio" name="terms"> By clicking this, you agree to the Terms and Conditions and the Refund Policy.
                     </label>
-                    <a href="#">Forgot Password?</a>
                 </div>
 
                 <button type="submit" class="signup-btn">Sign Up</button>
