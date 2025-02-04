@@ -56,6 +56,7 @@ class ChatController extends Controller
                     'product' => [
                         'id' => $chat->product->id,
                         'name' => $chat->product->name,
+                        'description' => $chat->product->description,
                         'image' => $chat->product->images->first(),
                         // Add other product fields as needed
                     ],

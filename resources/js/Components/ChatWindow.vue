@@ -1,5 +1,6 @@
 <template>
     <div class="message-main">
+
         <Head title="Chat Room" />
         <div class="py-2 border-bottom d-block d-lg-block chat-header">
             <div class="d-flex align-items-center py-1">
@@ -186,6 +187,10 @@ export default {
 
             axios.post(route('chats.messages.store', { chat: this.chat.id }), {
                 message: messageText,
+            }, {
+                headers: {
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                }
             })
                 .then(response => {
                     const sentMessage = this.messages.find(msg => msg.id === tempMessage.id);
