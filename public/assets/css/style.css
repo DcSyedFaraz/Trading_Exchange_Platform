@@ -2065,7 +2065,7 @@ select#searchType {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: "Montserrat";
 }
 

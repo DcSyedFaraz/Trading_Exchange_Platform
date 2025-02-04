@@ -65,10 +65,14 @@
                         placeholder="Confirm Password Password" required>
                     <span class="toggle-password" onclick="togglePassword()">👁</span>
                 </div>
+                <div class="form-row form-btn">
+                    <input type="file" class="form-input" required multiple>
+                </div>
 
                 <div class="extra-options">
                     <label>
-                        <input type="radio" name="terms"> By clicking this, you agree to the Terms and Conditions and the Refund Policy.
+                        <input type="radio" name="terms"> By clicking this, you agree to the Terms and Conditions
+                        and the Refund Policy.
                     </label>
                 </div>
 
