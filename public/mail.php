@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $msg = $_POST['msg'];
 
-    $to = array('dcsyedfaraz@gmail.com');
+    $to = array('wolappen@yahoo.com');
     $subject = "Contact Info";
 
     $message = '<center><h1>CONTACT INFO</h1></center>
