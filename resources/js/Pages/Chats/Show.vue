@@ -1,28 +1,28 @@
 <template>
     <div class="card-1">
-            <div class="border-right side">
-                <ChatSidebar :chats="localChats" :current-chat-id="chat?.id" />
-            </div>
-            <div class="chat-side">
-                <template v-if="chat">
-                    <!-- Display the selected chat -->
-                    <ChatWindow :chat="chat" :current-user="authUser" @message-sent="handleMessageSent"
-                        @message-received="handleMessageReceived" @chat-viewed="handleChatViewed" />
-                </template>
-                <template v-else>
-                    <!-- Display default content when no chat is selected -->
-                    <div class="default-message text-center">
-                        <div class="icon-container">
-                            <i class="fas fa-comments chat-icon"></i>
-                        </div>
-                        <h2>Welcome to Your Chats</h2>
-                        <p>Select a chat from the sidebar to start messaging.</p>
-                        <!-- <button class="btn btn-primary start-chat-btn">Start a New Chat</button> -->
+        <div class="border-right side" ref="sidebar">
+            <ChatSidebar :chats="localChats" :current-chat-id="chat?.id" />
+        </div>
+        <div class="chat-side" ref="chatSide">
+            <template v-if="chat">
+                <!-- Display the selected chat -->
+                <ChatWindow :chat="chat" :current-user="authUser" @message-sent="handleMessageSent"
+                    @message-received="handleMessageReceived" @chat-viewed="handleChatViewed" />
+            </template>
+            <template v-else>
+                <!-- Display default content when no chat is selected -->
+                <div class="default-message text-center">
+                    <div class="icon-container">
+                        <i class="fas fa-comments chat-icon"></i>
                     </div>
+                    <h2>Welcome to Your Chats</h2>
+                    <p>Select a chat from the sidebar to start messaging.</p>
+                    <!-- <button class="btn btn-primary start-chat-btn">Start a New Chat</button> -->
+                </div>
 
-                </template>
+            </template>
 
-            </div>
+        </div>
     </div>
 </template>
 
@@ -140,10 +140,21 @@ export default {
                     this.setupEchoListeners();
                 });
         },
+        toggleSidebar() {
+            const chatSide = this.$refs.chatSide;
+            const sidebar = this.$refs.sidebar;
+
+            chatSide.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        }
     },
     mounted() {
         this.setupEchoListeners();
         this.setupUserChannel();
+
+        // Add event listener for close button
+        const closeButton = document.getElementById('close-bar');
+        closeButton.addEventListener('click', this.toggleSidebar);
     },
     beforeUnmount() {
         if (this.chatChannels.length > 0) {
@@ -153,6 +164,10 @@ export default {
         }
         // Leave user channel
         window.Echo.leave(`user.${this.authUser.id}`);
+
+        // Clean up event listener
+        const closeButton = document.getElementById('close-bar');
+        closeButton.removeEventListener('click', this.toggleSidebar);
     },
 };
 </script>
