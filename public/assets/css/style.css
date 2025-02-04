@@ -2058,7 +2058,10 @@ select#searchType {
 .form-container form {
     margin-top: 20px;
 }
-
+.signupsec {
+    display: grid;
+    height: 100vh;
+}
 .form-container {
     background-color: #3670ee;
     display: flex;
