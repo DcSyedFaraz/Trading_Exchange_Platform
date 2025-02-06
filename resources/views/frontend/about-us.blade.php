@@ -22,7 +22,7 @@
                         both trade and auctions. Whether you’re trading everyday items or something more specialized,
                         our community helps you find what you need while offering opportunities to offload excess stock
                         or services. <br> <br>
-                        Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you
+                        Plus, With our auction section, you can put your high-value, rare, and high-demand items up for bidding. ensuring you
                         get the best value for what you’re offering. Get started today, and unlock the full potential of
                         trading and auctioning within the Traders Exchange ecosystem!
                     </p>

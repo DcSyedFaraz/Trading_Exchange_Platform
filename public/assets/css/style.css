@@ -2058,10 +2058,12 @@ select#searchType {
 .form-container form {
     margin-top: 20px;
 }
+
 .signupsec {
     display: grid;
     height: 100vh;
 }
+
 .form-container {
     background-color: #3670ee;
     display: flex;
@@ -2113,8 +2115,8 @@ select#searchType {
 }
 
 .extra-options a {
-    text-decoration: none;
     color: white;
+    font-weight: 500;
 }
 
 .signup-btn {
@@ -4031,6 +4033,17 @@ ul {
 /*New Css*/
 .center-div .container {
     padding: 10px 125px;
+}
+
+.anchor p {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.anchor a {
+    color: #fff;
+    font-weight: 600;
 }
 
 .buz-text {

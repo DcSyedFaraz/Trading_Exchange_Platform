@@ -65,14 +65,17 @@
                         placeholder="Confirm Password Password" required>
                     <span class="toggle-password" onclick="togglePassword()">👁</span>
                 </div>
+                <div class="form-row anchor">
+                    <p>Fill out the <a href="https://www.irs.gov/forms-pubs/about-form-1099-b" target="_blank">1099-B form</a>, then download it and attach it below.</p>
+                </div>
                 <div class="form-row form-btn">
                     <input type="file" class="form-input" required multiple>
                 </div>
 
                 <div class="extra-options">
                     <label>
-                        <input type="radio" name="terms"> By clicking this, you agree to the Terms and Conditions
-                        and the Refund Policy.
+                        <input type="radio" name="terms"> By clicking this, you agree to the <a href="{{route('auction.terms')}}" target="_blank"> Terms and Conditions </a>
+                        and the <a href="{{route('privacy_policy')}}" target="_blank">Refund Policy. </a> 
                     </label>
                 </div>
 

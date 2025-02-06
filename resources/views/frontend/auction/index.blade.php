@@ -247,6 +247,8 @@
                 cityElement.options[cityElement.length] = new Option(cities[i], cities[i]);
             }
         }
+
+        console.log(selectedState);
     }
 
     // Initialize dropdowns
