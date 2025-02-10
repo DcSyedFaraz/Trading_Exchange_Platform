@@ -10,50 +10,6 @@
 h5, h6 {
     font-weight: bold;
 }
-
-/* PDF Container Styling */
-.pdf-thumbnail {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.pdf-thumbnail embed {
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effect on PDF Thumbnails */
-.pdf-thumbnail:hover embed {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* File Name Text Truncate */
-.text-truncate {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* PDF Modal */
-.modal-content {
-    border-radius: 10px;
-}
-
-/* Button Close Styling */
-.btn-close {
-    background: none;
-    border: none;
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-    .pdf-thumbnail embed {
-        height: 140px;
-    }
-}
 </style>
 @section('content')
     <div class="content">
@@ -115,16 +71,9 @@ h5, h6 {
                                         @foreach($chunk as $file)
                                             <div class="col-md-6">
                                                 <div class="card p-3 border-0 shadow-sm">
-                                                    <h6 class="text-center text-primary fw-bold text-truncate" title="{{ basename($file->path) }}">
+                                                <a href="{{ asset('storage/' . $file->path) }}" target="_blank"><h6 class="text-center text-primary fw-bold text-truncate" title="{{ basename($file->path) }}">
                                                         {{ basename($file->path) }}
-                                                    </h6>
-                                                    <div class="pdf-thumbnail text-center">
-                                                        <a href="{{ asset('storage/' . $file->path) }}" >
-                                                            <div class="pdf-container">
-                                                                <embed src="{{ asset('storage/' . $file->path) }}" class="img-thumbnail rounded shadow-sm" width="100%" height="180px" />
-                                                            </div>
-                                                        </a>
-                                                    </div>
+                                                    </h6></a>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -166,27 +115,5 @@ h5, h6 {
         </div> <!-- container-xxl -->
 
     </div>
-<!-- PDF Modal -->
-<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel">PDF Preview</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <iframe id="pdfViewer" src="" width="100%" height="500px"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- JavaScript for Modal -->
-<script>
-    function openPdfModal(pdfUrl) {
-        document.getElementById('pdfViewer').src = pdfUrl;
-        var pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
-        pdfModal.show();
-    }
-</script>
 @endsection
