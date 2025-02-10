@@ -119,7 +119,7 @@ h5, h6 {
                                                         {{ basename($file->path) }}
                                                     </h6>
                                                     <div class="pdf-thumbnail text-center">
-                                                        <a href="javascript:void(0);" onclick="openPdfModal('{{ asset('storage/' . $file->path) }}')">
+                                                        <a href="{{ asset('storage/' . $file->path) }}" >
                                                             <div class="pdf-container">
                                                                 <embed src="{{ asset('storage/' . $file->path) }}" class="img-thumbnail rounded shadow-sm" width="100%" height="180px" />
                                                             </div>
