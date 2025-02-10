@@ -29,7 +29,7 @@
                 <h2>SIGN UP TO ACCOUNT</h2>
                 <p>Enter Your Email & Password to Login</p>
             </div>
-            <form action="{{ route('register') }}" class="my-4" method="POST">
+            <form action="{{ route('register') }}" class="my-4" method="POST" enctype="multipart/form-data">
                 @if ($errors->any())
                     {{-- <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -69,13 +69,13 @@
                     <p>Fill out the <a href="https://www.irs.gov/forms-pubs/about-form-1099-b" target="_blank">1099-B form</a>, then download it and attach it below.</p>
                 </div>
                 <div class="form-row form-btn">
-                    <input type="file" class="form-input" required multiple>
+                    <input type="file" name="file[]" class="form-input" required multiple>
                 </div>
 
                 <div class="extra-options">
                     <label>
                         <input type="radio" name="terms"> By clicking this, you agree to the <a href="{{route('auction.terms')}}" target="_blank"> Terms and Conditions </a>
-                        and the <a href="{{route('privacy_policy')}}" target="_blank">Refund Policy. </a> 
+                        and the <a href="{{route('privacy_policy')}}" target="_blank">Refund Policy. </a>
                     </label>
                 </div>
 

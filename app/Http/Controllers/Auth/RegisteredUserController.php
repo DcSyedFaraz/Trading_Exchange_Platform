@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserFile;
 use App\Notifications\DynamicNotification;
 use App\Notifications\NewUserNotification;
 use App\Providers\RouteServiceProvider;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Notification;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -33,6 +35,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'province' => ['required', 'string', 'max:255'],
@@ -41,7 +44,9 @@ class RegisteredUserController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'file.*' => ['required', 'file', 'mimes:pdf', 'max:2048'],
         ]);
+
 
         $user = User::create([
             'address' => $request->address,
@@ -56,7 +61,21 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        // **File Upload (Save in user_files Table)**
+        if ($request->hasFile('file')) {
+            foreach ($request->file('file') as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs("users", $fileName, 'public');
 
+                UserFile::create([
+                    'user_id' => $user->id,
+                    'path' => $path,
+                ]);
+            }
+        }
+
+
+        // **User Table ke `path` Column mein Save karna**
         $admins = User::role('admin')->get();
 
         $message = "A new user, {$user->name}, has registered.";
