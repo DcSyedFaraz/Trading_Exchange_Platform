@@ -13,10 +13,9 @@
                 </ul>
                 <h4 class="barf-a">Follow us</h4>
                 <div class="social-div" bis_skin_checked="1">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/people/Traders-Exchange/61572893464647/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="col-md-3">
