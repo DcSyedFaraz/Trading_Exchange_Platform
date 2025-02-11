@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form method="post" class="" action="{{ route('users.update', $user->id ) }}">
+                                <form method="post" class="" action="{{ route('users.update', $user->id ) }}" enctype="multipart/form-data">
 
                                     @csrf
                                     @method('PUT')
@@ -80,6 +80,12 @@
 
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <strong>Upload PDFs:</strong>
+                                                <input type="file" name="file[]" class="form-control my-2" multiple accept="application/pdf">
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 text-center">

@@ -1,16 +1,5 @@
 @extends('admin.layout.master')
-<style>
-    /* User Profile Card Styling */
-.card {
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* Title Styling */
-h5, h6 {
-    font-weight: bold;
-}
-</style>
 @section('content')
     <div class="content">
 
@@ -62,30 +51,31 @@ h5, h6 {
                             <p class="text-black">Name: {{ $user->name }}</p>
                             <p class="text-black">Email: {{ $user->email }}</p>
                             <!-- Add more user-specific details here -->
-                            {{-- PDF DISPLAY --}}
-                             <!-- PDF Display -->
-                            <h5 class="mt-4">Uploaded PDFs</h5>
-                            @if($user->userFiles->count())
-                                @foreach($user->userFiles->chunk(2) as $chunk)
-                                    <div class="row mb-3">
-                                        @foreach($chunk as $file)
-                                            <div class="col-md-6">
-                                                <div class="card p-3 border-0 shadow-sm">
-                                                <a href="{{ asset('storage/' . $file->path) }}" target="_blank"><h6 class="text-center text-primary fw-bold text-truncate" title="{{ basename($file->path) }}">
-                                                        {{ basename($file->path) }}
-                                                    </h6></a>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                            @if ($user->userFiles->isNotEmpty())
+                            <h6>Uploaded PDFs:</h6>
+                            <ul class="list-unstyled">
+                                @foreach ($user->userFiles as $file)
+                                    <li>
+                                        <a href="{{ asset('storage/' . $file->path) }}" target="_blank">
+                                            <i class="fas fa-file-pdf text-danger"></i>
+                                            {{ Str::limit(basename($file->path), 20) }}
+                                        </a>
+                                    </li>
                                 @endforeach
-                            @else
-                                <p class="text-muted text-center">No PDFs uploaded yet.</p>
-                            @endif
-                            <!-- End PDF Display -->
-                            {{-- End PDF --}}
-                        </div>
+                            </ul>
+                        @else
+                            <p class="text-muted">No files uploaded yet.</p>
+                        @endif
+                            <form method="post" action="{{ route('update-files', $user->id) }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <strong>Upload New PDFs:</strong>
+                                    <input type="file" name="file[]" class="form-control my-2" multiple accept="application/pdf">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update PDFs</button>
+                            </form>
 
+                        </div>
                     </div>
                 @endif
 
@@ -110,10 +100,7 @@ h5, h6 {
                 </div>
             </div>
 
-
-
         </div> <!-- container-xxl -->
 
-    </div>
-
+    </div> <!-- content -->
 @endsection

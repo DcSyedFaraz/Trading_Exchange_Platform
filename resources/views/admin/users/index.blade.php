@@ -39,6 +39,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Roles</th>
+                                            <th>Upload PDF</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -56,6 +57,21 @@
                                                             <label class="badge bg-success text-capitalize">
                                                                 {{ $v }}</label>
                                                         @endforeach
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($user->userFiles->isNotEmpty())
+                                                        @foreach ($user->userFiles as $index => $file)
+                                                            <a href="{{ asset('storage/' . $file->path) }}" target="_blank" class="d-block">
+                                                                <h6 class="text-primary text-truncate d-inline-block"
+                                                                    style="max-width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+                                                                    title="{{ basename($file->path) }}">
+                                                                    {{ $index + 1 }}. {{ Str::limit(basename($file->path), 15) }}
+                                                                </h6>
+                                                            </a>
+                                                        @endforeach
+                                                    @else
+                                                        <span class="text-muted">No files available</span>
                                                     @endif
                                                 </td>
                                                 <td class="d-flex gap-2">

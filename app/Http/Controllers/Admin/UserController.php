@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserFile;
 use App\Notifications\NewUserNotification;
 use Arr;
 use Auth;
@@ -100,8 +101,8 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::select('id', 'name')->get();
         $userRole = $user->roles->pluck('name', 'name')->all();
-
-        return view('admin.users.edit', compact('user', 'roles', 'userRole'));
+        $user->load('userFiles');
+        return view('admin.users.edit', compact('user', 'roles', 'userRole','userRole'));
     }
 
     //User Update
@@ -111,7 +112,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => "required|email|unique:users,email,$id",
             'password' => 'nullable| same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'file.*' => 'mimes:pdf|max:2048',
         ]);
 
         $input = $request->all();
@@ -125,6 +127,18 @@ class UserController extends Controller
         $user->update($input);
 
         $user->syncRoles($request->roles);
+         // Check if files are uploaded
+        if ($request->hasFile('file')) {
+            foreach ($request->file('file') as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs("users", $fileName, 'public');
+
+                UserFile::create([
+                    'user_id' => $user->id,
+                    'path' => $path,
+                ]);
+            }
+        }
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
@@ -134,5 +148,27 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
+    }
+
+    public function updateFiles(Request $request, User $user)
+    {
+        $request->validate([
+            'file.*' => 'mimes:pdf|max:2048', // Multiple PDF files
+        ]);
+
+        // Purani files delete na ho, sirf nayi add ho
+        if ($request->hasFile('file')) {
+            foreach ($request->file('file') as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs("users", $fileName, 'public');
+
+                UserFile::create([
+                    'user_id' => $user->id,
+                    'path' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'User PDFs updated successfully.');
     }
 }

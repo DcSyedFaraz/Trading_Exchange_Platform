@@ -132,7 +132,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin
     Route::delete('images/{id}', [ProductController::class, 'destroyImage'])->name('images.destroy');
     Route::resource('auction_products', AdminAuctionController::class);
     Route::get('auction_products/bids/{id}', [AdminAuctionController::class, 'bids'])->name('auction_products.bids');
-
+    Route::post('/users/{user}/update-files', action: [UserController::class, 'updateFiles'])->name('update-files');
 });
 
 // Route::get('/dashboard', function () {
