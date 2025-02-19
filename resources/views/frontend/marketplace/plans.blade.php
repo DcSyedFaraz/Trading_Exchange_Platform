@@ -8,7 +8,7 @@
                         <h4>LIFETIME</h4>
                     </div>
                     <div class="two">
-                        <h3 class="blue-heading-plan">$1000.00 <span>/ One Time</span></h3>
+                        <h3 class="blue-heading-plan">$499.00 <span>/ One Time</span></h3>
                         {{-- <p>Lorem ipsum dolor sit amet elit. Vivamus ullamcorper et lacus nongsg</p> --}}
                         <ul>
                             <li>. Unlimited product listings.</li>

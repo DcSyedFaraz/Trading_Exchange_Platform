@@ -15,6 +15,7 @@
         <div class="form-div">
             <h4 class="bg2-d">Get in touch</h4>
             <h4 class="bg2-e">SEND US A MESSAGE</h4>
+            <p class="contact-p">Advertising Space Available! For inquiries, please fill out the form.</p>
             <form action="{{ asset('mail.php') }}" method="post">
                 <input class="text-input" name="name" placeholder="Name:" type="text" required />
                 <input class="text-input" name="phone" placeholder="Phone:" type="text" required />

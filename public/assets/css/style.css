@@ -4214,6 +4214,12 @@ ul {
     align-items: center;
 }
 
+.contact-p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2e2e2e;
+}
+
 /*Sidebar Css*/
 
 /*Responsive Css*/

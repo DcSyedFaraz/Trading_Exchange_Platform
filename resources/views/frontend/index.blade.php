@@ -54,7 +54,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7">
-                    <h3 class="buz-text">Welcome to Traders Exchange</h3>
+                    <h3 class="buz-text">Welcome to Trader's Exchange</h3>
                     <p class="bg2-c">At Traders Exchange, you can easily list and trade your products with other users,
                         directly exchanging goods and services in a seamless marketplace. Our platform connects you with
                         a wide range of buyers and sellers, giving you access to a network of potential new partners for
