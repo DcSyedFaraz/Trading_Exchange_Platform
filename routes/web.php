@@ -99,6 +99,7 @@ Route::middleware(['auth'])->prefix('marketplace')->group(function () {
         Route::post('/plans/subscription', 'planssubscription')->name('plans.subscription');
         Route::post('/plans/success', 'planssuccess')->name('plans.success');
     });
+
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], function () {
@@ -117,8 +118,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::put('/ads/update-secondary-image', [AdController::class, 'updateSecondaryImage'])->name('ad.updateSecondaryImage');
 
     Route::delete('auction-products/{auctionProduct}/images/{image}', [AdminAuctionController::class, 'destroyImage'])->name('admin.auction_products.images.destroy');
-
     Route::post('/auction-products/{auctionProduct}/send-notifications', [AdminAuctionController::class, 'sendAdminNotifications'])->name('auction_products.send_notifications');
+
+    Route::get('admin/subscribe', [SubscriptionController::class, 'showSubscriptionPage'])->name('admin.subscribe');
+    Route::post('admin/subscribe/manual', [SubscriptionController::class, 'manualSubscription'])->name('admin.manual_subscription');
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 

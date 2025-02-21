@@ -137,19 +137,19 @@ class SubscriptionController extends Controller
         // Map plan identifiers to Stripe price IDs
         switch ($request->plan_id) {
             case 'lifetime':
-                $priceId = 'price_1QknTiQSj1fwAKJyRqfFoZZR'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1QknTiQSj1fwAKJyRqfFoZZR';
                 $subscriptionName = 'LIFETIME';
                 break;
             case 'annual':
-                $priceId = 'price_1QknUxQSj1fwAKJyiummwrtf'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1QknUxQSj1fwAKJyiummwrtf';
                 $subscriptionName = 'ANNUAL MEMBERSHIP';
                 break;
             case '90-day':
-                $priceId = 'price_1QknVPQSj1fwAKJy92OObiuL'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1QknVPQSj1fwAKJy92OObiuL';
                 $subscriptionName = '90-DAY MEMBERSHIP';
                 break;
             case 'monthly':
-                $priceId = 'price_1QknVgQSj1fwAKJyusCrHbZu'; // Replace with your actual Stripe price ID
+                $priceId = 'price_1QknVgQSj1fwAKJyusCrHbZu';
                 $subscriptionName = 'MONTHLY MEMBERSHIP';
                 break;
             default:
@@ -170,6 +170,69 @@ class SubscriptionController extends Controller
 
             return redirect()->route('plans')
                 ->with('error', 'There was an issue with your subscription.');
+        }
+    }
+    public function showSubscriptionPage()
+    {
+        $users = User::all(); // Fetch all users to select from
+        return view('admin.admin_subscribe', compact('users'));
+    }
+    public function manualSubscription(Request $request)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'plan_id' => 'required|string',
+            // 'admin_token' => 'required|string',
+        ]);
+
+
+
+        // Map plan identifiers to Stripe price IDs
+        switch ($request->plan_id) {
+            case 'lifetime':
+                // $priceId = 'price_1QknTiQSj1fwAKJyRqfFoZZR';
+                $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4';
+                $subscriptionName = 'LIFETIME';
+                break;
+            case 'annual':
+                $priceId = 'price_1QknUxQSj1fwAKJyiummwrtf';
+                $subscriptionName = 'ANNUAL MEMBERSHIP';
+                break;
+            case '90-day':
+                $priceId = 'price_1QknVPQSj1fwAKJy92OObiuL';
+                $subscriptionName = '90-DAY MEMBERSHIP';
+                break;
+            case 'monthly':
+                $priceId = 'price_1QknVgQSj1fwAKJyusCrHbZu';
+                $subscriptionName = 'MONTHLY MEMBERSHIP';
+                break;
+            default:
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid subscription plan selected.'
+                ]);
+        }
+
+        try {
+            // Retrieve the user
+            $user = User::findOrFail($request->user_id);
+
+            // Manually create the subscription (without payment)
+            $subscription = $user->newSubscription($subscriptionName, $priceId)->trialDays(7)->create();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Manual subscription created successfully!'
+            ]);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Subscription Error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'There was an issue with the manual subscription.'
+            ]);
         }
     }
 
