@@ -10,7 +10,7 @@
                             </a>
                         </div>
                         <div>
-                            <a href="#" class="app-txt">
+                            <a href="{{ route('contact_us') }}" class="app-txt">
                                 <p class="apptext">Help</p>|
                             </a>
                         </div>
@@ -59,21 +59,21 @@
                                     All Categories</option>
 
                                 @foreach ($categories as $cat)
-                                @if ($cat->children->count() > 0)
-                                <optgroup label="{{ strtoupper($cat->name) }}">
-                                    @foreach ($cat->children as $child)
-                                    <option value="{{ $child->id }}"
-                                        {{ request('searchType') == $child->id ? 'selected' : '' }}>
-                                        {{ $child->name }}
-                                    </option>
-                                    @endforeach
-                                </optgroup>
-                                @else
-                                <option value="{{ $cat->id }}"
-                                    {{ request('searchType') == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->name }}
-                                </option>
-                                @endif
+                                    @if ($cat->children->count() > 0)
+                                        <optgroup label="{{ strtoupper($cat->name) }}">
+                                            @foreach ($cat->children as $child)
+                                                <option value="{{ $child->id }}"
+                                                    {{ request('searchType') == $child->id ? 'selected' : '' }}>
+                                                    {{ $child->name }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    @else
+                                        <option value="{{ $cat->id }}"
+                                            {{ request('searchType') == $cat->id ? 'selected' : '' }}>
+                                            {{ $cat->name }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
 
@@ -90,8 +90,8 @@
                     <div class="icons-div">
                         <a href="{{ route('login') }}"><i class="fa-regular fa-user"></i><span>Login</span></a>
                         @auth
-                        {{-- <a href="#"><i class="fa-regular fa-heart"></i></a> --}}
-                        <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
+                            {{-- <a href="#"><i class="fa-regular fa-heart"></i></a> --}}
+                            <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
                         @endauth
                         <a href="{{ route('auction.index') }}" class="aucbtn">Auction</a>
                     </div>
@@ -113,8 +113,8 @@
                     <div class="icons-div">
                         <a href="{{ route('login') }}"><i class="fa-regular fa-user"></i></a>
                         @auth
-                        {{-- <a href="#"><i class="fa-regular fa-heart"></i></a> --}}
-                        <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
+                            {{-- <a href="#"><i class="fa-regular fa-heart"></i></a> --}}
+                            <a href="{{ route('chat.index') }}"><i class="fa-regular fa-comments"></i></a>
                         @endauth
                         <a href="{{ route('auction.index') }}" class="aucbtn">Auction</a>
                     </div>
@@ -137,21 +137,21 @@
                                     All Categories</option>
 
                                 @foreach ($categories as $cat)
-                                @if ($cat->children->count() > 0)
-                                <optgroup label="{{ strtoupper($cat->name) }}">
-                                    @foreach ($cat->children as $child)
-                                    <option value="{{ $child->id }}"
-                                        {{ request('searchType') == $child->id ? 'selected' : '' }}>
-                                        {{ $child->name }}
-                                    </option>
-                                    @endforeach
-                                </optgroup>
-                                @else
-                                <option value="{{ $cat->id }}"
-                                    {{ request('searchType') == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->name }}
-                                </option>
-                                @endif
+                                    @if ($cat->children->count() > 0)
+                                        <optgroup label="{{ strtoupper($cat->name) }}">
+                                            @foreach ($cat->children as $child)
+                                                <option value="{{ $child->id }}"
+                                                    {{ request('searchType') == $child->id ? 'selected' : '' }}>
+                                                    {{ $child->name }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    @else
+                                        <option value="{{ $cat->id }}"
+                                            {{ request('searchType') == $cat->id ? 'selected' : '' }}>
+                                            {{ $cat->name }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
 

@@ -128,7 +128,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin
 
 });
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin','check.subscription']], function () {
     Route::resource('edit_profile', EditProfileController::class);
     Route::get('index', [UserController::class, 'user'])->name('dashboard');
     Route::resource('products', ProductController::class);

@@ -12,7 +12,7 @@
                             transparent barter system, fostering a community built on trust, reciprocity, and mutual
                             benefit."*</h4>
                         <div class="btn-div">
-                            <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
+                            <a href="{{ route('register') }}" class="get-btn">Get Started</a>
                             <a href="{{ route('about_us') }}" class="read-btn">Read More</a>
                         </div>
                     </div>
@@ -23,10 +23,10 @@
                     <div class="container">
                         <h3 class="bg1-a">Trade for the Future</h3>
                         <h4 class="bg1-b">"Step into a marketplace built for growth. With easy trades and auction
-                            opportunities, Traders Exchange helps your business thrive and discover new paths to success."
+                            opportunities, Trader`s Exchange helps your business thrive and discover new paths to success."
                         </h4>
                         <div class="btn-div">
-                            <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
+                            <a href="{{ route('register') }}" class="get-btn">Get Started</a>
                             <a href="{{ route('about_us') }}" class="read-btn">Read More</a>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             Connect with new customers, build relationships, and grow your business through simple
                             exchanges."</h4>
                         <div class="btn-div">
-                            <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
+                            <a href="{{ route('register') }}" class="get-btn">Get Started</a>
                             <a href="{{ route('about_us') }}" class="read-btn">Read More</a>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <h3 class="buz-text">Welcome to Trader's Exchange</h3>
-                    <p class="bg2-c">At Traders Exchange, you can easily list and trade your products with other users,
+                    <p class="bg2-c">At Trader`s Exchange, you can easily list and trade your products with other users,
                         directly exchanging goods and services in a seamless marketplace. Our platform connects you with
                         a wide range of buyers and sellers, giving you access to a network of potential new partners for
                         both trade and auctions. Whether you’re trading everyday items or something more specialized,
@@ -63,7 +63,7 @@
                         or services. <br> <br>
                         Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you
                         get the best value for what you’re offering. Get started today, and unlock the full potential of
-                        trading and auctioning within the Traders Exchange ecosystem!
+                        trading and auctioning within the Trader`s Exchange ecosystem!
                     </p>
                 </div>
                 <div class="col-md-5">
@@ -186,7 +186,7 @@
                         <li><b>Innovation:</b> We strive to make bartering easy and accessible.</li>
                         <li><b>Sustainability:</b> We aim to reduce waste and promote a sharing economy.</li>
                     </ul>
-                    <a href="{{ route('contact_us') }}" class="get-btn">Get Started</a>
+                    <a href="{{ route('register') }}" class="get-btn">Get Started</a>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ asset('assets/images/bg3.png') }}" class="bg4-img" />

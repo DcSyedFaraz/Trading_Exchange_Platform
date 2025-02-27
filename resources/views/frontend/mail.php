@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </table>';
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From: Traders Exchange <no-reply@tradersexchange.org>' . "\r\n";
+    $headers .= 'From: Trader`s Exchange <no-reply@tradersexchange.org>' . "\r\n";
     if (mail(implode(',', $to), $subject, $message, $headers)) {
 
 ?>
