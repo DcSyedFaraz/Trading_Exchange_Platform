@@ -39,6 +39,7 @@ use Tighten\Ziggy\Ziggy;
 */
 
 Route::any('/stripe/webhook', [SubscriptionController::class, 'handleStripeWebhook']);
+Route::any('/runArtisanCommand', [SubscriptionController::class, 'runArtisanCommand']);
 
 Route::get('/login', function () {
     return view('auth/login');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Log;
@@ -13,6 +14,20 @@ use Stripe\Webhook;
 class SubscriptionController extends Controller
 {
 
+    public function runArtisanCommand()
+    {
+        // Example: Running the 'migrate' Artisan command
+        Artisan::call('migrate');
+        Artisan::call('optimize:clear');
+        Artisan::call('config:clear');
+
+
+        // Optionally return the output of the command
+        $output = Artisan::output();
+
+        // You can log or return the output
+        return $output; // or log it
+    }
     public function plans()
     {
         $activeProducts = Product::active()->get();
