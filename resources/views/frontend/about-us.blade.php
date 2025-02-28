@@ -5,8 +5,8 @@
             <div class="container">
                 <h3 class="bg1-a">About Us</h3>
                 <!--<h4 class="bg1-b">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et gravida neque.
-                        Donec vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
-                        Praesent id sapien nec nulla posuere vehicula ac a quam.</h4>-->
+                            Donec vestibulum urna vel neque condimentum sagittis. Cras auctor sit amet lacus eget pretium.
+                            Praesent id sapien nec nulla posuere vehicula ac a quam.</h4>-->
             </div>
         </div>
     </section>
@@ -16,15 +16,16 @@
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <h3 class="buz-text">Welcome to Trader`s Exchange</h3>
-                    <p class="bg2-c">At Trader`s Exchange, you can easily list and trade your products with other users,
-                        directly exchanging goods and services in a seamless marketplace. Our platform connects you with
-                        a wide range of buyers and sellers, giving you access to a network of potential new partners for
-                        both trade and auctions. Whether you’re trading everyday items or something more specialized,
-                        our community helps you find what you need while offering opportunities to offload excess stock
-                        or services. <br> <br>
-                        Plus, With our auction section, you can put your high-value, rare, and high-demand items up for bidding. ensuring you
-                        get the best value for what you’re offering. Get started today, and unlock the full potential of
-                        trading and auctioning within the Trader`s Exchange ecosystem!
+                    <p class="bg2-c">At Trader’s Exchange, we are more than just a marketplace—we are a club of passionate
+                        traders committed to making exchanging goods and services effortless. Here, you can easily list and
+                        trade your products with other users, directly engaging in seamless transactions. Our platform
+                        connects you with a wide range of buyers and sellers, giving you access to a network of potential
+                        new partners for both trade and auctions. Whether you’re trading everyday items or something more
+                        specialized, our community helps you find what you need while offering opportunities to offload
+                        excess stock or services. <br> <br>
+                        Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you get
+                        the best value for what you’re offering. Get started today and become part of a thriving club that
+                        unlocks the full potential of trading and auctioning within the Trader’s Exchange ecosystem!
                     </p>
                 </div>
                 <div class="col-md-5">
