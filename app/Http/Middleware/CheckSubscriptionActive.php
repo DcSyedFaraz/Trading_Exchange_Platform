@@ -20,12 +20,13 @@ class CheckSubscriptionActive
             $user = Auth::user();
 
             // Check if user has the 'user' role (or any other role you want)
+            dd($user->hasRole('user'));
             if ($user->hasRole('user')) {
 
                 // Fetch all subscriptions for the user
                 $subscriptions = $user->subscribed('default');
-//                 $subscriptions = $user->subscriptions;
-// dd($subscriptions);
+                // $subscriptions = $user->subscriptions;
+                // dd($subscriptions);
                 // Check if user has any active subscription
                 // $activeSubscription = $subscriptions->first(function ($subscription) {
                 //     return $subscription->active();  // Checks if the subscription is active

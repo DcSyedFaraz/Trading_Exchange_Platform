@@ -15,8 +15,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7">
-                    <h3 class="buz-text">Welcome to Trader`s Exchange</h3>
-                    <p class="bg2-c">At Trader’s Exchange, we are more than just a marketplace—we are a club of passionate
+                    <h3 class="buz-text">Welcome to Traders' Exchange</h3>
+                    <p class="bg2-c">At Traders' Exchange, we are more than just a marketplace—we are a club of passionate
                         traders committed to making exchanging goods and services effortless. Here, you can easily list and
                         trade your products with other users, directly engaging in seamless transactions. Our platform
                         connects you with a wide range of buyers and sellers, giving you access to a network of potential
@@ -25,7 +25,7 @@
                         excess stock or services. <br> <br>
                         Plus, with our auction section, you can put your high-demand items up for bidding, ensuring you get
                         the best value for what you’re offering. Get started today and become part of a thriving club that
-                        unlocks the full potential of trading and auctioning within the Trader’s Exchange ecosystem!
+                        unlocks the full potential of trading and auctioning within the Traders' Exchange ecosystem!
                     </p>
                 </div>
                 <div class="col-md-5">

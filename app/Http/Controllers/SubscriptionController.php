@@ -137,19 +137,19 @@ class SubscriptionController extends Controller
         // Map plan identifiers to Stripe price IDs
         switch ($request->plan_id) {
             case 'lifetime':
-                $priceId = 'price_1QknTiQSj1fwAKJyRqfFoZZR';
+                $priceId = 'price_1QxXkuKzkrg1qnVZwsdt4KCH';
                 $subscriptionName = 'LIFETIME';
                 break;
             case 'annual':
-                $priceId = 'price_1QknUxQSj1fwAKJyiummwrtf';
+                $priceId = 'price_1QxXlbKzkrg1qnVZ8B2jjsre';
                 $subscriptionName = 'ANNUAL MEMBERSHIP';
                 break;
             case '90-day':
-                $priceId = 'price_1QknVPQSj1fwAKJy92OObiuL';
+                $priceId = 'price_1QxXmdKzkrg1qnVZdYwfGJdw';
                 $subscriptionName = '90-DAY MEMBERSHIP';
                 break;
             case 'monthly':
-                $priceId = 'price_1QknVgQSj1fwAKJyusCrHbZu';
+                $priceId = 'price_1QxXn7Kzkrg1qnVZ7f2S2Yj2';
                 $subscriptionName = 'MONTHLY MEMBERSHIP';
                 break;
             default:
@@ -192,21 +192,21 @@ class SubscriptionController extends Controller
         switch ($request->plan_id) {
             case 'lifetime':
                 //live
-                $priceId = 'price_1QknTiQSj1fwAKJyRqfFoZZR';
+                $priceId = 'price_1QxXkuKzkrg1qnVZwsdt4KCH';
                 //local
                 // $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4';
                 $subscriptionName = 'LIFETIME';
                 break;
             case 'annual':
-                $priceId = 'price_1QknUxQSj1fwAKJyiummwrtf';
+                $priceId = 'price_1QxXlbKzkrg1qnVZ8B2jjsre';
                 $subscriptionName = 'ANNUAL MEMBERSHIP';
                 break;
             case '90-day':
-                $priceId = 'price_1QknVPQSj1fwAKJy92OObiuL';
+                $priceId = 'price_1QxXmdKzkrg1qnVZdYwfGJdw';
                 $subscriptionName = '90-DAY MEMBERSHIP';
                 break;
             case 'monthly':
-                $priceId = 'price_1QknVgQSj1fwAKJyusCrHbZu';
+                $priceId = 'price_1QxXn7Kzkrg1qnVZ7f2S2Yj2';
                 $subscriptionName = 'MONTHLY MEMBERSHIP';
                 break;
             default:

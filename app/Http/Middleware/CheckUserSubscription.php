@@ -16,7 +16,6 @@ class CheckUserSubscription
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-
         // Only check subscription if the user has the "user" role.
         if ($user && $user->hasRole('user')) {
             // List the subscription names used in your application.
@@ -36,8 +35,9 @@ class CheckUserSubscription
                     break;
                 }
             }
+            // dd($hasActiveSubscription);
 
-            if ($hasActiveSubscription) {
+            if (!$hasActiveSubscription) {
                 // If no active subscription is found, redirect to the plans page.
                 return redirect()->route('plans')->with('error', 'You need an active subscription to access this page.');
             }
