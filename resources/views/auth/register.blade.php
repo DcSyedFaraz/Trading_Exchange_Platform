@@ -69,7 +69,7 @@
                     <p>Fill out the <a href="https://www.irs.gov/forms-pubs/about-form-1099-b" target="_blank">1099-B form</a>, then download it and attach it below.</p>
                 </div>
                 <div class="form-row form-btn">
-                    <input type="file" name="file[]" class="form-input" required multiple>
+                    <input type="file" name="file[]" class="form-input" multiple>
                 </div>
 
                 <div class="extra-options">
