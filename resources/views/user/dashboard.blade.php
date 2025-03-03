@@ -52,25 +52,27 @@
                             <p class="text-black">Email: {{ $user->email }}</p>
                             <!-- Add more user-specific details here -->
                             @if ($user->userFiles->isNotEmpty())
-                            <h6>Uploaded PDFs:</h6>
-                            <ul class="list-unstyled">
-                                @foreach ($user->userFiles as $file)
-                                    <li>
-                                        <a href="{{ asset('storage/' . $file->path) }}" target="_blank">
-                                            <i class="fas fa-file-pdf text-danger"></i>
-                                            {{ Str::limit(basename($file->path), 20) }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <p class="text-muted">No files uploaded yet.</p>
-                        @endif
-                            <form method="post" action="{{ route('update-files', $user->id) }}" enctype="multipart/form-data">
+                                <h6>Uploaded PDFs:</h6>
+                                <ul class="list-unstyled">
+                                    @foreach ($user->userFiles as $file)
+                                        <li>
+                                            <a href="{{ asset('storage/' . $file->path) }}" target="_blank">
+                                                <i class="fas fa-file-pdf text-danger"></i>
+                                                {{ Str::limit(basename($file->path), 20) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p class="text-muted">No files uploaded yet.</p>
+                            @endif
+                            <form method="post" action="{{ route('update-files', $user->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <strong>Upload New PDFs:</strong>
-                                    <input type="file" name="file[]" class="form-control my-2" multiple accept="application/pdf">
+                                    <input type="file" name="file[]" class="form-control my-2" multiple
+                                        accept="application/pdf">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update PDFs</button>
                             </form>
@@ -89,9 +91,19 @@
                             @endphp
                             <p class="text-black">Subscribed to: {{ $subscription->type }}</p>
                             <p class="text-black">Status: {{ $subscription->stripe_status }}</p>
-                            <p class="text-black"><strong>Next Billing Date:</strong>
-                                {{ \Carbon\Carbon::createFromTimestamp($user->subscription($subscription->type)->asStripeSubscription()->current_period_end)->format('F d, Y') }}
-                            </p>
+                            @php
+                                $stripeSubscription = optional(
+                                    $user->subscription($subscription->type),
+                                )->asStripeSubscription();
+                            @endphp
+
+                            @if ($stripeSubscription)
+                                <p><strong>Next Billing Date:</strong>
+                                    {{ \Carbon\Carbon::createFromTimestamp($stripeSubscription->current_period_end)->format('F d, Y') }}
+                                </p>
+                            @else
+                                <p>No active subscription found.</p>
+                            @endif
                         @else
                             <p class="text-black">You are not subscribed to any package.</p>
                             <a href="{{ route('plans') }}" class="btn btn-primary">Subscribe Now</a>

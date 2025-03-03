@@ -152,7 +152,10 @@ class SubscriptionController extends Controller
         // Map plan identifiers to Stripe price IDs
         switch ($request->plan_id) {
             case 'lifetime':
+                // live
                 $priceId = 'price_1QxXkuKzkrg1qnVZwsdt4KCH';
+                //local
+                // $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4';
                 $subscriptionName = 'LIFETIME';
                 break;
             case 'annual':

@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" id="card-button"
+                                    <button type="submit" form="payment-form" class="btn btn-primary" id="card-button"
                                         data-secret="{{ $intent->client_secret }}">Purchase</button>
                                 </div>
                             </div>
@@ -227,8 +227,16 @@
                 },
             });
             if (error) {
-                // Handle error here
-                console.error(error);
+                // Display error in modal
+                let errorElement = document.getElementById('card-error');
+                if (!errorElement) {
+                    errorElement = document.createElement('div');
+                    errorElement.setAttribute('id', 'card-error');
+                    errorElement.classList.add('alert', 'alert-danger', 'mt-3');
+                    form.insertBefore(errorElement, form.firstChild);
+                }
+                errorElement.textContent = error.message;
+                errorElement.classList.remove('d-none');
                 cardBtn.disabled = false;
             } else {
                 let token = document.createElement('input');
