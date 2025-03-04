@@ -58,12 +58,12 @@
 
                 <div class="form-row form-btn">
                     <input type="password" id="password" name="password" placeholder="Password" required>
-                    <span class="toggle-password" onclick="togglePassword()">👁</span>
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁</span>
                 </div>
                 <div class="form-row form-btn">
                     <input type="password" id="confirm-password" name="password_confirmation"
                         placeholder="Confirm Password Password" required>
-                    <span class="toggle-password" onclick="togglePassword()">👁</span>
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁</span>
                 </div>
                 <div class="form-row anchor">
                     <p>Fill out the <a href="https://www.irs.gov/forms-pubs/about-form-1099-b" target="_blank">1099-B form</a>, then download it and attach it below.</p>

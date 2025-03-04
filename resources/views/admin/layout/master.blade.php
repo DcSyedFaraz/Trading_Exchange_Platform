@@ -34,13 +34,14 @@
                         <div class="row align-items-center">
                             <div class="col-md-6 col-6">
                                 <div class="admin">
-                                    <h1>
+                                    <!-- <h1>
                                         @if (auth()->user()->hasRole('admin'))
                                             Admin
                                         @else
                                             User
                                         @endif Portal
-                                    </h1>
+                                    </h1> -->
+                                    <h1>Trader's Exchange</h1>
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">

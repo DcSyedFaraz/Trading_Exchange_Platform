@@ -122,6 +122,7 @@
 
                     @endguest
                 </div>
+                <p class="enjoy-p">Enjoy a 7-day free trial before your subscription begins.</p>
                 @auth
                     <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel"
                         aria-hidden="true">
