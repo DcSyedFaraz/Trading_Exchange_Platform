@@ -197,35 +197,35 @@ class SubscriptionController extends Controller
     }
     public function manualSubscription(Request $request)
     {
-        // Validate the incoming request
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'plan_id' => 'required|string',
-            // 'admin_token' => 'required|string',
         ]);
 
+        $user = User::findOrFail($request->user_id);
 
-
-        // Map plan identifiers to Stripe price IDs
         switch ($request->plan_id) {
             case 'lifetime':
-                //live
                 $priceId = 'price_1QxXkuKzkrg1qnVZwsdt4KCH';
-                //local
-                // $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4';
                 $subscriptionName = 'LIFETIME';
+                $trialEnd = now()->addYears(5); // 100-year trial for "lifetime"
                 break;
             case 'annual':
+                 //local
+                // $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4';
                 $priceId = 'price_1QxXlbKzkrg1qnVZ8B2jjsre';
                 $subscriptionName = 'ANNUAL MEMBERSHIP';
+                $trialEnd = now()->addYear();
                 break;
             case '90-day':
                 $priceId = 'price_1QxXmdKzkrg1qnVZdYwfGJdw';
                 $subscriptionName = '90-DAY MEMBERSHIP';
+                $trialEnd = now()->addDays(90);
                 break;
             case 'monthly':
                 $priceId = 'price_1QxXn7Kzkrg1qnVZ7f2S2Yj2';
                 $subscriptionName = 'MONTHLY MEMBERSHIP';
+                $trialEnd = now()->addMonth();
                 break;
             default:
                 return response()->json([
@@ -235,23 +235,25 @@ class SubscriptionController extends Controller
         }
 
         try {
-            // Retrieve the user
-            $user = User::findOrFail($request->user_id);
+            Stripe::setApiKey(env('STRIPE_SECRET'));
 
-            // Manually create the subscription (without payment)
-            $subscription = $user->newSubscription($subscriptionName, $priceId)->trialDays(7)->create();
+            // Create subscription with a trial period and no payment method
+            $subscription = $user->newSubscription($subscriptionName, $priceId)
+                ->trialUntil($trialEnd)
+                ->create(null);
+
+            // Immediately cancel to prevent Stripe from attempting payment after trial
+            // $subscription->cancelNow();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Manual subscription created successfully!'
+                'message' => 'Subscription successfully assigned without payment!'
             ]);
         } catch (\Exception $e) {
-            // Log the error for debugging
             Log::error('Subscription Error: ' . $e->getMessage());
-
             return response()->json([
                 'success' => false,
-                'message' => 'There was an issue with the manual subscription.'
+                'message' => 'Failed to assign subscription. Please try again.'
             ]);
         }
     }

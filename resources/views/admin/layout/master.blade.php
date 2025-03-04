@@ -30,95 +30,88 @@
             @include('admin.layout.sidebar')
         </div>
         <section class="main-sec">
-                    <div class="main-cont">
-                        <div class="row align-items-center">
-                            <div class="col-md-6 col-6">
-                                <div class="admin">
-                                    <!-- <h1>
-                                        @if (auth()->user()->hasRole('admin'))
-                                            Admin
-                                        @else
-                                            User
-                                        @endif Portal
-                                    </h1> -->
-                                    <h1>Trader's Exchange</h1>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <div class="sm-header">
-                                    <!-- resources/views/partials/notifications.blade.php -->
+            <div class="main-cont">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-6">
+                        <div class="admin">
+                            <h1>Traders' Exchange</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <div class="sm-header">
+                            <!-- resources/views/partials/notifications.blade.php -->
 
-                                    <div class="notice_box1">
-                                        <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-light fa-bell"></i>
-                                            @if (auth()->user()->unreadNotifications->count() > 0)
-                                                <span
-                                                    class="bubble_count">{{ auth()->user()->unreadNotifications->count() }}</span>
-                                            @endif
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <!-- Mark All as Read -->
-                                            <form action="{{ route('notifications.markAllRead') }}" method="POST"
-                                                class="d-flex justify-content-end px-3 py-2">
-                                                @csrf
-                                                <button type="submit" class="btn btn-link mark-read p-0"
-                                                    title="Mark all as read" data-bs-toggle="tooltip"
-                                                    @if (auth()->user()->unreadNotifications->count() == 0) disabled @endif>
-                                                    <i class="fa-solid fa-check-double"></i> Read All
-                                                </button>
-                                            </form>
+                            <div class="notice_box1">
+                                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-light fa-bell"></i>
+                                    @if (auth()->user()->unreadNotifications->count() > 0)
+                                        <span
+                                            class="bubble_count">{{ auth()->user()->unreadNotifications->count() }}</span>
+                                    @endif
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <!-- Mark All as Read -->
+                                    <form action="{{ route('notifications.markAllRead') }}" method="POST"
+                                        class="d-flex justify-content-end px-3 py-2">
+                                        @csrf
+                                        <button type="submit" class="btn btn-link mark-read p-0"
+                                            title="Mark all as read" data-bs-toggle="tooltip"
+                                            @if (auth()->user()->unreadNotifications->count() == 0) disabled @endif>
+                                            <i class="fa-solid fa-check-double"></i> Read All
+                                        </button>
+                                    </form>
 
-                                            <!-- Notifications List -->
-                                            <ul class="list-unstyled mb-0">
-                                                @forelse (auth()->user()->unreadNotifications as $notification)
-                                                    <li>
-                                                        <a class="dropdown-item d-flex justify-content-between align-items-center"
-                                                            href="{{ $notification->data['url'] ?? '#' }}">
-                                                            <span>{{ $notification->data['message'] ?? 'No message available' }}</span>
-                                                            @if (is_null($notification->read_at))
-                                                                <span class="badge bg-primary ms-2 rounded-pill">New</span>
-                                                            @endif
-                                                        </a>
-                                                    </li>
-                                                @empty
-                                                    <li class="dropdown-item text-center">No notifications available.</li>
-                                                @endforelse
-                                            </ul>
+                                    <!-- Notifications List -->
+                                    <ul class="list-unstyled mb-0">
+                                        @forelse (auth()->user()->unreadNotifications as $notification)
+                                            <li>
+                                                <a class="dropdown-item d-flex justify-content-between align-items-center"
+                                                    href="{{ $notification->data['url'] ?? '#' }}">
+                                                    <span>{{ $notification->data['message'] ?? 'No message available' }}</span>
+                                                    @if (is_null($notification->read_at))
+                                                        <span class="badge bg-primary ms-2 rounded-pill">New</span>
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        @empty
+                                            <li class="dropdown-item text-center">No notifications available.</li>
+                                        @endforelse
+                                    </ul>
 
-                                            <!-- View All Notifications -->
-                                            {{-- <div class="dropdown-divider"></div>
+                                    <!-- View All Notifications -->
+                                    {{-- <div class="dropdown-divider"></div>
                                             <a href="#" class="dropdown-item view-all">
                                                 View All Notifications <i class="fa-solid fa-up-right-from-square"></i>
                                             </a> --}}
-                                        </div>
-                                    </div>
-
-                                    <div class="notice_box">
-                                        @php
-                                            $authid = auth()->id();
-                                            $unread = App\Models\Message::whereHas('chat', function ($query) use ($authid) {
-                                                $query->where('user_one_id', $authid)->orWhere('user_two_id', $authid);
-                                            })
-                                                ->where('sender_id', '!=', $authid)
-                                                ->whereNull('read_at')
-                                                ->count();
-                                        @endphp
-
-                                        <a href="{{ route('chat.index') }}">
-                                            <i class="fa-brands fa-facebook-messenger"></i>
-                                            @if ($unread > 0)
-                                                <span class="bubble_count">{{ $unread }}</span>
-                                            @endif
-                                            Messages
-                                        </a>
-                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="notice_box">
+                                @php
+                                    $authid = auth()->id();
+                                    $unread = App\Models\Message::whereHas('chat', function ($query) use ($authid) {
+                                        $query->where('user_one_id', $authid)->orWhere('user_two_id', $authid);
+                                    })
+                                        ->where('sender_id', '!=', $authid)
+                                        ->whereNull('read_at')
+                                        ->count();
+                                @endphp
+
+                                <a href="{{ route('chat.index') }}">
+                                    <i class="fa-brands fa-facebook-messenger"></i>
+                                    @if ($unread > 0)
+                                        <span class="bubble_count">{{ $unread }}</span>
+                                    @endif
+                                    Messages
+                                </a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    @yield('content')
+            @yield('content')
 
         </section>
     </section>
@@ -264,8 +257,8 @@
     let menu = document.querySelector('#menu-icon');
     let sidenavbar = document.querySelector('#sidebar');
     let content = document.querySelector('.content-menu');
-    let mainsec =document.querySelector('.main-sec');
-    let dash =document.querySelector('.dashi');
+    let mainsec = document.querySelector('.main-sec');
+    let dash = document.querySelector('.dashi');
 
     menu.onclick = () => {
         sidenavbar.classList.toggle('active');
