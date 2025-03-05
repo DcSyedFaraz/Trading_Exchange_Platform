@@ -3038,8 +3038,8 @@ body {
 }
 
 #sidebar {
-    width: 15%;
-    height: 100%;
+    width: 19%;
+    height: 100vh;
     background: white !important;
     transition: width 0.3s ease;
     overflow: hidden;
@@ -3048,7 +3048,7 @@ body {
     border-width: 2px;
     font-family: "Montserrat" !important;
     border-radius: 0px !important;
-    padding: 0 0 0 5px !important;
+    padding: 0px 5px 0px 5px !important;
 }
 
 #sidebar .usersss h5 {
@@ -3066,7 +3066,7 @@ body {
 
 .First_sec {
     margin-top: 10px;
-    width: 200px;
+    width: calc(100% - 5px);
     padding-bottom: 10px;
 }
 
@@ -3080,7 +3080,7 @@ body {
 }
 
 .usersss {
-    padding-top: 100px;
+    /* padding-top: 100px; */
 }
 
 .usersss ul li a {
@@ -3136,7 +3136,7 @@ body {
     cursor: pointer;
     border-radius: 25px;
     transition: 0.3s ease;
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 5px;
 }
 
@@ -3300,7 +3300,7 @@ td {
     justify-content: flex-start;
     height: 100vh;
     gap: 60px;
-    width: 84%;
+    width: 80%;
     float: right;
     transition: .5s ease;
 }
@@ -4567,7 +4567,7 @@ ul {
     }
 
     #sidebar ul li {
-        width: 70%;
+        width: 100%;
         padding: 10px 10px;
         font-size: 10px;
     }
@@ -5236,7 +5236,7 @@ ul {
     }
 
     .usersss {
-        padding-top: 60px;
+        /* padding-top: 60px; */
     }
 
     .content p {
