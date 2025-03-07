@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\UserManageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,8 @@ Route::controller(AuctionController::class)->name('auction.')->group(function ()
     Route::get('/auction/{id}', 'show')->name('show');
     // Route::get('/auction/terms', 'terms')->name('terms');
 });
+Route::get('/getCitiesByState/{state_code}', [LocationController::class, 'getCitiesByState'])->name('cities.byState');
+
 Route::get('/auctions/terms', [AuctionController::class, 'terms_auction'])->name('auction.terms');
 
 Route::post('/{id}/bid', [AuctionController::class, 'placeBid'])->name('auction.placeBid')->middleware('auth');
@@ -129,7 +132,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin
 
 });
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin','check.subscription']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin', 'check.subscription']], function () {
     Route::resource('edit_profile', EditProfileController::class);
     Route::get('index', [UserController::class, 'user'])->name('dashboard');
     Route::resource('products', ProductController::class);

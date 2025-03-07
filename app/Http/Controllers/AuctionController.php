@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AuctionProduct;
 use App\Models\Bid;
 use App\Models\Category;
+use App\Models\State;
 use App\Models\User;
 use App\Notifications\NewBidOnAuctionNotification;
 use Auth;
@@ -21,9 +22,10 @@ class AuctionController extends Controller
     }
     public function index()
     {
+        $states = State::select('iso2', 'name')->get();
         $products = AuctionProduct::active()->paginate(11);
         $categories = Category::whereNull('parent_id')->with('children')->get();
-        return view('frontend.auction.index', compact('products', 'categories'));
+        return view('frontend.auction.index', compact('products', 'categories', 'states'));	
     }
 
     public function show($id)

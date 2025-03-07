@@ -90,19 +90,27 @@
                                 $subscription = $user->subscriptions->first();
                             @endphp
                             <p class="text-black">Subscribed to: {{ $subscription->type }}</p>
-                            <p class="text-black">Status: {{ $subscription->stripe_status }}</p>
-                            @php
-                                $stripeSubscription = optional(
-                                    $user->subscription($subscription->type),
-                                )->asStripeSubscription();
-                            @endphp
+                            <p class="text-black">
+                                Status:
+                                <span
+                                    class="badge {{ $subscription->stripe_status === 'active' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ ucfirst($subscription->stripe_status) }}
+                                </span>
+                            </p>
 
-                            @if ($stripeSubscription)
-                                <p><strong>Next Billing Date:</strong>
-                                    {{ \Carbon\Carbon::createFromTimestamp($stripeSubscription->current_period_end)->format('F d, Y') }}
-                                </p>
-                            @else
-                                <p>No active subscription found.</p>
+                            @if ($subscription->type !== 'LIFETIME')
+                                @php
+                                    $activeSubscription = $user->subscriptions()->active()->first();
+                                @endphp
+
+
+                                @if ($activeSubscription)
+                                    <p class="text-black"><strong>Next Billing Date:</strong>
+                                        {{ \Carbon\Carbon::createFromTimestamp($activeSubscription->asStripeSubscription()->current_period_end)->format('F d, Y') }}
+                                    </p>
+                                @else
+                                    <p>No active subscription found.</p>
+                                @endif
                             @endif
                         @else
                             <p class="text-black">You are not subscribed to any package.</p>

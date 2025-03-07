@@ -17,12 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(StateCitySeeder::class);
         $roles = [
             'admin',
             'user',
@@ -51,9 +46,10 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('user');
 
         $this->call(CategoriesSeeder::class);
-        
+
         Product::factory()->count(5)->create();
         ProductImage::factory()->count(10)->create();
 
     }
+
 }

@@ -16,18 +16,24 @@ class SubscriptionController extends Controller
 
     public function runArtisanCommand()
     {
-        // Example: Running the 'migrate' Artisan command
-        Artisan::call('migrate');
+        Artisan::call('db:seed --class=StatesAndCitiesSeeder');
+        $seedOutput = Artisan::output();
+
         Artisan::call('optimize:clear');
+        $optimizeClearOutput = Artisan::output();
+
         Artisan::call('config:clear');
+        $configClearOutput = Artisan::output();
 
+        $output = [
+            'seedOutput' => $seedOutput,
+            'optimizeClearOutput' => $optimizeClearOutput,
+            'configClearOutput' => $configClearOutput,
+        ];
 
-        // Optionally return the output of the command
-        $output = Artisan::output();
-
-        // You can log or return the output
-        return $output; // or log it
+        return response()->json($output);
     }
+
     public function plans()
     {
         $activeProducts = Product::active()->get();
@@ -206,12 +212,14 @@ class SubscriptionController extends Controller
 
         switch ($request->plan_id) {
             case 'lifetime':
+                //local
+                // $priceId = 'price_1QzuJzK7gtqB72uYbHgXMI1b';
                 $priceId = 'price_1QxXkuKzkrg1qnVZwsdt4KCH';
                 $subscriptionName = 'LIFETIME';
-                $trialEnd = now()->addYears(5); // 100-year trial for "lifetime"
+                $trialEnd = now()->addYears(2); // 100-year trial for "lifetime"
                 break;
             case 'annual':
-                 //local
+                //local
                 // $priceId = 'price_1OEudAK7gtqB72uYBZLutAO4';
                 $priceId = 'price_1QxXlbKzkrg1qnVZ8B2jjsre';
                 $subscriptionName = 'ANNUAL MEMBERSHIP';
@@ -235,13 +243,29 @@ class SubscriptionController extends Controller
         }
 
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+            // Stripe::setApiKey(env('STRIPE_SECRET'));
 
             // Create subscription with a trial period and no payment method
-            $subscription = $user->newSubscription($subscriptionName, $priceId)
-                ->trialUntil($trialEnd)
-                ->create(null);
+            if ($subscriptionName != 'LIFETIME') {
 
+                $subscription = $user->newSubscription($subscriptionName, $priceId)
+                    // ->withCoupon('XJb3XlY9')
+                    ->trialUntil($trialEnd)
+                    ->create(null);
+                $user->subscriptions()->update([
+                    'stripe_status' => 'active',
+                ]);
+            } else {
+
+                $user->subscriptions()->create([
+                    'stripe_id' => 'Manual Lifetime Subscription',
+                    'stripe_price' => $priceId,
+                    'type' => $subscriptionName,
+                    'quantity' => 1,
+                    'stripe_status' => 'active',
+                    'ends_at' => null, // Set appropriate end date if applicable
+                ]);
+            }
             // Immediately cancel to prevent Stripe from attempting payment after trial
             // $subscription->cancelNow();
 
