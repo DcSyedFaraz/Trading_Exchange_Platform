@@ -61,6 +61,7 @@
                     <span>
                         <a href="#" id="logout-link">
                             <i class="fa-light fa-right-from-bracket"></i>
+                            <h4>Logout</h4>
                         </a>
                     </span>
 

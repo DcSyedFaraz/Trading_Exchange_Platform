@@ -3113,6 +3113,11 @@ body {
 
 #sidebar .profile span a {
     color: black;
+    text-decoration: none;
+}
+
+#logout-link h4 {
+    font-size: 12px;
 }
 
 #sidebar .Reelslogo img {
@@ -4231,9 +4236,31 @@ ul {
     text-align: center;
 }
 
+.login-btn {
+    text-decoration: none;
+    display: grid;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-btn i {
+    place-self: center;
+}
+
 /*Responsive Css*/
 
 @media only screen and (max-width: 767px) {
+
+    #logout-link h4 {
+        font-size: 10px;
+    }
+
+    .login-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
     .side.active {
         width: 15%;
@@ -4501,7 +4528,7 @@ ul {
 
     #sidebar .profile span {
         margin-left: 20px;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     #menu-icon {
