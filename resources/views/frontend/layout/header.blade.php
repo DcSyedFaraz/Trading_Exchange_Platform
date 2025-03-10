@@ -34,7 +34,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-2 d-none d-md-block">
+                <div class="col-md-2 d-none d-md-flex gap-3">
+                    <a href="{{ route('login') }}" class="login-btn"><i class="fa-regular fa-user"></i><span>Login</span></a>
                     <a href="{{ route('marketplace') }}" class="market-btn">Barter Nation
                     </a>
                 </div>
@@ -63,6 +64,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('contact_us') }}">Contact us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('login') }}" class="login-btn"><i class="fa-regular fa-user"></i><span>Login</span></a>
                                 </li>
                                 <li>
                                     <a href="{{ route('marketplace') }}" class="market-btn">Barter Nation</a>
