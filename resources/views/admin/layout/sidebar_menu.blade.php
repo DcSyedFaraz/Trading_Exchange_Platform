@@ -62,16 +62,22 @@
                          </div>
                      </li>
                  @endif
-                 <li class="{{ request()->routeIs('products.*') ? 'menuitem-active' : '' }}">
-                     <a href='{{ route('products.index') }}'>
-                         <i data-feather="book-open"></i>
-                         <span> Products </span>
-                     </a>
-                 </li>
-                 <li>
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                         @csrf
-                     </form>
+                <li class="{{ request()->routeIs('products.*') ? 'menuitem-active' : '' }}">
+                    <a href='{{ route('products.index') }}'>
+                        <i data-feather="book-open"></i>
+                        <span> Products </span>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('campaign.analytics') ? 'menuitem-active' : '' }}">
+                    <a href='{{ route('campaign.analytics') }}'>
+                        <i data-feather="bar-chart-2"></i>
+                        <span> Mail Analytics </span>
+                    </a>
+                </li>
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 
                      <a href="#" class="text-danger"
                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

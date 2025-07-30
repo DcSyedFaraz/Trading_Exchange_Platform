@@ -42,6 +42,7 @@ Route::get('/newsletter/subscribe', [NewsletterController::class, 'subscribeForm
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/confirm/{token}', [NewsletterController::class, 'confirm'])->name('newsletter.confirm');
 Route::get('/campaign/open/{pivot}', [CampaignController::class, 'open'])->name('campaign.open');
+Route::get('/campaign/click/{pivot}', [CampaignController::class, 'click'])->name('campaign.click');
 
 require __DIR__ . '/auth.php';
 
@@ -126,6 +127,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
 
     Route::resource('campaign', CampaignController::class)->only(['index','create','store']);
     Route::post('campaign/{campaign}/send', [CampaignController::class, 'send'])->name('campaign.send');
+    Route::get('campaign/analytics', [CampaignController::class, 'analytics'])->name('campaign.analytics');
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 

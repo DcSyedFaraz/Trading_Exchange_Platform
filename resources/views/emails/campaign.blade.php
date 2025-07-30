@@ -77,6 +77,9 @@
         <div class="content">
             <h1 class="subject">{{ $campaign->subject }}</h1>
             <div class="body"> {!! nl2br(e($campaign->body)) !!} </div>
+            <div class="my-4 text-center">
+                <a href="{{ route('campaign.click', $pivotId) }}" style="background:#4299e1;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block">Visit Site</a>
+            </div>
             <div class="footer"> Thanks,<br> <span class="signature">{{ config('app.name') }}</span> </div>
         </div>
     </div> {{-- Tracking Pixel --}} <img src="{{ route('campaign.open', $pivotId) }}" alt="" width="1"

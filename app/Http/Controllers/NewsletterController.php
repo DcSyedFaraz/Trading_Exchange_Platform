@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ConfirmationMail;
+use App\Jobs\SendConfirmationEmail;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
@@ -25,7 +24,7 @@ class NewsletterController extends Controller
             ['confirm_token' => str()->random(40)]
         );
 
-        Mail::to($subscriber->email)->send(new ConfirmationMail($subscriber->confirm_token));
+        SendConfirmationEmail::dispatch($subscriber->email, $subscriber->confirm_token);
 
         return redirect()->back()->with('status', 'Please check your email to confirm subscription.');
     }
