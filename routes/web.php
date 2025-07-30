@@ -22,6 +22,8 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\CampaignController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,6 +47,11 @@ Route::any('/runArtisanCommand', [SubscriptionController::class, 'runArtisanComm
 Route::get('/login', function () {
     return view('auth/login');
 });
+
+Route::get('/newsletter/subscribe', [NewsletterController::class, 'subscribeForm'])->name('newsletter.form');
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/newsletter/confirm/{token}', [NewsletterController::class, 'confirm'])->name('newsletter.confirm');
+Route::get('/campaign/open/{pivot}', [CampaignController::class, 'open'])->name('campaign.open');
 
 require __DIR__ . '/auth.php';
 
@@ -126,6 +133,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
 
     Route::get('admin/subscribe', [SubscriptionController::class, 'showSubscriptionPage'])->name('admin.subscribe');
     Route::post('admin/subscribe/manual', [SubscriptionController::class, 'manualSubscription'])->name('admin.manual_subscription');
+
+    Route::resource('campaign', CampaignController::class)->only(['index','create','store']);
+    Route::post('campaign/{campaign}/send', [CampaignController::class, 'send'])->name('campaign.send');
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 
