@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Mail\CampaignMail;
+use App\Jobs\SendCampaignEmail;
 use App\Models\Campaign;
-use Illuminate\Support\Facades\Mail;
 
 class CampaignMailer
 {
@@ -12,9 +11,7 @@ class CampaignMailer
     {
         $campaign->load('subscribers');
         foreach ($campaign->subscribers as $subscriber) {
-            // dd($subscriber->pivot->id);
-            Mail::to($subscriber->email)->send(new CampaignMail($campaign, $subscriber->pivot->id));
-            $subscriber->pivot->update(['sent_at' => now()]);
+            SendCampaignEmail::dispatch($campaign, $subscriber->email, $subscriber->pivot->id);
         }
 
         $campaign->update(['status' => 'sent']);
