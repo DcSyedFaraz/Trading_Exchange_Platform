@@ -19,6 +19,6 @@ class Campaign extends Model
     {
         return $this->belongsToMany(Subscriber::class)
             ->withTimestamps()
-            ->withPivot(['sent_at', 'opened_at', 'clicked_at']);
+            ->withPivot(['sent_at', 'opened_at', 'clicked_at','id']);
     }
 }

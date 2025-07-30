@@ -3,31 +3,21 @@
 use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\AdminAuctionController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditProfileController;
 use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\LibraryController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ProductPageController;
-use App\Http\Controllers\Admin\TeacherDashboardController;
-use App\Http\Controllers\Admin\StudentDashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\Admin\UserManageController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
-
-
-use App\Http\Controllers\Auth\AuthController;
 use Tighten\Ziggy\Ziggy;
 
 /*

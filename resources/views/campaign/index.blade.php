@@ -1,27 +1,58 @@
-<x-app-layout>
-    <div class="container mx-auto py-8">
-        <a href="{{ route('campaign.create') }}" class="bg-blue-500 text-white px-3 py-2">New Campaign</a>
-        <table class="mt-4 w-full border">
-            <tr class="bg-gray-100">
-                <th class="p-2">Subject</th>
-                <th class="p-2">Status</th>
-                <th class="p-2">Actions</th>
-            </tr>
-            @foreach($campaigns as $campaign)
-                <tr>
-                    <td class="p-2">{{ $campaign->subject }}</td>
-                    <td class="p-2">{{ $campaign->status }}</td>
-                    <td class="p-2">
-                        @if($campaign->status !== 'sent')
-                            <form method="POST" action="{{ route('campaign.send', $campaign) }}" class="inline">
-                                @csrf
-                                <button class="text-blue-600">Send Now</button>
-                            </form>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </table>
-        {{ $campaigns->links() }}
+@extends('admin.layout.master')
+
+@section('content')
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Campaigns</h2>
+            <a href="{{ route('campaign.create') }}" class="btn btn-primary">New Campaign</a>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($campaigns as $campaign)
+                            <tr>
+                                <td>{{ $campaign->subject }}</td>
+                                <td>{{ ucfirst($campaign->status) }}</td>
+                                <td>
+                                    @if ($campaign->status !== 'sent')
+                                        <form method="POST" action="{{ route('campaign.send', $campaign) }}"
+                                            class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">
+                                                Send Now
+                                            </button>
+                                        </form>
+                                    @else
+                                        <span class="text-secondary">—</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            {{ $campaigns->links() }}
+        </div>
     </div>
-</x-app-layout>
+@endsection
+
+@push('styles')
+    <style>
+        /* Custom table overrides */
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+@endpush

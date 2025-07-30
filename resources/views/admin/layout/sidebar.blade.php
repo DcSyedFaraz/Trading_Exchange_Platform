@@ -46,6 +46,12 @@
                         </span>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('campaign.*') ? 'active' : '' }}">
+                    <a href="{{ route('campaign.index') }}"><i class="fa-light fa-wallet"></i><span>
+                            Campaigns
+                        </span>
+                    </a>
+                </li>
             </div>
         </ul>
         <div class="usersss">

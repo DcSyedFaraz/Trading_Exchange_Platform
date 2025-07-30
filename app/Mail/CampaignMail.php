@@ -20,6 +20,7 @@ class CampaignMail extends Mailable
     {
         $this->campaign = $campaign;
         $this->pivotId = $pivotId;
+        // dd($campaign);
     }
 
     /**
@@ -28,7 +29,7 @@ class CampaignMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Campaign Mail',
+            subject: $this->campaign->subject,
         );
     }
 

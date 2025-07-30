@@ -1,4 +1,3 @@
-<x-guest-layout>
     <form method="POST" action="{{ route('newsletter.subscribe') }}" class="max-w-md mx-auto mt-10">
         @csrf
         <div>
@@ -13,4 +12,3 @@
             <p class="mt-2 text-red-600">{{ $message }}</p>
         @enderror
     </form>
-</x-guest-layout>
