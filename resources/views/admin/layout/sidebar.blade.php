@@ -52,6 +52,12 @@
                         </span>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('campaign.analytics') ? 'menuitem-active' : '' }}">
+                    <a href='{{ route('campaign.analytics') }}'>
+                        <i class="fa-light fa-wallet"></i>
+                        <span> Mail Analytics </span>
+                    </a>
+                </li>
             </div>
         </ul>
         <div class="usersss">

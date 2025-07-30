@@ -11,7 +11,7 @@
             max-width: 600px;
             margin: 0 auto;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: #ffffff;
+           background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -78,11 +78,15 @@
             <h1 class="subject">{{ $campaign->subject }}</h1>
             <div class="body"> {!! nl2br(e($campaign->body)) !!} </div>
             <div class="my-4 text-center">
-                <a href="{{ route('campaign.click', $pivotId) }}" style="background:#4299e1;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block">Visit Site</a>
+                <a href="{{ "http://michael.test/campaign/click/$pivotId" }}"
+                    style="background:#4299e1;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block">Visit
+                    Site</a>
             </div>
             <div class="footer"> Thanks,<br> <span class="signature">{{ config('app.name') }}</span> </div>
         </div>
-    </div> {{-- Tracking Pixel --}} <img src="{{ route('campaign.open', $pivotId) }}" alt="" width="1"
+    </div>
+    {{-- Tracking Pixel --}}
+    <img src="{{ "http://michael.test/campaign/open/$pivotId" }}" alt="" width="1"
         height="1" class="tracking-pixel">
 </body>
 

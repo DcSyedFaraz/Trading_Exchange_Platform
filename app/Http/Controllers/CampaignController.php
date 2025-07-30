@@ -7,6 +7,7 @@ use App\Models\Subscriber;
 use App\Services\CampaignMailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class CampaignController extends Controller
 {
@@ -52,7 +53,7 @@ class CampaignController extends Controller
     public function open($pivotId)
     {
         DB::table('campaign_subscriber')->where('id', $pivotId)->update(['opened_at' => now()]);
-
+        Log::info('sdasd' . $pivotId);
         $pixel = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMBgR2F2NIAAAAASUVORK5CYII=');
         return response($pixel)->header('Content-Type', 'image/png');
     }
@@ -67,9 +68,9 @@ class CampaignController extends Controller
     public function analytics()
     {
         $campaigns = Campaign::withCount([
-            'subscribers as sent_count' => fn ($q) => $q->whereNotNull('campaign_subscriber.sent_at'),
-            'subscribers as open_count' => fn ($q) => $q->whereNotNull('campaign_subscriber.opened_at'),
-            'subscribers as click_count' => fn ($q) => $q->whereNotNull('campaign_subscriber.clicked_at'),
+            'subscribers as sent_count' => fn($q) => $q->whereNotNull('campaign_subscriber.sent_at'),
+            'subscribers as open_count' => fn($q) => $q->whereNotNull('campaign_subscriber.opened_at'),
+            'subscribers as click_count' => fn($q) => $q->whereNotNull('campaign_subscriber.clicked_at'),
         ])->get();
 
         return view('campaign.analytics', compact('campaigns'));
