@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserManageController;
+use App\Http\Controllers\Admin\FailedJobController;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\ChatController;
@@ -128,6 +129,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin']], 
     Route::resource('campaign', CampaignController::class)->only(['index','create','store']);
     Route::post('campaign/{campaign}/send', [CampaignController::class, 'send'])->name('campaign.send');
     Route::get('campaign/analytics', [CampaignController::class, 'analytics'])->name('campaign.analytics');
+
+    Route::get('failed-jobs', [FailedJobController::class, 'index'])->name('failed-jobs.index');
+    Route::post('failed-jobs/{id}/retry', [FailedJobController::class, 'retry'])->name('failed-jobs.retry');
+    Route::delete('failed-jobs/{id}', [FailedJobController::class, 'destroy'])->name('failed-jobs.destroy');
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:user|admin']], function () {
 
