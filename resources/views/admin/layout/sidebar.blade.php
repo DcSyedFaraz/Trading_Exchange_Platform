@@ -46,13 +46,13 @@
                         </span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('campaign.*') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('campaign.index') ? 'active' : '' }}">
                     <a href="{{ route('campaign.index') }}"><i class="fa-light fa-wallet"></i><span>
                             Campaigns
                         </span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('campaign.analytics') ? 'menuitem-active' : '' }}">
+                <li class="{{ request()->routeIs('campaign.analytics') ? 'active' : '' }}">
                     <a href='{{ route('campaign.analytics') }}'>
                         <i class="fa-light fa-wallet"></i>
                         <span> Mail Analytics </span>
