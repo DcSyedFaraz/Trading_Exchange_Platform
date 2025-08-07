@@ -35,6 +35,10 @@
                                 class="fa-sharp fa-light fa-briefcase"></i><span>Categories
                                 Update</span></a>
                     </li>
+                    <li class="{{ request()->routeIs('failed-jobs.*') ? 'active' : '' }}">
+                        <a href="{{ route('failed-jobs.index') }}"><i class="fa-light fa-triangle-exclamation"></i><span>Failed
+                                Jobs</span></a>
+                    </li>
                 @endif
                 <li class="{{ request()->routeIS('products.*') ? 'active' : '' }}"><a
                         href="{{ route('products.index') }}"><i class="fa-light fa-chart-simple"></i><span>Barter

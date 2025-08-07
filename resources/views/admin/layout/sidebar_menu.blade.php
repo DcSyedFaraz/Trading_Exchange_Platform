@@ -57,6 +57,9 @@
                                  <li class="{{ request()->routeIs('users.*') ? 'menuitem-active' : '' }}">
                                      <a href='{{ route('users.index') }}'>User Management</a>
                                  </li>
+                                <li class="{{ request()->routeIs('failed-jobs.*') ? 'menuitem-active' : '' }}">
+                                    <a href='{{ route('failed-jobs.index') }}'>Failed Jobs</a>
+                                </li>
 
                              </ul>
                          </div>
