@@ -1,3 +1,16 @@
+<section class="bg6">
+    <div class="container">
+        <h4 class="bg6-a">Get in touch</h4>
+        <h4 class="bg6-b">SUBSCRIBE TO OUR NEWSLETTER</h4>
+        <p class="bg6-c">Sign up to receive updates, exclusive offers, and the latest news delivered straight to your
+            inbox.</p>
+        <form action="{{ route('newsletter.subscribe') }}" method="post">
+            @csrf
+            <input class="bg6-input" name="email" type="email" placeholder="Enter your email address:" required />
+            <input type="submit" class="bg6-submit" value="Subscribe" />
+        </form>
+    </div>
+</section>
 <footer>
     <div class="container">
         <div class="row align-items-center">
@@ -7,7 +20,8 @@
                     services find new homes through direct trade and competitive bidding.
                 </p>
                 <div class="social-div">
-                    <a href="https://www.facebook.com/people/Traders-Exchange/61572893464647/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/people/Traders-Exchange/61572893464647/" target="_blank"><i
+                            class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-twitter"></i></a>
                 </div>

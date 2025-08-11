@@ -100,16 +100,5 @@
         </div>
     </section>
 
-    <section class="bg6">
-        <div class="container">
-            <h4 class="bg6-a">Get in touch</h4>
-            <h4 class="bg6-b">SUBSCRIBE TO OUR NEWSLETTER</h4>
-            <p class="bg6-c">Sign up to receive updates, exclusive offers, and the latest news delivered straight to your
-                inbox.</p>
-            <form action="{{ asset('mail.php') }}" method="post">
-                <input class="bg6-input" name="email" type="email" placeholder="Enter your email address:" required />
-                <input type="submit" class="bg6-submit" value="Subscribe" />
-            </form>
-        </div>
-    </section>
+
 @endsection

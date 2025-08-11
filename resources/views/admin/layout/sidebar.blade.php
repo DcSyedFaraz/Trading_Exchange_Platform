@@ -35,8 +35,21 @@
                                 class="fa-sharp fa-light fa-briefcase"></i><span>Categories
                                 Update</span></a>
                     </li>
+                    <li class="{{ request()->routeIs('campaign.index') ? 'active' : '' }}">
+                        <a href="{{ route('campaign.index') }}"><i class="fa-light fa-wallet"></i><span>
+                                Campaigns
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('campaign.analytics') ? 'active' : '' }}">
+                        <a href='{{ route('campaign.analytics') }}'>
+                            <i class="fa-light fa-wallet"></i>
+                            <span> Mail Analytics </span>
+                        </a>
+                    </li>
                     <li class="{{ request()->routeIs('failed-jobs.*') ? 'active' : '' }}">
-                        <a href="{{ route('failed-jobs.index') }}"><i class="fa-light fa-triangle-exclamation"></i><span>Failed
+                        <a href="{{ route('failed-jobs.index') }}"><i
+                                class="fa-light fa-triangle-exclamation"></i><span>Failed
                                 Jobs</span></a>
                     </li>
                 @endif
@@ -48,18 +61,6 @@
                     <a href="{{ route('auction_products.index') }}"><i class="fa-light fa-wallet"></i><span>
                             Auction Products
                         </span>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('campaign.index') ? 'active' : '' }}">
-                    <a href="{{ route('campaign.index') }}"><i class="fa-light fa-wallet"></i><span>
-                            Campaigns
-                        </span>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('campaign.analytics') ? 'active' : '' }}">
-                    <a href='{{ route('campaign.analytics') }}'>
-                        <i class="fa-light fa-wallet"></i>
-                        <span> Mail Analytics </span>
                     </a>
                 </li>
             </div>

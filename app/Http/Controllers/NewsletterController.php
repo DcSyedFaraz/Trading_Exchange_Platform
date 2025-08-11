@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendConfirmationEmail;
 use App\Models\Subscriber;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Throwable;
 
 class NewsletterController extends Controller
 {
@@ -19,14 +21,33 @@ class NewsletterController extends Controller
             'email' => 'required|email',
         ]);
 
-        $subscriber = Subscriber::firstOrCreate(
-            ['email' => $request->email],
-            ['confirm_token' => str()->random(40)]
-        );
+        try {
+            $existingSubscriber = Subscriber::where('email', $request->email)->first();
 
-        SendConfirmationEmail::dispatch($subscriber->email, $subscriber->confirm_token);
+            if ($existingSubscriber) {
+                return redirect()->back()->with('error', 'You are already subscribed to our newsletter.');
+            }
 
-        return redirect()->back()->with('status', 'Please check your email to confirm subscription.');
+            $token = str()->random(40);
+            $subscriber = Subscriber::firstOrCreate(
+                ['email' => $request->email],
+                ['confirm_token' => $token]
+            );
+
+            SendConfirmationEmail::dispatch($subscriber->email, $subscriber->confirm_token);
+
+            return redirect()->back()->with('success', 'Please check your email to confirm subscription.');
+        } catch (QueryException $e) {
+            // Unique/email constraint or other DB issue
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'You are already subscribed to our newsletter.');
+            }
+            report($e);
+            return redirect()->back()->with('error', 'We couldn’t process your request right now. Please try again shortly.');
+        } catch (Throwable $e) {
+            report($e);
+            return redirect()->back()->with('error', 'Something went wrong while sending the confirmation email. Please try again later.');
+        }
     }
 
     public function confirm($token)
