@@ -22,10 +22,10 @@
                             placeholder="Write your campaign message here" required></textarea>
                     </div>
 
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="send_at" class="form-label">Schedule (optional)</label>
                         <input type="datetime-local" id="send_at" name="send_at" class="form-control">
-                    </div>
+                    </div> --}}
 
                     <div class="d-grid">
                         <button type="submit" name="send_now" value="1" class="btn btn-primary btn-lg custom-btn">
